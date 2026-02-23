@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Gesco - Gestion Hôtelière Moderne pour la Côte d'Ivoire",
+  title: "Hotela - Gestion Hôtelière Moderne pour la Côte d'Ivoire",
   description:
     "Le logiciel de gestion hôtelière N°1 en Côte d'Ivoire. Gérez vos réservations, factures et chambres facilement. Essai gratuit 30 jours.",
 };

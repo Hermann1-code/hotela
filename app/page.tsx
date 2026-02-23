@@ -310,7 +310,7 @@ export default function LandingPage() {
                   <div className="h-3 w-3 bg-success/60" />
                 </div>
                 <div className="ml-4 flex-1 bg-background/50 px-3 py-1 text-xs text-muted-foreground">
-                  app.gesko.com/dashboard
+                  app.hotela.ci/dashboard
                 </div>
               </div>
 
@@ -323,7 +323,7 @@ export default function LandingPage() {
                       <Hotel className="h-4 w-4 text-primary-foreground" />
                     </div>
                     <span className="font-semibold text-sidebar-foreground">
-                      Gesko
+                      Hotela
                     </span>
                   </div>
 
@@ -603,11 +603,11 @@ export default function LandingPage() {
               Demonstration
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Decouvrez Gesko en action
+              Decouvrez Hotela en action
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Regardez notre video de demonstration pour voir comment Gesko peut
-              transformer la gestion de votre hotel en quelques minutes.
+              Regardez notre video de demonstration pour voir comment Hotela
+              peut transformer la gestion de votre hotel en quelques minutes.
             </p>
           </div>
 
@@ -618,7 +618,7 @@ export default function LandingPage() {
                 {YOUTUBE_VIDEO_ID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
-                    title="Demonstration Gesko"
+                    title="Demonstration Hotela"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="absolute inset-0 h-full w-full"
@@ -663,7 +663,7 @@ export default function LandingPage() {
               <div className="flex items-center justify-between border-t border-border bg-card px-6 py-4">
                 <div>
                   <p className="font-medium">
-                    {"Presentation complete de Gesko"}
+                    {"Presentation complete de Hotela"}
                   </p>
                   <p className="text-sm text-muted-foreground">
                     {"Duree: 3 minutes"}
@@ -1155,7 +1155,7 @@ export default function LandingPage() {
               Ce que disent nos premiers utilisateurs
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              {"Decouvrez ce que nos clients disent de Gesko."}
+              {"Decouvrez ce que nos clients disent de Hotela."}
             </p>
           </div>
 
@@ -1249,7 +1249,7 @@ export default function LandingPage() {
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
                 {
-                  "Essayez Gesko gratuitement pendant 30 jours et decouvrez une nouvelle facon de gerer votre hotel. Sans engagement, sans carte bancaire."
+                  "Essayez Hotela gratuitement pendant 30 jours et decouvrez une nouvelle facon de gerer votre hotel. Sans engagement, sans carte bancaire."
                 }
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
@@ -1351,14 +1351,14 @@ export default function LandingPage() {
             <div>
               <h4 className="font-semibold">Contact</h4>
               <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
-                <li>support@gesko.app</li>
+                <li>support@Hotela.app</li>
                 <li>+225 07 07 07 07 07</li>
                 <li>{"Abidjan, Cote d'Ivoire"}</li>
               </ul>
             </div>
           </div>
           <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>{"© 2025 Gesko. Tous droits reserves."}</p>
+            <p>{"© 2025 Hotela. Tous droits reserves."}</p>
           </div>
         </div>
       </footer>
@@ -1386,7 +1386,7 @@ export default function LandingPage() {
                 {YOUTUBE_VIDEO_ID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1`}
-                    title="Demonstration Gesko"
+                    title="Demonstration Hotela"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="h-full w-full"
