@@ -10,7 +10,6 @@ import {
   Receipt,
   BarChart3,
   Users,
-  Globe,
   CheckCircle2,
   ArrowRight,
   Star,
@@ -28,53 +27,11 @@ import {
   LogOut,
   ChevronDown,
   X,
-  Palette,
-  Search,
-  Zap,
-  CreditCard,
+  Minus,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { useState } from "react";
 import { ModeToggle } from "@/components/mode-toggle";
-
-const websiteFeatures = [
-  {
-    icon: Globe,
-    title: "Votre vitrine en ligne",
-    description:
-      "Un site web professionnel à votre image, avec votre logo, vos couleurs et vos photos.",
-  },
-  {
-    icon: CalendarCheck,
-    title: "Réservation en ligne 24/7",
-    description:
-      "Vos clients peuvent réserver directement depuis votre site, même en dehors des heures d'ouverture.",
-  },
-  {
-    icon: Palette,
-    title: "Design personnalisable",
-    description:
-      "Plusieurs templates modernes et responsive, adaptés à tous les écrans.",
-  },
-  {
-    icon: Search,
-    title: "Référencement optimisé",
-    description:
-      "Votre hôtel visible sur Google grâce à un SEO optimisé pour attirer plus de clients.",
-  },
-  {
-    icon: Zap,
-    title: "Mise à jour instantanée",
-    description:
-      "Tarifs, disponibilités et photos synchronisés automatiquement avec votre système de gestion.",
-  },
-  {
-    icon: Shield,
-    title: "Hébergement sécurisé",
-    description:
-      "SSL inclus, sauvegarde automatique et protection contre les cyberattaques.",
-  },
-];
 
 const paymentMethods = [
   { name: "Orange Money", logo: "/orangemoney.png" },
@@ -88,159 +45,153 @@ const paymentMethods = [
 const features = [
   {
     icon: CalendarCheck,
-    title: "Réservations simplifiées",
+    title: "Reservations simplifiees",
     description:
-      "Gérez vos réservations en quelques clics. Calendrier visuel, check-in/out rapide, notifications automatiques.",
+      "Gerez vos reservations en quelques clics. Calendrier visuel, check-in/out rapide, notifications automatiques.",
   },
   {
     icon: Receipt,
     title: "Facturation automatique",
     description:
-      "Factures générées automatiquement avec TVA 18%. Paiements partiels, Mobile Money, et export PDF.",
+      "Factures generees automatiquement avec TVA 18%. Paiements partiels, Mobile Money, et export PDF.",
   },
   {
     icon: BarChart3,
     title: "Rapports & Analytics",
     description:
-      "Suivez vos revenus, taux d'occupation et performances en temps réel avec des graphiques détaillés.",
+      "Suivez vos revenus, taux d'occupation et performances en temps reel avec des graphiques detailles.",
   },
   {
     icon: Building2,
-    title: "Multi-établissements",
+    title: "Multi-etablissements",
     description:
-      "Gérez plusieurs hôtels depuis une seule interface. Vue consolidée et rapports par établissement.",
+      "Gerez plusieurs hotels depuis une seule interface. Vue consolidee et rapports par etablissement.",
   },
   {
     icon: Users,
-    title: "Gestion des équipes",
+    title: "Gestion des equipes",
     description:
-      "Attribuez des rôles ( Manager, Réceptionniste) et suivez l'historique des opérations.",
+      "Attribuez des roles (Manager, Receptionniste) et suivez l'historique des operations.",
   },
   {
-    icon: Globe,
-    title: "Site web inclus",
+    icon: Smartphone,
+    title: "Paiement Mobile Money",
     description:
-      "Créez votre site vitrine avec système de réservation en ligne intégré. Sans frais supplémentaires.",
+      "Acceptez Orange Money, MTN Money et Wave directement dans l'application. Paiements securises.",
   },
 ];
 
 const plans = [
   {
-    name: "Essentiel",
+    name: "ESSENTIEL",
+    target: "< 15 chambres",
     monthlyPrice: 15000,
-    period: "/mois",
-    description: "Idéal pour les petits hôtels",
+    annualPrice: 150000,
+    annualSavings: "2 mois offerts",
     features: [
-      "Gestion des chambres",
-      "Gestion des réservations",
-      "Facturation avec TVA",
-      "1 utilisateur",
-      "Support par email",
+      { name: "Check-in / Check-out", value: true },
+      { name: "Tableau de bord", value: "Simplifie" },
+      { name: "Cle API Reservation", value: true },
+      { name: "Nombre de comptes", value: "1 (Reception)" },
+      { name: "Gestion Depenses", value: false },
+      { name: "Rapports & Stats", value: "Basique" },
+      { name: "Module Resto/Bar", value: false },
+      { name: "Support Technique", value: "Standard" },
     ],
-    cta: "Essai gratuit de 30 jours",
+    cta: "Essai gratuit 30 jours",
     popular: false,
   },
   {
-    name: "Business",
+    name: "BUSINESS",
+    target: "15 a 40 chambres",
     monthlyPrice: 25000,
-    period: "/mois",
-    description: "Pour les hôtels en croissance",
+    annualPrice: 250000,
+    annualSavings: "2 mois offerts",
     features: [
-      "Gestion des chambres",
-      "Multi-établissements (3)",
-      "Rapports avancés",
-      "5 utilisateurs",
-      "Support prioritaire",
-      "Export PDF/CSV",
+      { name: "Check-in / Check-out", value: "Complet" },
+      { name: "Tableau de bord", value: "Avance" },
+      { name: "Cle API Reservation", value: true },
+      { name: "Nombre de comptes", value: "3 (Admin, Gerant, Recep.)" },
+      { name: "Gestion Depenses", value: true },
+      { name: "Rapports & Stats", value: "Mensuels detailles" },
+      { name: "Module Resto/Bar", value: false },
+      { name: "Support Technique", value: "Prioritaire" },
     ],
-    cta: "Essai gratuit de 30 jours",
+    cta: "Essai gratuit 30 jours",
     popular: true,
   },
   {
-    name: "Enterprise",
-    monthlyPrice: null,
-    period: "",
-    description: "Solution sur mesure pour les grandes structures",
-    isCustom: true,
+    name: "PREMIUM",
+    target: "> 40 chambres",
+    monthlyPrice: 45000,
+    annualPrice: 450000,
+    annualSavings: "2 mois offerts",
     features: [
-      "Système entièrement personnalisé",
-      "Multi-établissements illimités",
-      "Intégrations sur mesure",
-      "Utilisateurs illimités",
-      "Support dédié 24/7",
-      "API personnalisée",
-      "Formation sur site incluse",
-      "Accompagnement personnalisé",
-      "SLA garanti",
+      { name: "Check-in / Check-out", value: "Complet" },
+      { name: "Tableau de bord", value: "Expert" },
+      { name: "Cle API Reservation", value: true },
+      { name: "Nombre de comptes", value: "Illimite" },
+      { name: "Gestion Depenses", value: true },
+      { name: "Rapports & Stats", value: "Temps reel / Compta" },
+      { name: "Module Resto/Bar", value: true },
+      { name: "Support Technique", value: "24h/7j + Formation" },
     ],
-    cta: "Demander un devis",
+    cta: "Essai gratuit 30 jours",
     popular: false,
   },
 ];
 
 const testimonials = [
   {
-    name: "Kouamé Yao",
-    role: "Directeur, Hôtel Ivoire Palace",
+    name: "Kouame Yao",
+    role: "Directeur, Hotel Ivoire Palace",
     location: "Abidjan",
     content:
-      "Depuis que nous utilisons Gesko, nous avons réduit nos erreurs de facturation de 90%. L'interface est intuitive et mes réceptionnistes l'ont adopté en une journée.",
+      "L'interface est intuitive et mes receptionnistes l'ont pris en main en une journee. Un outil vraiment pense pour le terrain.",
     rating: 5,
   },
   {
     name: "Fatou Diallo",
-    role: "Gérante, Résidence Les Palmiers",
+    role: "Gerante, Residence Les Palmiers",
     location: "Yamoussoukro",
     content:
-      "Le support client est exceptionnel. Ils m'ont aidé à migrer toutes mes données en 48h. Je recommande vivement !",
+      "L'equipe de support est reactive et disponible. La migration de nos donnees s'est faite sans souci. Je recommande !",
     rating: 5,
   },
   {
     name: "Jean-Marc Koffi",
-    role: "Propriétaire, Hôtel du Lac",
-    location: "San-Pédro",
+    role: "Proprietaire, Hotel du Lac",
+    location: "San-Pedro",
     content:
-      "Les rapports analytiques m'ont permis d'identifier mes chambres les plus rentables. Mon chiffre d'affaires a augmenté de 25% en 6 mois.",
+      "Les rapports analytiques me donnent une vision claire de mon activite. Je sais enfin quelles chambres sont les plus rentables.",
     rating: 5,
   },
 ];
 
 const stats = [
-  { value: "50+", label: "Hôtels utilisateurs" },
-  { value: "10K+", label: "Réservations/mois" },
-  { value: "99.9%", label: "Disponibilité" },
-  { value: "4.9/5", label: "Satisfaction client" },
+  { value: "100%", label: "Cloud & Mobile Money" },
+  { value: "3 min", label: "Pour un check-in" },
+  { value: "99.9%", label: "Disponibilite garantie" },
+  { value: "0", label: "Installation requise" },
 ];
 
 const sidebarNavigation = [
   { name: "Dashboard", icon: LayoutDashboard, active: true },
   { name: "Chambres", icon: BedDouble, active: false },
-  { name: "Réservations", icon: CalendarDays, active: false },
+  { name: "Reservations", icon: CalendarDays, active: false },
   { name: "Facturation", icon: Receipt, active: false },
   { name: "Rapports", icon: BarChart3, active: false },
-  { name: "Multi-Hôtels", icon: Building2, active: false },
+  { name: "Multi-Hotels", icon: Building2, active: false },
   { name: "Utilisateurs", icon: Users, active: false },
-  { name: "Clés API", icon: Key, active: false },
-  { name: "Site Web", icon: Globe, active: false },
-  { name: "Paramètres", icon: Settings, active: false },
+  { name: "Cles API", icon: Key, active: false },
+  { name: "Parametres", icon: Settings, active: false },
 ];
 
 const YOUTUBE_VIDEO_ID = "eLxPGQ0P3AM";
 
 export default function LandingPage() {
-  const [activeTab, setActiveTab] = useState<
-    "dashboard" | "rooms" | "reservations"
-  >("dashboard");
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [isAnnual, setIsAnnual] = useState(false);
-
-  const getPrice = (monthlyPrice: number) => {
-    if (isAnnual) {
-      const annualPrice = monthlyPrice * 12 * 0.85; // 15% de réduction
-      return Math.round(annualPrice).toLocaleString("fr-FR");
-    }
-    return monthlyPrice.toLocaleString("fr-FR");
-  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -253,15 +204,14 @@ export default function LandingPage() {
               href="#demo"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              Démo
+              Demo
             </Link>
             <Link
               href="#features"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              Fonctionnalités
+              Fonctionnalites
             </Link>
-
             <Link
               href="#pricing"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
@@ -272,15 +222,15 @@ export default function LandingPage() {
               href="#testimonials"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              Témoignages
+              Temoignages
             </Link>
           </div>
           <div className="flex items-center gap-3">
             <ModeToggle />
-            <Link href="http://localhost:3000/" className="hidden sm:block">
+            <Link href="/login" className="hidden sm:block">
               <Button variant="ghost">Connexion</Button>
             </Link>
-            <Link href="http://localhost:3000/register">
+            <Link href="/register">
               <Button>
                 Essai gratuit
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -293,39 +243,30 @@ export default function LandingPage() {
       {/* Hero Section */}
       <section className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
         <div className="absolute inset-0 -z-10">
-          <div className="absolute top-1/4 left-1/4 h-96 w-96 rounded-full bg-primary/10 blur-3xl animate-pulse-glow" />
-          <div className="absolute bottom-1/4 right-1/4 h-96 w-96 rounded-full bg-accent/10 blur-3xl animate-pulse-glow delay-300" />
+          <div className="absolute top-0 left-0 right-0 h-full bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge
-              variant="secondary"
-              className="mb-6 px-4 py-1.5 text-sm animate-fade-in-down"
-            >
-              <span className="mr-2 inline-block h-2 w-2 animate-pulse rounded-full bg-success" />
-              +50 nouveaux hôtels ce mois
+            <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm">
+              <span className="mr-2 inline-block h-2 w-2 animate-pulse bg-success" />
+              Nouveau : lancez-vous avec 30 jours gratuits
             </Badge>
 
-            <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-6xl text-balance animate-fade-in-up delay-100">
-              Gérez votre hôtel comme un{" "}
-              <span className="dark:text-primary text-accent ">
-                professionnel
-              </span>
+            <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl text-balance">
+              Gerez votre hotel comme un{" "}
+              <span className="text-accent">professionnel</span>
             </h1>
 
-            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground text-pretty animate-fade-in-up delay-200">
-              Le logiciel de gestion hôtelière N°1 en Côte d'Ivoire.
-              Réservations, facturation, rapports — tout en un seul endroit.
+            <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed text-pretty">
+              Le logiciel de gestion hoteliere concu pour la Cote d'Ivoire.
+              Reservations, facturation, rapports — tout en un seul endroit.
               Payez avec Mobile Money.
             </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-in-up delay-300">
+            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/register">
-                <Button
-                  size="lg"
-                  className="h-12 px-8 text-base transition-transform hover:scale-105"
-                >
+                <Button size="lg" className="h-12 px-8 text-base">
                   Essayer pendant 30 jours
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -333,15 +274,15 @@ export default function LandingPage() {
               <Button
                 variant="outline"
                 size="lg"
-                className="h-12 px-8 text-base bg-transparent transition-transform hover:scale-105"
+                className="h-12 px-8 text-base bg-transparent"
                 onClick={() => setShowVideoModal(true)}
               >
                 <Play className="mr-2 h-5 w-5" />
-                Voir la démo
+                Voir la demo
               </Button>
             </div>
 
-            <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-muted-foreground animate-fade-in-up delay-400">
+            <div className="mt-12 flex flex-wrap items-center justify-center gap-x-8 gap-y-4 text-sm text-muted-foreground">
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-success" />
                 <span>Essai gratuit pendant 30 jours</span>
@@ -352,22 +293,23 @@ export default function LandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-success" />
-                <span>Annulation à tout moment</span>
+                <span>Annulation a tout moment</span>
               </div>
             </div>
           </div>
 
-          <div className="relative mt-16 animate-scale-in delay-500">
-            <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-2xl animate-pulse-glow" />
-            <div className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
+          {/* Dashboard Preview */}
+          <div className="relative mt-16">
+            <div className="absolute -inset-1 bg-accent/20 blur-2xl" />
+            <div className="relative overflow-hidden border border-border bg-card shadow-2xl">
               {/* Browser Chrome */}
               <div className="flex items-center gap-2 border-b border-border bg-muted/50 px-4 py-3">
                 <div className="flex gap-1.5">
-                  <div className="h-3 w-3 rounded-full bg-destructive/60" />
-                  <div className="h-3 w-3 rounded-full bg-warning/60" />
-                  <div className="h-3 w-3 rounded-full bg-success/60" />
+                  <div className="h-3 w-3 bg-destructive/60" />
+                  <div className="h-3 w-3 bg-warning/60" />
+                  <div className="h-3 w-3 bg-success/60" />
                 </div>
-                <div className="ml-4 flex-1 rounded-md bg-background/50 px-3 py-1 text-xs text-muted-foreground">
+                <div className="ml-4 flex-1 bg-background/50 px-3 py-1 text-xs text-muted-foreground">
                   app.gesko.com/dashboard
                 </div>
               </div>
@@ -376,9 +318,8 @@ export default function LandingPage() {
               <div className="flex h-[500px]">
                 {/* Sidebar */}
                 <div className="hidden w-56 flex-shrink-0 flex-col border-r border-border bg-sidebar md:flex">
-                  {/* Logo area */}
                   <div className="flex h-14 items-center gap-2 border-b border-sidebar-border px-4">
-                    <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-primary">
+                    <div className="flex h-8 w-8 items-center justify-center bg-primary">
                       <Hotel className="h-4 w-4 text-primary-foreground" />
                     </div>
                     <span className="font-semibold text-sidebar-foreground">
@@ -386,26 +327,24 @@ export default function LandingPage() {
                     </span>
                   </div>
 
-                  {/* Hotel Selector */}
                   <div className="border-b border-sidebar-border p-3">
-                    <div className="flex w-full items-center justify-between rounded-md bg-sidebar-accent px-3 py-2 text-sm">
+                    <div className="flex w-full items-center justify-between bg-sidebar-accent px-3 py-2 text-sm">
                       <div className="flex items-center gap-2 truncate">
                         <Building2 className="h-4 w-4 shrink-0 text-sidebar-accent-foreground" />
                         <span className="truncate text-sidebar-accent-foreground">
-                          Hôtel Ivoire Palace
+                          Hotel Ivoire Palace
                         </span>
                       </div>
                       <ChevronDown className="h-4 w-4 shrink-0 text-sidebar-accent-foreground/50" />
                     </div>
                   </div>
 
-                  {/* Navigation */}
                   <div className="flex-1 overflow-y-auto px-3 py-4">
                     <nav className="flex flex-col gap-1">
                       {sidebarNavigation.map((item) => (
                         <div
                           key={item.name}
-                          className={`flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium transition-colors ${
+                          className={`flex items-center gap-3 px-3 py-2 text-sm font-medium transition-colors ${
                             item.active
                               ? "bg-sidebar-primary text-sidebar-primary-foreground"
                               : "text-sidebar-foreground/70 hover:bg-sidebar-accent"
@@ -418,40 +357,36 @@ export default function LandingPage() {
                     </nav>
                   </div>
 
-                  {/* Logout */}
                   <div className="border-t border-sidebar-border p-3">
-                    <div className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-sm text-sidebar-foreground/70">
+                    <div className="flex w-full items-center gap-2 px-3 py-2 text-sm text-sidebar-foreground/70">
                       <LogOut className="h-4 w-4" />
-                      Déconnexion
+                      Deconnexion
                     </div>
                   </div>
                 </div>
 
                 {/* Main Content */}
                 <div className="flex flex-1 flex-col overflow-hidden">
-                  {/* Header */}
                   <div className="flex h-14 items-center justify-between border-b border-border bg-background px-4">
                     <div>
                       <h2 className="text-sm font-semibold">Dashboard</h2>
                       <p className="text-xs text-muted-foreground">
-                        Bienvenue ! Voici un aperçu de votre établissement.
+                        Bienvenue ! Voici un apercu de votre etablissement.
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="h-8 w-8 rounded-full bg-primary/20" />
+                      <div className="h-8 w-8 bg-primary/20" />
                     </div>
                   </div>
 
-                  {/* Content Area */}
                   <div className="flex-1 overflow-y-auto bg-background p-4">
-                    {/* Stats Cards */}
                     <div className="grid grid-cols-2 gap-3 lg:grid-cols-4">
                       {[
                         {
                           label: "Taux d'occupation",
                           value: "78%",
                           change: "+5%",
-                          color: "text-primary",
+                          color: "text-accent",
                         },
                         {
                           label: "Check-ins aujourd'hui",
@@ -463,7 +398,7 @@ export default function LandingPage() {
                           label: "Revenus du jour",
                           value: "850K",
                           change: "+12%",
-                          color: "text-primary",
+                          color: "text-accent",
                         },
                         {
                           label: "Factures en attente",
@@ -474,7 +409,7 @@ export default function LandingPage() {
                       ].map((stat, i) => (
                         <div
                           key={i}
-                          className="rounded-lg border border-border bg-card p-3"
+                          className="border border-border bg-card p-3"
                         >
                           <p className="text-xs text-muted-foreground">
                             {stat.label}
@@ -497,16 +432,14 @@ export default function LandingPage() {
                       ))}
                     </div>
 
-                    {/* Charts Row */}
                     <div className="mt-4 grid gap-3 lg:grid-cols-3">
-                      {/* Revenue Chart */}
-                      <div className="lg:col-span-2 rounded-lg border border-border bg-card p-4">
+                      <div className="lg:col-span-2 border border-border bg-card p-4">
                         <div className="flex items-center justify-between">
                           <p className="text-sm font-medium">
                             Revenus mensuels
                           </p>
                           <Badge variant="secondary" className="text-xs">
-                            2024
+                            2025
                           </Badge>
                         </div>
                         <div className="mt-4 flex h-28 items-end gap-1.5">
@@ -514,8 +447,8 @@ export default function LandingPage() {
                             (h, i) => (
                               <div
                                 key={i}
-                                className={`flex-1 rounded-t transition-all ${
-                                  i === 11 ? "bg-primary" : "bg-primary/40"
+                                className={`flex-1 transition-all ${
+                                  i === 11 ? "bg-accent" : "bg-accent/30"
                                 }`}
                                 style={{ height: `${h}%` }}
                               />
@@ -525,14 +458,15 @@ export default function LandingPage() {
                         <div className="mt-2 flex justify-between text-xs text-muted-foreground">
                           <span>Jan</span>
                           <span>Juin</span>
-                          <span>Déc</span>
+                          <span>Dec</span>
                         </div>
                       </div>
 
-                      {/* Activity Feed */}
-                      <div className="rounded-lg border border-border bg-card p-4">
-                        <p className="text-sm font-medium">Activité du jour</p>
-                        <div className="mt-3 space-y-3">
+                      <div className="border border-border bg-card p-4">
+                        <p className="text-sm font-medium">
+                          {"Activite du jour"}
+                        </p>
+                        <div className="mt-3 flex flex-col gap-3">
                           {[
                             {
                               text: "Check-in Chambre 201",
@@ -540,12 +474,12 @@ export default function LandingPage() {
                               type: "checkin",
                             },
                             {
-                              text: "Facture #F-2024-089 payée",
+                              text: "Facture #F-2025-089 payee",
                               time: "Il y a 12 min",
                               type: "payment",
                             },
                             {
-                              text: "Nouvelle réservation",
+                              text: "Nouvelle reservation",
                               time: "Il y a 25 min",
                               type: "reservation",
                             },
@@ -557,13 +491,13 @@ export default function LandingPage() {
                           ].map((item, i) => (
                             <div key={i} className="flex items-start gap-2">
                               <div
-                                className={`mt-1 h-2 w-2 rounded-full ${
+                                className={`mt-1 h-2 w-2 ${
                                   item.type === "checkin"
                                     ? "bg-success"
                                     : item.type === "payment"
-                                      ? "bg-primary"
+                                      ? "bg-accent"
                                       : item.type === "reservation"
-                                        ? "bg-accent"
+                                        ? "bg-primary"
                                         : "bg-warning"
                                 }`}
                               />
@@ -581,25 +515,24 @@ export default function LandingPage() {
                       </div>
                     </div>
 
-                    {/* Room Status Grid */}
-                    <div className="mt-4 rounded-lg border border-border bg-card p-4">
+                    <div className="mt-4 border border-border bg-card p-4">
                       <div className="flex items-center justify-between">
                         <p className="text-sm font-medium">
                           Statut des chambres
                         </p>
                         <div className="flex gap-3 text-xs">
                           <div className="flex items-center gap-1">
-                            <div className="h-2 w-2 rounded-full bg-success" />
+                            <div className="h-2 w-2 bg-success" />
                             <span className="text-muted-foreground">Libre</span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <div className="h-2 w-2 rounded-full bg-primary" />
+                            <div className="h-2 w-2 bg-accent" />
                             <span className="text-muted-foreground">
-                              Occupée
+                              Occupee
                             </span>
                           </div>
                           <div className="flex items-center gap-1">
-                            <div className="h-2 w-2 rounded-full bg-warning" />
+                            <div className="h-2 w-2 bg-warning" />
                             <span className="text-muted-foreground">
                               Maintenance
                             </span>
@@ -622,11 +555,11 @@ export default function LandingPage() {
                           return (
                             <div
                               key={i}
-                              className={`flex aspect-square items-center justify-center rounded-md border text-xs font-medium ${
+                              className={`flex aspect-square items-center justify-center border text-xs font-medium ${
                                 status === "available"
                                   ? "border-success/30 bg-success/10 text-success"
                                   : status === "occupied"
-                                    ? "border-primary/30 bg-primary/10 text-primary"
+                                    ? "border-accent/30 bg-accent/10 text-accent"
                                     : "border-warning/30 bg-warning/10 text-warning"
                               }`}
                             >
@@ -649,12 +582,8 @@ export default function LandingPage() {
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {stats.map((stat, index) => (
-              <div
-                key={index}
-                className="text-center animate-fade-in-up"
-                style={{ animationDelay: `${index * 100}ms` }}
-              >
-                <p className="text-3xl font-bold text-primary lg:text-4xl">
+              <div key={index} className="text-center">
+                <p className="text-3xl font-bold text-foreground lg:text-4xl">
                   {stat.value}
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
@@ -666,30 +595,30 @@ export default function LandingPage() {
         </div>
       </section>
 
+      {/* Demo Section */}
       <section id="demo" className="py-20 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
-              Démonstration
+              Demonstration
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Découvrez Gesko en action
+              Decouvrez Gesko en action
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Regardez notre vidéo de démonstration pour voir comment Gesko peut
-              transformer la gestion de votre hôtel en quelques minutes.
+              Regardez notre video de demonstration pour voir comment Gesko peut
+              transformer la gestion de votre hotel en quelques minutes.
             </p>
           </div>
 
-          {/* Video Player Container */}
           <div className="relative mt-12 mx-auto max-w-4xl">
-            <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-2xl" />
-            <div className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
+            <div className="absolute -inset-1 bg-accent/10 blur-2xl" />
+            <div className="relative overflow-hidden border border-border bg-card shadow-2xl">
               <div className="relative aspect-video bg-muted">
                 {YOUTUBE_VIDEO_ID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
-                    title="Démonstration Gesko"
+                    title="Demonstration Gesko"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="absolute inset-0 h-full w-full"
@@ -699,17 +628,17 @@ export default function LandingPage() {
                     className="absolute inset-0 flex items-center justify-center cursor-pointer group"
                     onClick={() => setShowVideoModal(true)}
                   >
-                    <div className="absolute inset-0 bg-gradient-to-br from-sidebar via-sidebar/90 to-primary/20">
+                    <div className="absolute inset-0 bg-primary">
                       <div className="absolute inset-0 opacity-50">
                         <div className="h-full w-full p-8">
                           <div className="grid h-full grid-cols-3 gap-4">
-                            <div className="col-span-2 space-y-4">
-                              <div className="h-16 rounded-lg bg-primary/20" />
-                              <div className="h-32 rounded-lg bg-primary/10" />
+                            <div className="col-span-2 flex flex-col gap-4">
+                              <div className="h-16 bg-accent/20" />
+                              <div className="h-32 bg-accent/10" />
                             </div>
-                            <div className="space-y-4">
-                              <div className="h-24 rounded-lg bg-primary/15" />
-                              <div className="h-24 rounded-lg bg-primary/15" />
+                            <div className="flex flex-col gap-4">
+                              <div className="h-24 bg-accent/15" />
+                              <div className="h-24 bg-accent/15" />
                             </div>
                           </div>
                         </div>
@@ -717,72 +646,72 @@ export default function LandingPage() {
                     </div>
 
                     <div className="relative z-10 flex flex-col items-center gap-4">
-                      <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary shadow-lg transition-transform group-hover:scale-110">
+                      <div className="flex h-20 w-20 items-center justify-center bg-accent shadow-lg transition-transform group-hover:scale-110">
                         <Play
-                          className="h-8 w-8 text-primary-foreground ml-1"
+                          className="h-8 w-8 text-accent-foreground ml-1"
                           fill="currentColor"
                         />
                       </div>
-                      <span className="text-lg font-medium text-white">
-                        Vidéo bientôt disponible
+                      <span className="text-lg font-medium text-primary-foreground">
+                        {"Video bientot disponible"}
                       </span>
                     </div>
                   </div>
                 )}
               </div>
 
-              {/* Video info bar */}
               <div className="flex items-center justify-between border-t border-border bg-card px-6 py-4">
                 <div>
-                  <p className="font-medium">Présentation complète de Gesko</p>
+                  <p className="font-medium">
+                    {"Presentation complete de Gesko"}
+                  </p>
                   <p className="text-sm text-muted-foreground">
-                    Durée: 3 minutes • Mise à jour: Décembre 2024
+                    {"Duree: 3 minutes"}
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
                   <div className="flex items-center gap-1 text-sm text-muted-foreground">
                     <Play className="h-4 w-4" />
-                    <span>12.5K vues</span>
+                    <span>Nouvelle video</span>
                   </div>
                 </div>
               </div>
             </div>
           </div>
 
-          {/* Video highlights */}
           <div className="mt-12 grid gap-6 md:grid-cols-3">
             {[
               {
                 time: "0:00",
-                title: "Présentation du dashboard",
+                title: "Presentation du dashboard",
                 description:
-                  "Vue d'ensemble des statistiques et indicateurs clés",
+                  "Vue d'ensemble des statistiques et indicateurs cles",
               },
               {
                 time: "1:15",
-                title: "Gestion des réservations",
+                title: "Gestion des reservations",
                 description:
-                  "Comment créer et gérer vos réservations en quelques clics",
+                  "Comment creer et gerer vos reservations en quelques clics",
               },
               {
                 time: "2:30",
                 title: "Facturation automatique",
                 description:
-                  "Génération de factures avec TVA et paiement Mobile Money",
+                  "Generation de factures avec TVA et paiement Mobile Money",
               },
             ].map((chapter, index) => (
               <Card
                 key={index}
-                className="group cursor-pointer border-border/50 bg-card/50 transition-all hover:border-primary/50 hover:shadow-lg"
+                className="group cursor-pointer border-border/50 bg-card/50 transition-all hover:border-accent/50 hover:shadow-lg"
                 onClick={() => setShowVideoModal(true)}
               >
                 <CardContent className="p-4">
                   <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-16 items-center justify-center rounded-md bg-primary/10 text-sm font-mono text-primary">
+                    <div className="flex h-10 w-16 items-center justify-center bg-accent/10 text-sm font-mono text-accent">
                       {chapter.time}
                     </div>
                     <div>
-                      <h4 className="font-medium group-hover:text-primary transition-colors">
+                      <h4 className="font-medium group-hover:text-accent transition-colors">
                         {chapter.title}
                       </h4>
                       <p className="mt-1 text-sm text-muted-foreground">
@@ -804,15 +733,15 @@ export default function LandingPage() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge variant="secondary" className="mb-4 animate-fade-in-down">
-              Fonctionnalités
+            <Badge variant="secondary" className="mb-4">
+              Fonctionnalites
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance animate-fade-in-up delay-100">
-              Tout ce dont vous avez besoin pour gérer votre hôtel
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
+              Tout ce dont vous avez besoin pour gerer votre hotel
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground animate-fade-in-up delay-200">
-              Une solution complète conçue spécifiquement pour les hôteliers
-              ivoiriens. Simple, puissante, et adaptée à vos besoins.
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Une solution complete concue specifiquement pour les hoteliers
+              ivoiriens. Simple, puissante, et adaptee a vos besoins.
             </p>
           </div>
 
@@ -820,153 +749,16 @@ export default function LandingPage() {
             {features.map((feature, index) => (
               <Card
                 key={index}
-                className="group relative overflow-hidden border-border/50 bg-card/50 transition-all hover:border-primary/50 hover:shadow-lg hover:-translate-y-1 animate-fade-in-up"
-                style={{ animationDelay: `${300 + index * 100}ms` }}
+                className="group relative overflow-hidden border-border/50 bg-card/50 transition-all hover:border-accent/50 hover:shadow-lg hover:-translate-y-1"
               >
                 <CardContent className="p-6">
-                  <div className="flex h-12 w-12 items-center justify-center rounded-lg bg-primary/10 text-primary transition-transform group-hover:scale-110">
+                  <div className="flex h-12 w-12 items-center justify-center bg-accent/10 text-accent transition-transform group-hover:scale-110">
                     <feature.icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-4 text-lg font-semibold">
                     {feature.title}
                   </h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
-                    {feature.description}
-                  </p>
-                </CardContent>
-              </Card>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="py-20 lg:py-32">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid items-center gap-12 lg:grid-cols-2">
-            <div>
-              <Badge variant="secondary" className="mb-4">
-                <Globe className="mr-2 h-3 w-3" />
-                Site Web Inclus
-              </Badge>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-                Un site web professionnel pour votre hôtel,{" "}
-                <span className="text-primary">sans frais supplémentaires</span>
-              </h2>
-              <p className="mt-4 text-muted-foreground">
-                Avec Gesko, vous ne gérez pas seulement votre hôtel — vous
-                obtenez aussi un site web moderne et professionnel pour attirer
-                plus de clients. Réservations en ligne, galerie photos, et
-                informations sur vos services, tout est inclus.
-              </p>
-
-              <div className="mt-8 space-y-4">
-                {websiteFeatures.slice(0, 3).map((feature, index) => (
-                  <div key={index} className="flex gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                      <feature.icon className="h-5 w-5" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold">{feature.title}</h3>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {feature.description}
-                      </p>
-                    </div>
-                  </div>
-                ))}
-              </div>
-
-              <div className="mt-8">
-                <Link href="/register">
-                  <Button>
-                    Créer mon site gratuitement
-                    <ArrowRight className="ml-2 h-5 w-5" />
-                  </Button>
-                </Link>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-primary/20 via-accent/20 to-primary/20 blur-2xl" />
-              <div className="relative overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
-                {/* Browser Chrome */}
-                <div className="flex items-center gap-2 border-b border-border bg-muted/50 px-4 py-3">
-                  <div className="flex gap-1.5">
-                    <div className="h-3 w-3 rounded-full bg-destructive/60" />
-                    <div className="h-3 w-3 rounded-full bg-warning/60" />
-                    <div className="h-3 w-3 rounded-full bg-success/60" />
-                  </div>
-                  <div className="ml-4 flex-1 rounded-md bg-background/50 px-3 py-1 text-xs text-muted-foreground">
-                    votre-hotel.gesko.app
-                  </div>
-                </div>
-
-                {/* Website Preview */}
-                <div className="p-4">
-                  {/* Hero */}
-                  <div className="relative h-32 rounded-lg bg-gradient-to-r from-primary/20 to-accent/20 overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <p className="text-xs text-muted-foreground">
-                          Votre nom d'hôtel
-                        </p>
-                        <p className="font-bold text-foreground">
-                          Hôtel Ivoire Palace
-                        </p>
-                        <div className="mt-2 flex justify-center gap-2">
-                          <div className="h-6 w-20 rounded bg-primary text-xs flex items-center justify-center text-primary-foreground">
-                            Réserver
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-
-                  {/* Rooms Preview */}
-                  <div className="mt-4">
-                    <p className="text-xs font-medium mb-2">Nos chambres</p>
-                    <div className="grid grid-cols-3 gap-2">
-                      {[1, 2, 3].map((i) => (
-                        <div
-                          key={i}
-                          className="aspect-square rounded bg-muted flex items-center justify-center"
-                        >
-                          <BedDouble className="h-4 w-4 text-muted-foreground" />
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
-                  {/* Info Cards */}
-                  <div className="mt-4 grid grid-cols-2 gap-2">
-                    <div className="rounded-lg border border-border p-2">
-                      <p className="text-xs font-medium">À partir de</p>
-                      <p className="text-sm font-bold text-primary">
-                        25,000 FCFA
-                      </p>
-                    </div>
-                    <div className="rounded-lg border border-border p-2">
-                      <div className="flex items-center gap-1">
-                        <Star className="h-3 w-3 fill-warning text-warning" />
-                        <span className="text-sm font-bold">4.8</span>
-                      </div>
-                      <p className="text-xs text-muted-foreground">120 avis</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          {/* Additional Website Features */}
-          <div className="mt-16 grid gap-6 md:grid-cols-3">
-            {websiteFeatures.slice(3).map((feature, index) => (
-              <Card key={index} className="border-border/50 bg-card/50">
-                <CardContent className="p-6">
-                  <div className="flex h-10 w-10 items-center justify-center rounded-lg bg-primary/10 text-primary">
-                    <feature.icon className="h-5 w-5" />
-                  </div>
-                  <h3 className="mt-4 font-semibold">{feature.title}</h3>
-                  <p className="mt-2 text-sm text-muted-foreground">
+                  <p className="mt-2 text-sm text-muted-foreground leading-relaxed">
                     {feature.description}
                   </p>
                 </CardContent>
@@ -984,16 +776,16 @@ export default function LandingPage() {
               <Badge variant="secondary" className="mb-4">
                 Pourquoi nous choisir
               </Badge>
-              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                Conçu pour les hôteliers africains
+              <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
+                {"Concu pour les hoteliers africains"}
               </h2>
-              <p className="mt-4 text-muted-foreground">
-                Nous comprenons les défis uniques de l'industrie hôtelière en
-                Côte d'Ivoire. C'est pourquoi nous avons créé une solution
-                adaptée à vos réalités.
+              <p className="mt-4 text-muted-foreground leading-relaxed">
+                {
+                  "Nous comprenons les defis uniques de l'industrie hoteliere en Cote d'Ivoire. C'est pourquoi nous avons cree une solution adaptee a vos realites."
+                }
               </p>
 
-              <div className="mt-8 space-y-6">
+              <div className="mt-8 flex flex-col gap-6">
                 {[
                   {
                     icon: Smartphone,
@@ -1003,19 +795,19 @@ export default function LandingPage() {
                   },
                   {
                     icon: Shield,
-                    title: "Sécurité & Fiabilité",
+                    title: "Securite & Fiabilite",
                     description:
-                      "Vos données sont protégées et sauvegardées automatiquement chaque jour.",
+                      "Vos donnees sont protegees et sauvegardees automatiquement chaque jour.",
                   },
                   {
                     icon: Clock,
                     title: "Support local 24/7",
                     description:
-                      "Une équipe basée à Abidjan disponible pour vous accompagner à tout moment.",
+                      "Une equipe basee a Abidjan disponible pour vous accompagner a tout moment.",
                   },
                 ].map((item, index) => (
                   <div key={index} className="flex gap-4">
-                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg bg-primary/10 text-primary">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-accent/10 text-accent">
                       <item.icon className="h-5 w-5" />
                     </div>
                     <div>
@@ -1030,33 +822,35 @@ export default function LandingPage() {
             </div>
 
             <div className="relative">
-              <div className="absolute -inset-4 rounded-2xl bg-gradient-to-r from-primary/10 to-accent/10 blur-2xl" />
+              <div className="absolute -inset-4 bg-accent/5 blur-2xl" />
               <div className="relative grid grid-cols-2 gap-4">
-                <div className="space-y-4">
-                  <div className="rounded-xl border border-border bg-card p-6 shadow-lg">
-                    <div className="text-3xl font-bold text-primary">98%</div>
+                <div className="flex flex-col gap-4">
+                  <div className="border border-border bg-card p-6 shadow-lg">
+                    <div className="text-3xl font-bold text-foreground">
+                      30j
+                    </div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      Taux de satisfaction
+                      Essai gratuit sans engagement
                     </p>
                   </div>
-                  <div className="rounded-xl border border-border bg-card p-6 shadow-lg">
+                  <div className="border border-border bg-card p-6 shadow-lg">
                     <div className="text-3xl font-bold text-success">24h</div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      Temps de réponse moyen
+                      {"Mise en service rapide"}
                     </p>
                   </div>
                 </div>
-                <div className="mt-8 space-y-4">
-                  <div className="rounded-xl border border-border bg-card p-6 shadow-lg">
-                    <div className="text-3xl font-bold text-primary">150+</div>
+                <div className="mt-8 flex flex-col gap-4">
+                  <div className="border border-border bg-card p-6 shadow-lg">
+                    <div className="text-3xl font-bold text-accent">100%</div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      Hôtels partenaires
+                      Cloud, rien a installer
                     </p>
                   </div>
-                  <div className="rounded-xl border border-border bg-card p-6 shadow-lg">
-                    <div className="text-3xl font-bold text-accent">5 ans</div>
+                  <div className="border border-border bg-card p-6 shadow-lg">
+                    <div className="text-3xl font-bold text-foreground">CI</div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      D'expérience
+                      {"Concu en Cote d'Ivoire"}
                     </p>
                   </div>
                 </div>
@@ -1070,18 +864,19 @@ export default function LandingPage() {
       <section id="pricing" className="py-20 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge variant="secondary" className="mb-4 animate-fade-in-down">
+            <Badge variant="secondary" className="mb-4">
               Tarifs
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance animate-fade-in-up delay-100">
-              Des tarifs adaptés à votre établissement
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
+              {"Nos Packs d'Abonnement"}
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground animate-fade-in-up delay-200">
-              Choisissez le plan qui correspond à vos besoins. Tous les plans
-              incluent un essai gratuit de 30 jours.
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Choisissez le plan qui correspond a la taille de votre
+              etablissement. Tous les plans incluent un essai gratuit de 30
+              jours.
             </p>
 
-            <div className="mt-8 flex items-center justify-center gap-4 animate-fade-in-up delay-300">
+            <div className="mt-8 flex items-center justify-center gap-4">
               <span
                 className={`text-sm font-medium ${
                   !isAnnual ? "text-foreground" : "text-muted-foreground"
@@ -1091,12 +886,12 @@ export default function LandingPage() {
               </span>
               <button
                 onClick={() => setIsAnnual(!isAnnual)}
-                className={`relative h-7 w-14 rounded-full transition-colors ${
-                  isAnnual ? "bg-primary" : "bg-muted-foreground/30"
+                className={`relative h-7 w-14 transition-colors ${
+                  isAnnual ? "bg-accent" : "bg-muted-foreground/30"
                 }`}
               >
                 <span
-                  className={`absolute top-1 h-5 w-5 rounded-full bg-white shadow-md transition-transform ${
+                  className={`absolute top-1 h-5 w-5 bg-card shadow-md transition-transform ${
                     isAnnual ? "left-8" : "left-1"
                   }`}
                 />
@@ -1109,8 +904,8 @@ export default function LandingPage() {
                 Annuel
               </span>
               {isAnnual && (
-                <Badge className="bg-success/10 text-success border-success/20 animate-scale-in">
-                  -15%
+                <Badge className="bg-success/10 text-success border-success/20">
+                  2 mois offerts
                 </Badge>
               )}
             </div>
@@ -1120,68 +915,76 @@ export default function LandingPage() {
             {plans.map((plan, index) => (
               <Card
                 key={index}
-                style={{ animationDelay: `${400 + index * 150}ms` }}
-                className={`relative overflow-hidden animate-fade-in-up hover:-translate-y-2 transition-transform ${
+                className={`relative overflow-hidden hover:-translate-y-2 transition-transform ${
                   plan.popular
-                    ? "border-primary shadow-lg shadow-primary/10"
+                    ? "border-accent shadow-lg shadow-accent/10"
                     : "border-border/50"
                 }`}
               >
                 {plan.popular && (
-                  <div className="absolute top-0 right-0 rounded-bl-lg bg-primary px-3 py-1 text-xs font-medium text-primary-foreground">
+                  <div className="absolute top-0 right-0 bg-accent px-3 py-1 text-xs font-medium text-accent-foreground">
                     Populaire
                   </div>
                 )}
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold">{plan.name}</h3>
+                  <h3 className="text-lg font-bold tracking-wide">
+                    {plan.name}
+                  </h3>
                   <p className="mt-1 text-sm text-muted-foreground">
-                    {plan.description}
+                    {plan.target}
                   </p>
                   <div className="mt-4">
-                    {plan.isCustom ? (
-                      <span className="text-4xl font-bold text-primary">
-                        Sur devis
-                      </span>
-                    ) : (
-                      <>
-                        <span className="text-4xl font-bold">
-                          {getPrice(plan.monthlyPrice!)}
-                        </span>
-                        <span className="text-muted-foreground">
-                          {" "}
-                          FCFA{isAnnual ? "/an" : "/mois"}
-                        </span>
-                      </>
-                    )}
+                    <span className="text-4xl font-bold">
+                      {isAnnual
+                        ? plan.annualPrice.toLocaleString("fr-FR")
+                        : plan.monthlyPrice.toLocaleString("fr-FR")}
+                    </span>
+                    <span className="text-muted-foreground">
+                      {" "}
+                      F{isAnnual ? "/an" : "/mois"}
+                    </span>
                   </div>
-                  {isAnnual && !plan.isCustom && plan.monthlyPrice && (
-                    <p className="mt-1 text-xs text-success">
-                      Économisez{" "}
-                      {Math.round(plan.monthlyPrice * 12 * 0.15).toLocaleString(
-                        "fr-FR",
-                      )}{" "}
-                      FCFA/an
+                  {isAnnual && (
+                    <p className="mt-1 text-xs text-success font-medium">
+                      {plan.annualSavings}
                     </p>
                   )}
-                  <ul className="mt-6 space-y-3">
+
+                  <div className="mt-6 flex flex-col gap-3">
                     {plan.features.map((feature, featureIndex) => (
-                      <li
+                      <div
                         key={featureIndex}
                         className="flex items-center gap-2 text-sm"
                       >
-                        <CheckCircle2 className="h-4 w-4 text-success" />
-                        {feature}
-                      </li>
+                        {feature.value === false ? (
+                          <Minus className="h-4 w-4 text-muted-foreground/40" />
+                        ) : (
+                          <CheckCircle2 className="h-4 w-4 text-success" />
+                        )}
+                        <span
+                          className={
+                            feature.value === false
+                              ? "text-muted-foreground/50"
+                              : ""
+                          }
+                        >
+                          {feature.name}
+                          {typeof feature.value === "string" && (
+                            <span className="ml-1 text-xs text-muted-foreground">
+                              ({feature.value})
+                            </span>
+                          )}
+                        </span>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </CardContent>
                 <CardFooter>
                   <Link
-                    href={plan.isCustom ? "/contact" : "/register"}
+                    href="/register"
                     className={buttonVariants({
-                      variant:
-                        plan.popular || plan.isCustom ? "default" : "outline",
-                      className: "w-full",
+                      variant: plan.popular ? "default" : "outline",
+                      className: `w-full ${plan.popular ? "bg-accent text-accent-foreground hover:bg-accent/90" : ""}`,
                     })}
                   >
                     {plan.cta}
@@ -1190,6 +993,150 @@ export default function LandingPage() {
                 </CardFooter>
               </Card>
             ))}
+          </div>
+
+          {/* Pricing Comparison Table */}
+          <div className="mt-16 hidden lg:block">
+            <div className="overflow-hidden border border-border">
+              <table className="w-full">
+                <thead>
+                  <tr className="bg-muted/50">
+                    <th className="px-6 py-4 text-left text-sm font-semibold">
+                      Caracteristiques
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold">
+                      Pack ESSENTIEL
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">
+                      Pack BUSINESS
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold">
+                      Pack PREMIUM
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-t border-border">
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
+                      Cible
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm">
+                      {"< 15 chambres"}
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">
+                      {"15 a 40 chambres"}
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm">
+                      {"> 40 chambres"}
+                    </td>
+                  </tr>
+                  <tr className="border-t border-border bg-muted/20">
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
+                      Prix Mensuel
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold">
+                      15 000 F
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">
+                      25 000 F
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold">
+                      45 000 F
+                    </td>
+                  </tr>
+                  <tr className="border-t border-border">
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
+                      Prix Annuel
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm">
+                      150 000 F{" "}
+                      <span className="text-xs text-success">
+                        (2 mois offerts)
+                      </span>
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">
+                      250 000 F{" "}
+                      <span className="text-xs text-success">
+                        (2 mois offerts)
+                      </span>
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm">
+                      450 000 F{" "}
+                      <span className="text-xs text-success">
+                        (2 mois offerts)
+                      </span>
+                    </td>
+                  </tr>
+                  {[
+                    {
+                      label: "Check-in / Check-out",
+                      values: ["--", "Complet", "Complet"],
+                    },
+                    {
+                      label: "Tableau de bord",
+                      values: ["Simplifie", "Avance", "Expert"],
+                    },
+                    {
+                      label: "Cle API Reservation",
+                      values: ["check", "check", "check"],
+                    },
+                    {
+                      label: "Nombre de comptes",
+                      values: [
+                        "1 (Reception)",
+                        "3 (Admin, Gerant, Recep.)",
+                        "Illimite",
+                      ],
+                    },
+                    {
+                      label: "Gestion Depenses",
+                      values: ["cross", "check", "check"],
+                    },
+                    {
+                      label: "Rapports & Stats",
+                      values: [
+                        "Basique",
+                        "Mensuels detailles",
+                        "Temps reel / Compta",
+                      ],
+                    },
+                    {
+                      label: "Module Resto/Bar",
+                      values: ["cross", "cross", "check"],
+                    },
+                    {
+                      label: "Support Technique",
+                      values: ["Standard", "Prioritaire", "24h/7j + Formation"],
+                    },
+                  ].map((row, i) => (
+                    <tr
+                      key={i}
+                      className={`border-t border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}
+                    >
+                      <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
+                        {row.label}
+                      </td>
+                      {row.values.map((val, j) => (
+                        <td
+                          key={j}
+                          className={`px-6 py-3 text-center text-sm ${j === 1 ? "border-x border-accent/20 bg-accent/5" : ""}`}
+                        >
+                          {val === "check" ? (
+                            <CheckCircle2 className="h-4 w-4 text-success mx-auto" />
+                          ) : val === "cross" ? (
+                            <Minus className="h-4 w-4 text-muted-foreground/40 mx-auto" />
+                          ) : val === "--" ? (
+                            <span className="text-muted-foreground">--</span>
+                          ) : (
+                            val
+                          )}
+                        </td>
+                      ))}
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </section>
@@ -1201,14 +1148,14 @@ export default function LandingPage() {
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge variant="secondary" className="mb-4 animate-fade-in-down">
-              Témoignages
+            <Badge variant="secondary" className="mb-4">
+              Temoignages
             </Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance animate-fade-in-up delay-100">
-              Ils nous font confiance
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
+              Ce que disent nos premiers utilisateurs
             </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground animate-fade-in-up delay-200">
-              Découvrez ce que nos clients disent de Gesko.
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              {"Decouvrez ce que nos clients disent de Gesko."}
             </p>
           </div>
 
@@ -1216,8 +1163,7 @@ export default function LandingPage() {
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
-                className="border-border/50 bg-card/50 animate-fade-in-up hover:-translate-y-1 transition-transform"
-                style={{ animationDelay: `${300 + index * 150}ms` }}
+                className="border-border/50 bg-card/50 hover:-translate-y-1 transition-transform"
               >
                 <CardContent className="p-6">
                   <div className="flex gap-1">
@@ -1228,17 +1174,17 @@ export default function LandingPage() {
                       />
                     ))}
                   </div>
-                  <p className="mt-4 text-sm text-muted-foreground">
+                  <p className="mt-4 text-sm text-muted-foreground leading-relaxed">
                     &ldquo;{testimonial.content}&rdquo;
                   </p>
                   <div className="mt-4 flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-full bg-primary/10 text-primary font-semibold">
+                    <div className="flex h-10 w-10 items-center justify-center bg-accent/10 text-accent font-semibold">
                       {testimonial.name.charAt(0)}
                     </div>
                     <div>
                       <p className="font-medium">{testimonial.name}</p>
                       <p className="text-xs text-muted-foreground">
-                        {testimonial.role} • {testimonial.location}
+                        {testimonial.role} - {testimonial.location}
                       </p>
                     </div>
                   </div>
@@ -1261,7 +1207,7 @@ export default function LandingPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Payez vos factures facilement avec les solutions les plus
-              populaires en Côte d'Ivoire.
+              populaires en Cote d'Ivoire.
             </p>
           </div>
           <div className="mt-16 flex flex-wrap items-center justify-center gap-8">
@@ -1282,71 +1228,38 @@ export default function LandingPage() {
           <div className="mt-8 flex items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Shield className="h-4 w-4 text-success" />
-              <span>Paiements sécurisés</span>
+              <span>{"Paiements securises"}</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-success" />
-              <span>Sans frais cachés</span>
+              <span>{"Sans frais caches"}</span>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Nueva sección Métodos de Pago */}
-      {/* <section className="border-t border-border py-12 lg:py-16">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <CreditCard className="h-5 w-5 text-primary" />
-              <h3 className="text-lg font-semibold">
-                Méthodes de paiement acceptées
-              </h3>
-            </div>
-            <p className="text-sm text-muted-foreground mb-8">
-              Payez avec votre méthode préférée — Mobile Money ou carte bancaire
-            </p>
-          </div>
-
-          <div className="flex flex-wrap items-center justify-center gap-6 md:gap-10">
-            {paymentMethods.map((method, index) => (
-              <div
-                key={index}
-                className="flex h-16 w-28 items-center justify-center rounded-lg border border-border bg-card p-3 transition-all hover:border-primary/50 hover:shadow-md"
-              >
-                <img
-                  src={method.logo || "/placeholder.svg"}
-                  alt={method.name}
-                  className="h-full w-full object-contain"
-                />
-              </div>
-            ))}
-          </div>
-
-          
-        </div>
-      </section> */}
-
       {/* CTA Section */}
       <section className="py-20 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="relative overflow-hidden rounded-2xl bg-primary px-6 py-16 text-center sm:px-12 lg:px-16 animate-scale-in">
-            <div className="absolute inset-0 bg-gradient-to-r from-primary to-primary/80" />
+          <div className="relative overflow-hidden bg-primary px-6 py-16 text-center sm:px-12 lg:px-16">
+            <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(0.2_0.01_75/0.3)_1px,transparent_1px),linear-gradient(to_bottom,oklch(0.2_0.01_75/0.3)_1px,transparent_1px)] bg-[size:3rem_3rem]" />
             <div className="relative">
-              <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance animate-fade-in-up delay-100">
-                Prêt à transformer la gestion de votre hôtel ?
+              <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance">
+                {"Pret a transformer la gestion de votre hotel ?"}
               </h2>
-              <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80 animate-fade-in-up delay-200">
-                Rejoignez plus de 150 hôtels ivoiriens qui utilisent déjà Gesko
-                pour optimiser leurs opérations.
+              <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
+                {
+                  "Essayez Gesko gratuitement pendant 30 jours et decouvrez une nouvelle facon de gerer votre hotel. Sans engagement, sans carte bancaire."
+                }
               </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row animate-fade-in-up delay-300">
+              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Link href="/register">
                   <Button
                     size="lg"
                     variant="secondary"
-                    className="h-12 px-8 text-base transition-transform hover:scale-105"
+                    className="h-12 px-8 text-base"
                   >
-                    Démarrer l'essai gratuit
+                    {"Demarrer l'essai gratuit"}
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
@@ -1354,7 +1267,7 @@ export default function LandingPage() {
                   <Button
                     size="lg"
                     variant="outline"
-                    className="h-12 px-8 text-base border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 bg-neutral transition-transform hover:scale-105"
+                    className="h-12 px-8 text-base border-primary-foreground/20 text-primary-foreground hover:bg-primary-foreground/10 bg-transparent"
                   >
                     Contacter les ventes
                   </Button>
@@ -1372,69 +1285,85 @@ export default function LandingPage() {
             <div>
               <Logo />
               <p className="mt-4 text-sm text-muted-foreground">
-                Le logiciel de gestion hôtelière N°1 en Côte d'Ivoire.
+                {
+                  "Le logiciel de gestion hoteliere concu pour la Cote d'Ivoire."
+                }
               </p>
             </div>
             <div>
               <h4 className="font-semibold">Produit</h4>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
                 <li>
-                  <a href="#features" className="hover:text-foreground">
-                    Fonctionnalités
+                  <a
+                    href="#features"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Fonctionnalites
                   </a>
                 </li>
                 <li>
-                  <a href="#pricing" className="hover:text-foreground">
+                  <a
+                    href="#pricing"
+                    className="hover:text-foreground transition-colors"
+                  >
                     Tarifs
                   </a>
                 </li>
                 <li>
-                  <a href="#demo" className="hover:text-foreground">
-                    Démo
-                  </a>
-                </li>
-                <li>
-                  <a href="#website-pro" className="hover:text-foreground">
-                    Site Web Pro
+                  <a
+                    href="#demo"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Demo
                   </a>
                 </li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold">Entreprise</h4>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
                 <li>
-                  <a href="#" className="hover:text-foreground">
-                    À propos
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    A propos
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground">
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
                     Blog
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground">
-                    Carrières
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Carrieres
                   </a>
                 </li>
               </ul>
             </div>
             <div>
               <h4 className="font-semibold">Contact</h4>
-              <ul className="mt-4 space-y-2 text-sm text-muted-foreground">
+              <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
                 <li>support@gesko.app</li>
                 <li>+225 07 07 07 07 07</li>
-                <li>Abidjan, Côte d'Ivoire</li>
+                <li>{"Abidjan, Cote d'Ivoire"}</li>
               </ul>
             </div>
           </div>
           <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>&copy; 2025 Gesko. Tous droits réservés.</p>
+            <p>{"© 2025 Gesko. Tous droits reserves."}</p>
           </div>
         </div>
       </footer>
 
+      {/* Video Modal */}
       {showVideoModal && (
         <div
           className="fixed inset-0 z-50 flex items-center justify-center bg-background/80 backdrop-blur-sm"
@@ -1452,37 +1381,33 @@ export default function LandingPage() {
             >
               <X className="h-6 w-6" />
             </Button>
-            <div className="overflow-hidden rounded-xl border border-border bg-card shadow-2xl">
+            <div className="overflow-hidden border border-border bg-card shadow-2xl">
               <div className="aspect-video bg-muted">
                 {YOUTUBE_VIDEO_ID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1`}
-                    title="Démonstration Gesko"
+                    title="Demonstration Gesko"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="h-full w-full"
                   />
                 ) : (
-                  <div className="flex h-full w-full flex-col items-center justify-center bg-gradient-to-br from-sidebar via-sidebar/90 to-primary/20 p-8">
-                    <div className="flex h-20 w-20 items-center justify-center rounded-full bg-primary/20 mb-4">
-                      <Play className="h-10 w-10 text-primary" />
+                  <div className="flex h-full w-full flex-col items-center justify-center bg-primary p-8">
+                    <div className="flex h-20 w-20 items-center justify-center bg-accent/20 mb-4">
+                      <Play className="h-10 w-10 text-accent" />
                     </div>
-                    <p className="text-lg font-medium text-white">
-                      Vidéo de démonstration
+                    <p className="text-lg font-medium text-primary-foreground">
+                      {"Video de demonstration"}
                     </p>
-                    <p className="mt-2 text-sm text-white/70 text-center max-w-md">
-                      Pour ajouter votre vidéo YouTube, modifiez la constante{" "}
-                      <code className="bg-white/10 px-2 py-0.5 rounded">
+                    <p className="mt-2 text-sm text-primary-foreground/70 text-center max-w-md">
+                      {
+                        "Pour ajouter votre video YouTube, modifiez la constante "
+                      }
+                      <code className="bg-primary-foreground/10 px-2 py-0.5">
                         YOUTUBE_VIDEO_ID
-                      </code>{" "}
-                      en haut du fichier avec l'ID de votre vidéo.
+                      </code>
+                      {" en haut du fichier avec l'ID de votre video."}
                     </p>
-                    <div className="mt-6 rounded-lg bg-white/10 px-4 py-3 text-sm text-white/80 font-mono">
-                      <p className="text-white/50 text-xs mb-1">
-                        Exemple pour youtube.com/watch?v=dQw4w9WgXcQ
-                      </p>
-                      {'const YOUTUBE_VIDEO_ID = "dQw4w9WgXcQ"'}
-                    </div>
                   </div>
                 )}
               </div>

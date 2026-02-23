@@ -34,7 +34,7 @@ export default function RootLayout({
   return (
     <html
       lang="fr"
-      className={` ${montserrat.variable} ${geistMono.variable} scroll-smooth`}
+      className={`dark ${montserrat.variable} ${geistMono.variable} scroll-smooth`}
     >
       <body className="font-sans antialiased ">
         <ThemeProvider
