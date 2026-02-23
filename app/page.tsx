@@ -95,6 +95,7 @@ const plans = [
       { name: "Nombre de comptes", value: "1 (Reception)" },
       { name: "Gestion Depenses", value: false },
       { name: "Rapports & Stats", value: "Basique" },
+      { name: "Multi-etablissement", value: false },
       { name: "Module Resto/Bar", value: false },
       { name: "Support Technique", value: "Standard" },
     ],
@@ -114,6 +115,7 @@ const plans = [
       { name: "Nombre de comptes", value: "3 (Admin, Gerant, Recep.)" },
       { name: "Gestion Depenses", value: true },
       { name: "Rapports & Stats", value: "Mensuels detailles" },
+      { name: "Multi-etablissement", value: true },
       { name: "Module Resto/Bar", value: false },
       { name: "Support Technique", value: "Prioritaire" },
     ],
@@ -133,6 +135,7 @@ const plans = [
       { name: "Nombre de comptes", value: "Illimite" },
       { name: "Gestion Depenses", value: true },
       { name: "Rapports & Stats", value: "Temps reel / Compta" },
+      { name: "Multi-etablissement", value: true },
       { name: "Module Resto/Bar", value: true },
       { name: "Support Technique", value: "24h/7j + Formation" },
     ],
@@ -248,14 +251,19 @@ export default function LandingPage() {
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm">
+            <Badge
+              variant="secondary"
+              className="mb-6 px-4 py-1.5 text-sm"
+            >
               <span className="mr-2 inline-block h-2 w-2 animate-pulse bg-success" />
               Nouveau : lancez-vous avec 30 jours gratuits
             </Badge>
 
             <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl text-balance">
               Gerez votre hotel comme un{" "}
-              <span className="text-accent">professionnel</span>
+              <span className="text-accent">
+                professionnel
+              </span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed text-pretty">
@@ -266,7 +274,10 @@ export default function LandingPage() {
 
             <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
               <Link href="/register">
-                <Button size="lg" className="h-12 px-8 text-base">
+                <Button
+                  size="lg"
+                  className="h-12 px-8 text-base"
+                >
                   Essayer pendant 30 jours
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
@@ -310,7 +321,7 @@ export default function LandingPage() {
                   <div className="h-3 w-3 bg-success/60" />
                 </div>
                 <div className="ml-4 flex-1 bg-background/50 px-3 py-1 text-xs text-muted-foreground">
-                  app.hotela.ci/dashboard
+                  app.gesko.com/dashboard
                 </div>
               </div>
 
@@ -323,7 +334,7 @@ export default function LandingPage() {
                       <Hotel className="h-4 w-4 text-primary-foreground" />
                     </div>
                     <span className="font-semibold text-sidebar-foreground">
-                      Hotela
+                      Gesko
                     </span>
                   </div>
 
@@ -463,9 +474,7 @@ export default function LandingPage() {
                       </div>
 
                       <div className="border border-border bg-card p-4">
-                        <p className="text-sm font-medium">
-                          {"Activite du jour"}
-                        </p>
+                        <p className="text-sm font-medium">{"Activite du jour"}</p>
                         <div className="mt-3 flex flex-col gap-3">
                           {[
                             {
@@ -603,11 +612,11 @@ export default function LandingPage() {
               Demonstration
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Decouvrez Hotela en action
+              Decouvrez Gesko en action
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Regardez notre video de demonstration pour voir comment Hotela
-              peut transformer la gestion de votre hotel en quelques minutes.
+              Regardez notre video de demonstration pour voir comment Gesko peut
+              transformer la gestion de votre hotel en quelques minutes.
             </p>
           </div>
 
@@ -618,7 +627,7 @@ export default function LandingPage() {
                 {YOUTUBE_VIDEO_ID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
-                    title="Demonstration Hotela"
+                    title="Demonstration Gesko"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="absolute inset-0 h-full w-full"
@@ -662,9 +671,7 @@ export default function LandingPage() {
 
               <div className="flex items-center justify-between border-t border-border bg-card px-6 py-4">
                 <div>
-                  <p className="font-medium">
-                    {"Presentation complete de Hotela"}
-                  </p>
+                  <p className="font-medium">{"Presentation complete de Gesko"}</p>
                   <p className="text-sm text-muted-foreground">
                     {"Duree: 3 minutes"}
                   </p>
@@ -780,9 +787,7 @@ export default function LandingPage() {
                 {"Concu pour les hoteliers africains"}
               </h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                {
-                  "Nous comprenons les defis uniques de l'industrie hoteliere en Cote d'Ivoire. C'est pourquoi nous avons cree une solution adaptee a vos realites."
-                }
+                {"Nous comprenons les defis uniques de l'industrie hoteliere en Cote d'Ivoire. C'est pourquoi nous avons cree une solution adaptee a vos realites."}
               </p>
 
               <div className="mt-8 flex flex-col gap-6">
@@ -826,9 +831,7 @@ export default function LandingPage() {
               <div className="relative grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-4">
                   <div className="border border-border bg-card p-6 shadow-lg">
-                    <div className="text-3xl font-bold text-foreground">
-                      30j
-                    </div>
+                    <div className="text-3xl font-bold text-foreground">30j</div>
                     <p className="mt-1 text-sm text-muted-foreground">
                       Essai gratuit sans engagement
                     </p>
@@ -871,9 +874,8 @@ export default function LandingPage() {
               {"Nos Packs d'Abonnement"}
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Choisissez le plan qui correspond a la taille de votre
-              etablissement. Tous les plans incluent un essai gratuit de 30
-              jours.
+              Choisissez le plan qui correspond a la taille de votre etablissement. Tous les plans
+              incluent un essai gratuit de 30 jours.
             </p>
 
             <div className="mt-8 flex items-center justify-center gap-4">
@@ -927,9 +929,7 @@ export default function LandingPage() {
                   </div>
                 )}
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-bold tracking-wide">
-                    {plan.name}
-                  </h3>
+                  <h3 className="text-lg font-bold tracking-wide">{plan.name}</h3>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {plan.target}
                   </p>
@@ -961,13 +961,7 @@ export default function LandingPage() {
                         ) : (
                           <CheckCircle2 className="h-4 w-4 text-success" />
                         )}
-                        <span
-                          className={
-                            feature.value === false
-                              ? "text-muted-foreground/50"
-                              : ""
-                          }
-                        >
+                        <span className={feature.value === false ? "text-muted-foreground/50" : ""}>
                           {feature.name}
                           {typeof feature.value === "string" && (
                             <span className="ml-1 text-xs text-muted-foreground">
@@ -1001,126 +995,46 @@ export default function LandingPage() {
               <table className="w-full">
                 <thead>
                   <tr className="bg-muted/50">
-                    <th className="px-6 py-4 text-left text-sm font-semibold">
-                      Caracteristiques
-                    </th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold">
-                      Pack ESSENTIEL
-                    </th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">
-                      Pack BUSINESS
-                    </th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold">
-                      Pack PREMIUM
-                    </th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold">Caracteristiques</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold">Pack ESSENTIEL</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">Pack BUSINESS</th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold">Pack PREMIUM</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-t border-border">
-                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
-                      Cible
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm">
-                      {"< 15 chambres"}
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">
-                      {"15 a 40 chambres"}
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm">
-                      {"> 40 chambres"}
-                    </td>
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">Cible</td>
+                    <td className="px-6 py-3 text-center text-sm">{"< 15 chambres"}</td>
+                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">{"15 a 40 chambres"}</td>
+                    <td className="px-6 py-3 text-center text-sm">{"> 40 chambres"}</td>
                   </tr>
                   <tr className="border-t border-border bg-muted/20">
-                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
-                      Prix Mensuel
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm font-semibold">
-                      15 000 F
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">
-                      25 000 F
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm font-semibold">
-                      45 000 F
-                    </td>
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">Prix Mensuel</td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold">15 000 F</td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">25 000 F</td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold">45 000 F</td>
                   </tr>
                   <tr className="border-t border-border">
-                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
-                      Prix Annuel
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm">
-                      150 000 F{" "}
-                      <span className="text-xs text-success">
-                        (2 mois offerts)
-                      </span>
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">
-                      250 000 F{" "}
-                      <span className="text-xs text-success">
-                        (2 mois offerts)
-                      </span>
-                    </td>
-                    <td className="px-6 py-3 text-center text-sm">
-                      450 000 F{" "}
-                      <span className="text-xs text-success">
-                        (2 mois offerts)
-                      </span>
-                    </td>
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">Prix Annuel</td>
+                    <td className="px-6 py-3 text-center text-sm">150 000 F <span className="text-xs text-success">(2 mois offerts)</span></td>
+                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">250 000 F <span className="text-xs text-success">(2 mois offerts)</span></td>
+                    <td className="px-6 py-3 text-center text-sm">450 000 F <span className="text-xs text-success">(2 mois offerts)</span></td>
                   </tr>
                   {[
-                    {
-                      label: "Check-in / Check-out",
-                      values: ["--", "Complet", "Complet"],
-                    },
-                    {
-                      label: "Tableau de bord",
-                      values: ["Simplifie", "Avance", "Expert"],
-                    },
-                    {
-                      label: "Cle API Reservation",
-                      values: ["check", "check", "check"],
-                    },
-                    {
-                      label: "Nombre de comptes",
-                      values: [
-                        "1 (Reception)",
-                        "3 (Admin, Gerant, Recep.)",
-                        "Illimite",
-                      ],
-                    },
-                    {
-                      label: "Gestion Depenses",
-                      values: ["cross", "check", "check"],
-                    },
-                    {
-                      label: "Rapports & Stats",
-                      values: [
-                        "Basique",
-                        "Mensuels detailles",
-                        "Temps reel / Compta",
-                      ],
-                    },
-                    {
-                      label: "Module Resto/Bar",
-                      values: ["cross", "cross", "check"],
-                    },
-                    {
-                      label: "Support Technique",
-                      values: ["Standard", "Prioritaire", "24h/7j + Formation"],
-                    },
+                    { label: "Check-in / Check-out", values: ["--", "Complet", "Complet"] },
+                    { label: "Tableau de bord", values: ["Simplifie", "Avance", "Expert"] },
+                    { label: "Cle API Reservation", values: ["check", "check", "check"] },
+                    { label: "Nombre de comptes", values: ["1 (Reception)", "3 (Admin, Gerant, Recep.)", "Illimite"] },
+                    { label: "Gestion Depenses", values: ["cross", "check", "check"] },
+  { label: "Rapports & Stats", values: ["Basique", "Mensuels detailles", "Temps reel / Compta"] },
+  { label: "Multi-etablissement", values: ["cross", "check", "check"] },
+  { label: "Module Resto/Bar", values: ["cross", "cross", "check"] },
+                    { label: "Support Technique", values: ["Standard", "Prioritaire", "24h/7j + Formation"] },
                   ].map((row, i) => (
-                    <tr
-                      key={i}
-                      className={`border-t border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}
-                    >
-                      <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
-                        {row.label}
-                      </td>
+                    <tr key={i} className={`border-t border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}>
+                      <td className="px-6 py-3 text-sm font-medium text-muted-foreground">{row.label}</td>
                       {row.values.map((val, j) => (
-                        <td
-                          key={j}
-                          className={`px-6 py-3 text-center text-sm ${j === 1 ? "border-x border-accent/20 bg-accent/5" : ""}`}
-                        >
+                        <td key={j} className={`px-6 py-3 text-center text-sm ${j === 1 ? "border-x border-accent/20 bg-accent/5" : ""}`}>
                           {val === "check" ? (
                             <CheckCircle2 className="h-4 w-4 text-success mx-auto" />
                           ) : val === "cross" ? (
@@ -1155,7 +1069,7 @@ export default function LandingPage() {
               Ce que disent nos premiers utilisateurs
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              {"Decouvrez ce que nos clients disent de Hotela."}
+              {"Decouvrez ce que nos clients disent de Gesko."}
             </p>
           </div>
 
@@ -1248,9 +1162,7 @@ export default function LandingPage() {
                 {"Pret a transformer la gestion de votre hotel ?"}
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-                {
-                  "Essayez Hotela gratuitement pendant 30 jours et decouvrez une nouvelle facon de gerer votre hotel. Sans engagement, sans carte bancaire."
-                }
+                {"Essayez Gesko gratuitement pendant 30 jours et decouvrez une nouvelle facon de gerer votre hotel. Sans engagement, sans carte bancaire."}
               </p>
               <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
                 <Link href="/register">
@@ -1285,35 +1197,24 @@ export default function LandingPage() {
             <div>
               <Logo />
               <p className="mt-4 text-sm text-muted-foreground">
-                {
-                  "Le logiciel de gestion hoteliere concu pour la Cote d'Ivoire."
-                }
+                {"Le logiciel de gestion hoteliere concu pour la Cote d'Ivoire."}
               </p>
             </div>
             <div>
               <h4 className="font-semibold">Produit</h4>
               <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
                 <li>
-                  <a
-                    href="#features"
-                    className="hover:text-foreground transition-colors"
-                  >
+                  <a href="#features" className="hover:text-foreground transition-colors">
                     Fonctionnalites
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#pricing"
-                    className="hover:text-foreground transition-colors"
-                  >
+                  <a href="#pricing" className="hover:text-foreground transition-colors">
                     Tarifs
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#demo"
-                    className="hover:text-foreground transition-colors"
-                  >
+                  <a href="#demo" className="hover:text-foreground transition-colors">
                     Demo
                   </a>
                 </li>
@@ -1323,26 +1224,17 @@ export default function LandingPage() {
               <h4 className="font-semibold">Entreprise</h4>
               <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
+                  <a href="#" className="hover:text-foreground transition-colors">
                     A propos
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
+                  <a href="#" className="hover:text-foreground transition-colors">
                     Blog
                   </a>
                 </li>
                 <li>
-                  <a
-                    href="#"
-                    className="hover:text-foreground transition-colors"
-                  >
+                  <a href="#" className="hover:text-foreground transition-colors">
                     Carrieres
                   </a>
                 </li>
@@ -1351,14 +1243,14 @@ export default function LandingPage() {
             <div>
               <h4 className="font-semibold">Contact</h4>
               <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
-                <li>support@Hotela.app</li>
+                <li>support@gesko.app</li>
                 <li>+225 07 07 07 07 07</li>
                 <li>{"Abidjan, Cote d'Ivoire"}</li>
               </ul>
             </div>
           </div>
           <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>{"© 2025 Hotela. Tous droits reserves."}</p>
+            <p>{"© 2025 Gesko. Tous droits reserves."}</p>
           </div>
         </div>
       </footer>
@@ -1386,7 +1278,7 @@ export default function LandingPage() {
                 {YOUTUBE_VIDEO_ID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1`}
-                    title="Demonstration Hotela"
+                    title="Demonstration Gesko"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="h-full w-full"
@@ -1400,9 +1292,7 @@ export default function LandingPage() {
                       {"Video de demonstration"}
                     </p>
                     <p className="mt-2 text-sm text-primary-foreground/70 text-center max-w-md">
-                      {
-                        "Pour ajouter votre video YouTube, modifiez la constante "
-                      }
+                      {"Pour ajouter votre video YouTube, modifiez la constante "}
                       <code className="bg-primary-foreground/10 px-2 py-0.5">
                         YOUTUBE_VIDEO_ID
                       </code>
