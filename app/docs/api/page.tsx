@@ -29,7 +29,15 @@ import {
   CalendarCheck,
 } from "lucide-react";
 
-const Badge = ({ children, className = "", variant = "default" }) => {
+const Badge = ({
+  children,
+  className = "",
+  variant = "default",
+}: {
+  children: React.ReactNode;
+  className?: string;
+  variant?: string;
+}) => {
   const variants = {
     default: "bg-primary text-primary-foreground border-primary",
     secondary: "bg-muted text-muted-foreground border-border",
@@ -460,7 +468,7 @@ curl https://api.hotela.app/public/website/mon-hotel`,
 
 // ── UI helpers ─────────────────────────────────────────────────────────────
 
-function CopyButton({ text }) {
+function CopyButton({ text }: { text: string }) {
   const [copied, setCopied] = useState(false);
   return (
     <button
@@ -481,7 +489,7 @@ function CopyButton({ text }) {
   );
 }
 
-function MethodBadge({ method }) {
+function MethodBadge({ method }: { method: string }) {
   const c = {
     GET: "text-blue-400 bg-blue-400/10 border-blue-400/20",
     POST: "text-success bg-success/10 border-success/20",
@@ -496,7 +504,13 @@ function MethodBadge({ method }) {
   );
 }
 
-function CodeBlock({ snippet, defaultLang = "curl" }) {
+function CodeBlock({
+  snippet,
+  defaultLang = "curl",
+}: {
+  snippet: any;
+  defaultLang: string;
+}) {
   const langs = Object.keys(snippet).filter((k) => k !== "response");
   const [lang, setLang] = useState(
     langs.includes(defaultLang) ? defaultLang : langs[0],
@@ -539,7 +553,19 @@ function CodeBlock({ snippet, defaultLang = "curl" }) {
   );
 }
 
-function ParamRow({ name, type, required, description, badge }) {
+function ParamRow({
+  name,
+  type,
+  required,
+  description,
+  badge,
+}: {
+  name: string;
+  type: string;
+  required: boolean;
+  description: string;
+  badge: string | undefined;
+}) {
   return (
     <div className="flex flex-col gap-1 border-b border-border/50 py-3 last:border-0 sm:flex-row sm:gap-4">
       <div className="flex flex-wrap items-center gap-2 sm:w-60 sm:shrink-0">
@@ -565,7 +591,15 @@ function ParamRow({ name, type, required, description, badge }) {
   );
 }
 
-function SectionTitle({ id, icon: Icon, children }) {
+function SectionTitle({
+  id,
+  icon: Icon,
+  children,
+}: {
+  id: string;
+  icon: any;
+  children: React.ReactNode;
+}) {
   return (
     <h2
       id={id}
@@ -583,7 +617,17 @@ function SectionTitle({ id, icon: Icon, children }) {
   );
 }
 
-function EndpointHeader({ method, path, permission, description }) {
+function EndpointHeader({
+  method,
+  path,
+  permission,
+  description,
+}: {
+  method: string;
+  path: string;
+  permission: string;
+  description: string;
+}) {
   const isPublic = permission === "— (public)";
   return (
     <div className="border-t border-border pt-10 mb-5">
@@ -1080,7 +1124,7 @@ export default function ApiDocsPage() {
                   type="string"
                   description="Demandes spéciales visibles par votre équipe. Optionnel."
                   badge={undefined}
-                  required={undefined}
+                  required={false}
                 />
               </div>
 
