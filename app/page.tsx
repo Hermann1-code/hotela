@@ -37,6 +37,9 @@ import {
   Webhook,
   RefreshCw,
   MonitorSmartphone,
+  Wrench,
+  Timer,
+  PackageCheck,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { useState } from "react";
@@ -184,7 +187,7 @@ const stats = [
   { value: "100%", label: "Cloud & Mobile Money" },
   { value: "3 min", label: "Pour un check-in" },
   { value: "99.9%", label: "Disponibilité garantie" },
-  { value: "0", label: "Installation requise" },
+  { value: "24h max", label: "Temps d'installation" },
 ];
 
 const sidebarNavigation = [
@@ -769,10 +772,6 @@ data = response.json()
 
           {/* ── Flow steps ── */}
           <div className="relative mt-10 sm:mt-14">
-            {/* Connecting line — desktop only */}
-            {/* <div className="absolute hidden md:block top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-blue-400/30 via-accent/50 to-success/30" /> */}
-
-            {/* 1 col on mobile → 2 cols sm → 4 cols md */}
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-3">
               {apiSteps.map((step, index) => (
                 <div
@@ -980,137 +979,6 @@ data = response.json()
                 </Button>
               </Link>
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Démo Section */}
-      <section
-        id="demo"
-        className="border-t border-border bg-muted/30 py-16 sm:py-20 lg:py-32"
-      >
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="text-center">
-            <Badge variant="secondary" className="mb-4">
-              Démonstration
-            </Badge>
-            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Découvrez Hôtela en action
-            </h2>
-            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Regardez notre video de démonstration pour voir comment Hôtela
-              peut transformer la gestion de votre hôtel en quelques minutes.
-            </p>
-          </div>
-
-          <div className="relative mt-12 mx-auto max-w-4xl">
-            <div className="absolute -inset-1 bg-accent/10 blur-2xl" />
-            <div className="relative overflow-hidden border border-border bg-card shadow-2xl">
-              <div className="relative aspect-video bg-muted">
-                {YOUTUBE_VIDEO_ID ? (
-                  <iframe
-                    src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
-                    title="Démonstration Hôtela"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                    className="absolute inset-0 h-full w-full"
-                  />
-                ) : (
-                  <div
-                    className="absolute inset-0 flex items-center justify-center cursor-pointer group"
-                    onClick={() => setShowVideoModal(true)}
-                  >
-                    <div className="absolute inset-0 bg-primary">
-                      <div className="absolute inset-0 opacity-50">
-                        <div className="h-full w-full p-8">
-                          <div className="grid h-full grid-cols-3 gap-4">
-                            <div className="col-span-2 flex flex-col gap-4">
-                              <div className="h-16 bg-accent/20" />
-                              <div className="h-32 bg-accent/10" />
-                            </div>
-                            <div className="flex flex-col gap-4">
-                              <div className="h-24 bg-accent/15" />
-                              <div className="h-24 bg-accent/15" />
-                            </div>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div className="relative z-10 flex flex-col items-center gap-4">
-                      <div className="flex h-20 w-20 items-center justify-center bg-accent shadow-lg transition-transform group-hover:scale-110">
-                        <Play
-                          className="h-8 w-8 text-accent-foreground ml-1"
-                          fill="currentColor"
-                        />
-                      </div>
-                      <span className="text-lg font-medium text-primary-foreground">
-                        Video bientôt disponible
-                      </span>
-                    </div>
-                  </div>
-                )}
-              </div>
-
-              <div className="flex items-center justify-between border-t border-border bg-card px-6 py-4">
-                <div>
-                  <p className="font-medium">Présentation complete de Hôtela</p>
-                  <p className="text-sm text-muted-foreground">
-                    Durée: 3 minutes
-                  </p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
-                    <Play className="h-4 w-4" />
-                    <span>Nouvelle video</span>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div className="mt-12 grid gap-6 md:grid-cols-3">
-            {[
-              {
-                time: "0:00",
-                title: "Présentation du dashboard",
-                description:
-                  "Vue d'ensemble des statistiques et indicateurs cles",
-              },
-              {
-                time: "1:15",
-                title: "Connexion API & site web",
-                description:
-                  "Comment connecter votre site et centraliser toutes les réservations",
-              },
-              {
-                time: "2:30",
-                title: "Facturation automatique",
-                description:
-                  "Generation de factures avec TVA et paiement Mobile Money",
-              },
-            ].map((chapter, index) => (
-              <Card
-                key={index}
-                className="group cursor-pointer border-border/50 bg-card/50 transition-all hover:border-accent/50 hover:shadow-lg"
-                onClick={() => setShowVideoModal(true)}
-              >
-                <CardContent className="p-4">
-                  <div className="flex items-start gap-3">
-                    <div className="flex h-10 w-16 items-center justify-center bg-accent/10 text-sm font-mono text-accent">
-                      {chapter.time}
-                    </div>
-                    <div>
-                      <h4 className="font-medium group-hover:text-accent transition-colors">
-                        {chapter.title}
-                      </h4>
-                      <p className="mt-1 text-sm text-muted-foreground">
-                        {chapter.description}
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
           </div>
         </div>
       </section>
@@ -1373,6 +1241,93 @@ data = response.json()
             ))}
           </div>
 
+          {/* ── Installation Fee Banner ── */}
+          <div className="mt-8 sm:mt-10">
+            <div className="relative overflow-hidden border border-warning/30 bg-warning/5 p-5 sm:p-6">
+              {/* Decorative corner accent */}
+              <div
+                className="absolute top-0 right-0 h-16 w-16 bg-warning/10"
+                style={{ clipPath: "polygon(100% 0, 0 0, 100% 100%)" }}
+              />
+
+              <div className="flex flex-col gap-5 sm:flex-row sm:items-center sm:justify-between">
+                {/* Left: Icon + Title + Description */}
+                <div className="flex items-start gap-4">
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center bg-warning/10 border border-warning/20">
+                    <Wrench className="h-6 w-6 text-warning" />
+                  </div>
+                  <div>
+                    <div className="flex flex-wrap items-center gap-2">
+                      <h3 className="text-base font-bold sm:text-lg">
+                        Frais d'installation unique
+                      </h3>
+                      <Badge className="bg-warning/10 text-warning border-warning/30 text-xs font-semibold">
+                        Une seule fois
+                      </Badge>
+                    </div>
+                    <p className="mt-1 text-sm text-muted-foreground">
+                      En plus de votre abonnement, des frais uniques
+                      d'installation sont facturés au démarrage.
+                    </p>
+                    {/* What's included */}
+                    <div className="mt-3 grid grid-cols-1 gap-1.5 sm:grid-cols-2">
+                      {[
+                        {
+                          icon: BedDouble,
+                          label: "Paramétrage des chambres & types de chambres",
+                        },
+                        {
+                          icon: Users,
+                          label: "Création des comptes utilisateurs",
+                        },
+                        {
+                          icon: Link2,
+                          label: "Connexion avec votre site web existant",
+                        },
+                        {
+                          icon: Timer,
+                          label: "Mise en service en 24h maximum",
+                        },
+                      ].map((item, i) => (
+                        <div
+                          key={i}
+                          className="flex items-center gap-2 text-sm"
+                        >
+                          <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-success" />
+                          <span className="text-muted-foreground">
+                            {item.label}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Right: Price */}
+                <div className="flex shrink-0 flex-col items-start gap-1 border-t border-warning/20 pt-4 sm:items-end sm:border-t-0 sm:border-l sm:pl-6 sm:pt-0">
+                  <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+                    Frais d'installation
+                  </p>
+                  <div className="flex items-baseline gap-1">
+                    <span className="text-3xl font-bold text-foreground sm:text-4xl">
+                      50 000
+                    </span>
+                    <span className="text-lg font-semibold text-muted-foreground">
+                      FCFA
+                    </span>
+                  </div>
+                  <p className="text-xs text-muted-foreground">
+                    Paiement unique — non récurrent
+                  </p>
+                  <div className="mt-2 flex items-center gap-1.5 text-xs text-success font-medium">
+                    <Timer className="h-3.5 w-3.5" />
+                    Installation en 24h max
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
           {/* Pricing Comparison Table */}
           <div className="mt-16 hidden lg:block">
             <div className="overflow-hidden border border-border">
@@ -1443,6 +1398,20 @@ data = response.json()
                       <span className="text-xs text-success">
                         (2 mois offerts)
                       </span>
+                    </td>
+                  </tr>
+                  <tr className="border-t border-border bg-warning/5">
+                    <td className="px-6 py-3 text-sm font-medium text-warning">
+                      Frais d'installation (unique)
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold text-warning">
+                      50 000 F
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold text-warning border-x border-accent/20 bg-warning/5">
+                      50 000 F
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold text-warning">
+                      50 000 F
                     </td>
                   </tr>
                   {[
@@ -1808,4 +1777,134 @@ data = response.json()
       )}
     </div>
   );
+}
+
+{
+  /* Démo Section 
+      <section
+        id="demo"
+        className="border-t border-border bg-muted/30 py-16 sm:py-20 lg:py-32"
+      >
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center">
+            <Badge variant="secondary" className="mb-4">
+              Démonstration
+            </Badge>
+            <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
+              Découvrez Hôtela en action
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
+              Regardez notre video de démonstration pour voir comment Hôtela
+              peut transformer la gestion de votre hôtel en quelques minutes.
+            </p>
+          </div>
+
+          <div className="relative mt-12 mx-auto max-w-4xl">
+            <div className="absolute -inset-1 bg-accent/10 blur-2xl" />
+            <div className="relative overflow-hidden border border-border bg-card shadow-2xl">
+              <div className="relative aspect-video bg-muted">
+                {YOUTUBE_VIDEO_ID ? (
+                  <iframe
+                    src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
+                    title="Démonstration Hôtela"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                    allowFullScreen
+                    className="absolute inset-0 h-full w-full"
+                  />
+                ) : (
+                  <div
+                    className="absolute inset-0 flex items-center justify-center cursor-pointer group"
+                    onClick={() => setShowVideoModal(true)}
+                  >
+                    <div className="absolute inset-0 bg-primary">
+                      <div className="absolute inset-0 opacity-50">
+                        <div className="h-full w-full p-8">
+                          <div className="grid h-full grid-cols-3 gap-4">
+                            <div className="col-span-2 flex flex-col gap-4">
+                              <div className="h-16 bg-accent/20" />
+                              <div className="h-32 bg-accent/10" />
+                            </div>
+                            <div className="flex flex-col gap-4">
+                              <div className="h-24 bg-accent/15" />
+                              <div className="h-24 bg-accent/15" />
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="relative z-10 flex flex-col items-center gap-4">
+                      <div className="flex h-20 w-20 items-center justify-center bg-accent/20 mb-4">
+                        <Play className="h-10 w-10 text-accent" />
+                      </div>
+                      <span className="text-lg font-medium text-primary-foreground">
+                        Video bientôt disponible
+                      </span>
+                    </div>
+                  </div>
+                )}
+              </div>
+
+              <div className="flex items-center justify-between border-t border-border bg-card px-6 py-4">
+                <div>
+                  <p className="font-medium">Présentation complete de Hôtela</p>
+                  <p className="text-sm text-muted-foreground">
+                    Durée: 3 minutes
+                  </p>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="flex items-center gap-1 text-sm text-muted-foreground">
+                    <Play className="h-4 w-4" />
+                    <span>Nouvelle video</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div className="mt-12 grid gap-6 md:grid-cols-3">
+            {[
+              {
+                time: "0:00",
+                title: "Présentation du dashboard",
+                description:
+                  "Vue d'ensemble des statistiques et indicateurs cles",
+              },
+              {
+                time: "1:15",
+                title: "Connexion API & site web",
+                description:
+                  "Comment connecter votre site et centraliser toutes les réservations",
+              },
+              {
+                time: "2:30",
+                title: "Facturation automatique",
+                description:
+                  "Generation de factures avec TVA et paiement Mobile Money",
+              },
+            ].map((chapter, index) => (
+              <Card
+                key={index}
+                className="group cursor-pointer border-border/50 bg-card/50 transition-all hover:border-accent/50 hover:shadow-lg"
+                onClick={() => setShowVideoModal(true)}
+              >
+                <CardContent className="p-4">
+                  <div className="flex items-start gap-3">
+                    <div className="flex h-10 w-16 items-center justify-center bg-accent/10 text-sm font-mono text-accent">
+                      {chapter.time}
+                    </div>
+                    <div>
+                      <h4 className="font-medium group-hover:text-accent transition-colors">
+                        {chapter.title}
+                      </h4>
+                      <p className="mt-1 text-sm text-muted-foreground">
+                        {chapter.description}
+                      </p>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section> */
 }
