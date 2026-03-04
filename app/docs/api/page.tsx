@@ -28,32 +28,33 @@ import {
   BedDouble,
   CalendarCheck,
 } from "lucide-react";
+import { Badge } from "@/components/ui/badge";
 
-const Badge = ({
-  children,
-  className = "",
-  variant = "default",
-}: {
-  children: React.ReactNode;
-  className?: string;
-  variant?: string;
-}) => {
-  const variants = {
-    default: "bg-primary text-primary-foreground border-primary",
-    secondary: "bg-muted text-muted-foreground border-border",
-    success: "bg-success/10 text-success border-success/20",
-    warning: "bg-warning/10 text-warning border-warning/20",
-    destructive: "bg-destructive/10 text-destructive border-destructive/20",
-    accent: "bg-accent/10 text-accent border-accent/20",
-  };
-  return (
-    <span
-      className={`inline-flex items-center px-2.5 py-0.5 text-xs font-medium border ${variants[variant] ?? ""} ${className}`}
-    >
-      {children}
-    </span>
-  );
-};
+// const Badge = ({
+//   children,
+//   className = "",
+//   variant = "default",
+// }: {
+//   children: React.ReactNode;
+//   className?: string;
+//   variant?: any;
+// }) => {
+//   const variants = {
+//     default: "bg-primary text-primary-foreground border-primary",
+//     secondary: "bg-muted text-muted-foreground border-border",
+//     success: "bg-success/10 text-success border-success/20",
+//     warning: "bg-warning/10 text-warning border-warning/20",
+//     destructive: "bg-destructive/10 text-destructive border-destructive/20",
+//     accent: "bg-accent/10 text-accent border-accent/20",
+//   };
+//   return (
+//     <span
+//       className={`inline-flex items-center px-2.5 py-0.5 text-xs font-medium border ${variants[variant] ?? ""} ${className}`}
+//     >
+//       {children}
+//     </span>
+//   );
+// };
 
 const sidebarSections = [
   {
@@ -767,7 +768,7 @@ export default function ApiDocsPage() {
           <main className="min-w-0 flex-1 px-4 py-10 sm:px-8 lg:px-12 xl:px-16">
             {/* Hero */}
             <div className="mb-12 border-b border-border pb-10" id="overview">
-              <Badge variant="accent" className="mb-4">
+              <Badge variant="default" className="mb-4">
                 <Zap className="mr-1.5 h-3 w-3 inline" /> API REST · Base:
                 /public
               </Badge>
