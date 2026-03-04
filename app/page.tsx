@@ -28,6 +28,15 @@ import {
   ChevronDown,
   X,
   Minus,
+  Menu,
+  Globe,
+  Zap,
+  Code2,
+  Link2,
+  ArrowLeftRight,
+  Webhook,
+  RefreshCw,
+  MonitorSmartphone,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { useState } from "react";
@@ -45,39 +54,39 @@ const paymentMethods = [
 const features = [
   {
     icon: CalendarCheck,
-    title: "Reservations simplifiees",
+    title: "Réservations simplifiées",
     description:
-      "Gerez vos reservations en quelques clics. Calendrier visuel, check-in/out rapide, notifications automatiques.",
+      "Gérez vos réservations en quelques clics. Calendrier visuel, check-in/out rapide, notifications automatiques.",
   },
   {
     icon: Receipt,
     title: "Facturation automatique",
     description:
-      "Factures generees automatiquement avec TVA 18%. Paiements partiels, Mobile Money, et export PDF.",
+      "Factures générées automatiquement avec TVA 18%. Paiements partiels, Mobile Money, et export PDF.",
   },
   {
     icon: BarChart3,
     title: "Rapports & Analytics",
     description:
-      "Suivez vos revenus, taux d'occupation et performances en temps reel avec des graphiques detailles.",
+      "Suivez vos revenus, taux d'occupation et performances en temps réel avec des graphiques détaillés.",
   },
   {
     icon: Building2,
-    title: "Multi-etablissements",
+    title: "Multi-établissements",
     description:
-      "Gerez plusieurs hotels depuis une seule interface. Vue consolidee et rapports par etablissement.",
+      "Gérez plusieurs hôtels depuis une seule interface. Vue consolidee et rapports par établissement.",
   },
   {
     icon: Users,
-    title: "Gestion des equipes",
+    title: "Gestion des équipes",
     description:
-      "Attribuez des roles (Manager, Receptionniste) et suivez l'historique des operations.",
+      "Attribuez des roles (Manager, Réceptionniste) et suivez l'historique des operations.",
   },
   {
     icon: Smartphone,
     title: "Paiement Mobile Money",
     description:
-      "Acceptez Orange Money, MTN Money et Wave directement dans l'application. Paiements securises.",
+      "Acceptez Orange Money, MTN Money et Wave directement dans l'application. Paiements sécurisés.",
   },
 ];
 
@@ -91,11 +100,11 @@ const plans = [
     features: [
       { name: "Check-in / Check-out", value: true },
       { name: "Tableau de bord", value: "Simplifie" },
-      { name: "Cle API Reservation", value: true },
-      { name: "Nombre de comptes", value: "1 (Reception)" },
-      { name: "Gestion Depenses", value: false },
+      { name: "Clé API Réservation", value: true },
+      { name: "Nombre de comptes", value: "1 (Réception)" },
+      { name: "Gestion Dépenses", value: false },
       { name: "Rapports & Stats", value: "Basique" },
-      { name: "Multi-etablissement", value: false },
+      { name: "Multi-établissement", value: false },
       { name: "Module Resto/Bar", value: false },
       { name: "Support Technique", value: "Standard" },
     ],
@@ -104,18 +113,18 @@ const plans = [
   },
   {
     name: "BUSINESS",
-    target: "15 a 40 chambres",
+    target: "15 à 40 chambres",
     monthlyPrice: 25000,
     annualPrice: 250000,
     annualSavings: "2 mois offerts",
     features: [
       { name: "Check-in / Check-out", value: "Complet" },
-      { name: "Tableau de bord", value: "Avance" },
-      { name: "Cle API Reservation", value: true },
-      { name: "Nombre de comptes", value: "3 (Admin, Gerant, Recep.)" },
-      { name: "Gestion Depenses", value: true },
-      { name: "Rapports & Stats", value: "Mensuels detailles" },
-      { name: "Multi-etablissement", value: true },
+      { name: "Tableau de bord", value: "Avancé" },
+      { name: "Clé API Réservation", value: true },
+      { name: "Nombre de comptes", value: "3 (Admin, Gérant, Récep.)" },
+      { name: "Gestion Dépenses", value: true },
+      { name: "Rapports & Stats", value: "Mensuels détaillés" },
+      { name: "Multi-établissement", value: true },
       { name: "Module Resto/Bar", value: false },
       { name: "Support Technique", value: "Prioritaire" },
     ],
@@ -131,11 +140,11 @@ const plans = [
     features: [
       { name: "Check-in / Check-out", value: "Complet" },
       { name: "Tableau de bord", value: "Expert" },
-      { name: "Cle API Reservation", value: true },
+      { name: "Clé API Réservation", value: true },
       { name: "Nombre de comptes", value: "Illimite" },
-      { name: "Gestion Depenses", value: true },
-      { name: "Rapports & Stats", value: "Temps reel / Compta" },
-      { name: "Multi-etablissement", value: true },
+      { name: "Gestion Dépenses", value: true },
+      { name: "Rapports & Stats", value: "Temps réel / Compta" },
+      { name: "Multi-établissement", value: true },
       { name: "Module Resto/Bar", value: true },
       { name: "Support Technique", value: "24h/7j + Formation" },
     ],
@@ -147,26 +156,26 @@ const plans = [
 const testimonials = [
   {
     name: "Kouame Yao",
-    role: "Directeur, Hotel Ivoire Palace",
+    role: "Directeur, Hôtel Ivoire Palace",
     location: "Abidjan",
     content:
-      "L'interface est intuitive et mes receptionnistes l'ont pris en main en une journee. Un outil vraiment pense pour le terrain.",
+      "L'interface est intuitive et mes réceptionnistes l'ont pris en main en une journee. Un outil vraiment pense pour le terrain.",
     rating: 5,
   },
   {
     name: "Fatou Diallo",
-    role: "Gerante, Residence Les Palmiers",
+    role: "Gérante, Residence Les Palmiers",
     location: "Yamoussoukro",
     content:
-      "L'equipe de support est reactive et disponible. La migration de nos donnees s'est faite sans souci. Je recommande !",
+      "Depuis qu'on a connecte notre site web a Hôtela via l'API, toutes les réservations arrivent directement dans le tableau de bord. Fini les erreurs de double réservation !",
     rating: 5,
   },
   {
     name: "Jean-Marc Koffi",
-    role: "Proprietaire, Hotel du Lac",
+    role: "Proprietaire, Hôtel du Lac",
     location: "San-Pedro",
     content:
-      "Les rapports analytiques me donnent une vision claire de mon activite. Je sais enfin quelles chambres sont les plus rentables.",
+      "Les rapports analytiques me donnent une vision claire de mon activité. Je sais enfin quelles chambres sont les plus rentables.",
     rating: 5,
   },
 ];
@@ -174,20 +183,63 @@ const testimonials = [
 const stats = [
   { value: "100%", label: "Cloud & Mobile Money" },
   { value: "3 min", label: "Pour un check-in" },
-  { value: "99.9%", label: "Disponibilite garantie" },
+  { value: "99.9%", label: "Disponibilité garantie" },
   { value: "0", label: "Installation requise" },
 ];
 
 const sidebarNavigation = [
   { name: "Dashboard", icon: LayoutDashboard, active: true },
   { name: "Chambres", icon: BedDouble, active: false },
-  { name: "Reservations", icon: CalendarDays, active: false },
+  { name: "Réservations", icon: CalendarDays, active: false },
   { name: "Facturation", icon: Receipt, active: false },
   { name: "Rapports", icon: BarChart3, active: false },
-  { name: "Multi-Hotels", icon: Building2, active: false },
+  { name: "Multi-Hôtels", icon: Building2, active: false },
   { name: "Utilisateurs", icon: Users, active: false },
-  { name: "Cles API", icon: Key, active: false },
-  { name: "Parametres", icon: Settings, active: false },
+  { name: "Clés API", icon: Key, active: false },
+  { name: "Paramètres", icon: Settings, active: false },
+];
+
+const apiSteps = [
+  {
+    step: "01",
+    icon: Globe,
+    title: "Votre site web récoit une réservation",
+    description:
+      "Un client visite votre site et reserve une chambre en ligne, 24h/24.",
+    color: "text-blue-400",
+    bg: "bg-blue-400/10",
+    border: "border-blue-400/20",
+  },
+  {
+    step: "02",
+    icon: Webhook,
+    title: "L'API Hôtela est déclenchée instantanément",
+    description:
+      "Votre site envoie les données de la réservation à Hôtela via notre API REST sécurisée.",
+    color: "text-accent",
+    bg: "bg-accent/10",
+    border: "border-accent/20",
+  },
+  {
+    step: "03",
+    icon: RefreshCw,
+    title: "Synchronisation en temps réel",
+    description:
+      "Hôtela met a jour automatiquement le calendrier, les disponibilités et le statut des chambres.",
+    color: "text-purple-400",
+    bg: "bg-purple-400/10",
+    border: "border-purple-400/20",
+  },
+  {
+    step: "04",
+    icon: LayoutDashboard,
+    title: "Votre équipe gere tout depuis Hôtela",
+    description:
+      "Check-in, facturation, attribution des chambres — tout centralisé dans un seul tableau de bord.",
+    color: "text-success",
+    bg: "bg-success/10",
+    border: "border-success/20",
+  },
 ];
 
 const YOUTUBE_VIDEO_ID = "eLxPGQ0P3AM";
@@ -195,25 +247,114 @@ const YOUTUBE_VIDEO_ID = "eLxPGQ0P3AM";
 export default function LandingPage() {
   const [showVideoModal, setShowVideoModal] = useState(false);
   const [isAnnual, setIsAnnual] = useState(false);
+  const [activeTab, setActiveTab] = useState("javascript");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
+  const codeSnippets = {
+    javascript: `// Envoyer une réservation depuis votre site
+const response = await fetch(
+  "https://api.hotela.app/v1/réservations",
+  {
+    method: "POST",
+    headers: {
+      "Authorization": "Bearer YOUR_API_KEY",
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      room_id: "CH-201",
+      guest: {
+        name: "Kouame Yao",
+        phone: "+225 07 00 00 00"
+      },
+      check_in: "2025-08-15",
+      check_out: "2025-08-18",
+      source: "website"
+    })
+  }
+);
+
+const { réservation_id, status } = await response.json();
+// réservation_id: "RES-2025-089"
+// status: "confirmed" ✓`,
+    php: `<?php
+// Envoyer une réservation depuis votre site
+$client = new GuzzleHttp\\Client();
+$response = $client->post(
+  'https://api.hotela.app/v1/réservations',
+  [
+    'headers' => [
+      'Authorization' => 'Bearer YOUR_API_KEY',
+      'Content-Type'  => 'application/json',
+    ],
+    'json' => [
+      'room_id'    => 'CH-201',
+      'guest'      => [
+        'name'  => 'Kouame Yao',
+        'phone' => '+225 07 00 00 00',
+      ],
+      'check_in'   => '2025-08-15',
+      'check_out'  => '2025-08-18',
+      'source'     => 'website',
+    ],
+  ]
+);
+$data = json_decode($response->getBody(), true);
+// réservation_id: "RES-2025-089"
+// status: "confirmed" ✓`,
+    python: `import requests
+
+# Envoyer une réservation depuis votre site
+response = requests.post(
+    "https://api.hotela.app/v1/réservations",
+    headers={
+        "Authorization": "Bearer YOUR_API_KEY",
+        "Content-Type": "application/json"
+    },
+    json={
+        "room_id": "CH-201",
+        "guest": {
+            "name": "Kouame Yao",
+            "phone": "+225 07 00 00 00"
+        },
+        "check_in": "2025-08-15",
+        "check_out": "2025-08-18",
+        "source": "website"
+    }
+)
+data = response.json()
+# réservation_id: "RES-2025-089"
+# status: "confirmed" ✓`,
+  };
 
   return (
     <div className="min-h-screen bg-background">
       {/* Navigation */}
       <nav className="fixed top-0 left-0 right-0 z-50 border-b border-border/50 bg-background/80 backdrop-blur-xl">
         <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
-          <Logo />
+          <div className="flex items-center gap-2">
+            <div className="flex h-8 w-8 items-center justify-center bg-accent">
+              <Hotel className="h-4 w-4 text-accent-foreground" />
+            </div>
+            <span className="text-lg font-bold tracking-tight">Hôtela</span>
+          </div>
           <div className="hidden items-center gap-8 md:flex">
+            <Link
+              href="#api"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              API
+            </Link>
             <Link
               href="#demo"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              Demo
+              Démo
             </Link>
             <Link
               href="#features"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              Fonctionnalites
+              Fonctionnalités
             </Link>
             <Link
               href="#pricing"
@@ -225,58 +366,109 @@ export default function LandingPage() {
               href="#testimonials"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
-              Temoignages
+              Témoignages
             </Link>
           </div>
-          <div className="flex items-center gap-3">
+          {/* Desktop CTA */}
+          <div className="hidden items-center gap-3 md:flex">
             <ModeToggle />
-            <Link href="/login" className="hidden sm:block">
+            <Link href="/login">
               <Button variant="ghost">Connexion</Button>
             </Link>
             <Link href="/register">
               <Button>
                 Essai gratuit
-                <ArrowRight className="ml-2 h-4 w-4" />
+                <ArrowRight className="ml-1.5 h-3.5 w-3.5" />
               </Button>
             </Link>
           </div>
+
+          {/* Mobile right */}
+          <div className="flex items-center gap-2 md:hidden">
+            <ModeToggle />
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground hover:text-foreground transition-colors"
+              aria-label="Menu"
+            >
+              {mobileMenuOpen ? (
+                <X className="h-4 w-4" />
+              ) : (
+                <Menu className="h-4 w-4" />
+              )}
+            </button>
+          </div>
         </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <div className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden">
+            <div className="mx-auto max-w-7xl divide-y divide-border/50 px-4">
+              {[
+                { href: "#api", label: "Connexion API" },
+                { href: "#demo", label: "Demo" },
+                { href: "#features", label: "Fonctionnalites" },
+                { href: "#pricing", label: "Tarifs" },
+                { href: "#testimonials", label: "Temoignages" },
+              ].map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  onClick={() => setMobileMenuOpen(false)}
+                  className="flex items-center justify-between py-3 text-sm text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {link.label}
+                  <ChevronRight className="h-3.5 w-3.5 opacity-40" />
+                </a>
+              ))}
+              <div className="flex flex-col gap-2 py-4">
+                <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
+                  <Button variant="outline" className="w-full">
+                    Connexion
+                  </Button>
+                </Link>
+                <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
+                  <Button className="w-full">
+                    Essai gratuit 30 jours
+                    <ArrowRight className="ml-2 h-4 w-4" />
+                  </Button>
+                </Link>
+              </div>
+            </div>
+          </div>
+        )}
       </nav>
 
       {/* Hero Section */}
-      <section className="relative overflow-hidden pt-32 pb-20 lg:pt-40 lg:pb-32">
+      <section className="relative overflow-hidden pt-28 pb-14 sm:pt-32 sm:pb-20 lg:pt-40 lg:pb-32">
         <div className="absolute inset-0 -z-10">
           <div className="absolute top-0 left-0 right-0 h-full bg-[linear-gradient(to_right,var(--color-border)_1px,transparent_1px),linear-gradient(to_bottom,var(--color-border)_1px,transparent_1px)] bg-[size:4rem_4rem] opacity-30" />
         </div>
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge
-              variant="secondary"
-              className="mb-6 px-4 py-1.5 text-sm"
-            >
+            <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm">
               <span className="mr-2 inline-block h-2 w-2 animate-pulse bg-success" />
               Nouveau : lancez-vous avec 30 jours gratuits
             </Badge>
 
-            <h1 className="mx-auto max-w-4xl text-4xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl text-balance">
-              Gerez votre hotel comme un{" "}
-              <span className="text-accent">
-                professionnel
-              </span>
+            <h1 className="mx-auto max-w-4xl text-3xl font-bold tracking-tight text-foreground sm:text-5xl lg:text-7xl text-balance">
+              Gérez votre hôtel comme un{" "}
+              <span className="text-accent">professionnel</span>
             </h1>
 
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed text-pretty">
-              Le logiciel de gestion hoteliere concu pour la Cote d'Ivoire.
-              Reservations, facturation, rapports — tout en un seul endroit.
-              Payez avec Mobile Money.
+              Hôtela connecte votre site hôtel a un centre de controle puissant
+              via API. Chaque réservation en ligne atterrit instantanement dans
+              votre dashboard — réservations, facturation, rapports, tout en un
+              seul endroit.
             </p>
 
-            <div className="mt-10 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <Link href="/register">
+            <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
+              <Link href="/register" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="h-12 px-8 text-base"
+                  className="h-12 w-full px-8 text-base sm:w-auto"
                 >
                   Essayer pendant 30 jours
                   <ArrowRight className="ml-2 h-5 w-5" />
@@ -304,7 +496,7 @@ export default function LandingPage() {
               </div>
               <div className="flex items-center gap-2">
                 <CheckCircle2 className="h-5 w-5 text-success" />
-                <span>Annulation a tout moment</span>
+                <span>Annulation à tout moment</span>
               </div>
             </div>
           </div>
@@ -321,20 +513,20 @@ export default function LandingPage() {
                   <div className="h-3 w-3 bg-success/60" />
                 </div>
                 <div className="ml-4 flex-1 bg-background/50 px-3 py-1 text-xs text-muted-foreground">
-                  app.gesko.com/dashboard
+                  app.hotela.app/dashboard
                 </div>
               </div>
 
               {/* Dashboard Layout with Sidebar */}
-              <div className="flex h-[500px]">
+              <div className="flex h-72 sm:h-96 lg:h-[500px]">
                 {/* Sidebar */}
-                <div className="hidden w-56 flex-shrink-0 flex-col border-r border-border bg-sidebar md:flex">
+                <div className="hidden w-48 flex-shrink-0 flex-col border-r border-border bg-sidebar lg:flex xl:w-56">
                   <div className="flex h-14 items-center gap-2 border-b border-sidebar-border px-4">
-                    <div className="flex h-8 w-8 items-center justify-center bg-primary">
-                      <Hotel className="h-4 w-4 text-primary-foreground" />
+                    <div className="flex h-8 w-8 items-center justify-center bg-accent">
+                      <Hotel className="h-4 w-4 text-accent-foreground" />
                     </div>
                     <span className="font-semibold text-sidebar-foreground">
-                      Gesko
+                      Hôtela
                     </span>
                   </div>
 
@@ -343,7 +535,7 @@ export default function LandingPage() {
                       <div className="flex items-center gap-2 truncate">
                         <Building2 className="h-4 w-4 shrink-0 text-sidebar-accent-foreground" />
                         <span className="truncate text-sidebar-accent-foreground">
-                          Hotel Ivoire Palace
+                          Hôtel Ivoire Palace
                         </span>
                       </div>
                       <ChevronDown className="h-4 w-4 shrink-0 text-sidebar-accent-foreground/50" />
@@ -371,7 +563,7 @@ export default function LandingPage() {
                   <div className="border-t border-sidebar-border p-3">
                     <div className="flex w-full items-center gap-2 px-3 py-2 text-sm text-sidebar-foreground/70">
                       <LogOut className="h-4 w-4" />
-                      Deconnexion
+                      Déconnexion
                     </div>
                   </div>
                 </div>
@@ -382,11 +574,15 @@ export default function LandingPage() {
                     <div>
                       <h2 className="text-sm font-semibold">Dashboard</h2>
                       <p className="text-xs text-muted-foreground">
-                        Bienvenue ! Voici un apercu de votre etablissement.
+                        Bienvenue ! Voici un aperçu de votre établissement.
                       </p>
                     </div>
                     <div className="flex items-center gap-2">
-                      <div className="h-8 w-8 bg-primary/20" />
+                      {/* Live API indicator */}
+                      <div className="flex items-center gap-1.5 border border-success/30 bg-success/10 px-2 py-1 text-xs text-success">
+                        <span className="h-1.5 w-1.5 animate-pulse bg-success" />
+                        API connectee
+                      </div>
                     </div>
                   </div>
 
@@ -412,10 +608,10 @@ export default function LandingPage() {
                           color: "text-accent",
                         },
                         {
-                          label: "Factures en attente",
-                          value: "5",
-                          change: "-2",
-                          color: "text-warning",
+                          label: "Réservations web",
+                          value: "8",
+                          change: "+5",
+                          color: "text-success",
                         },
                       ].map((stat, i) => (
                         <div
@@ -430,11 +626,7 @@ export default function LandingPage() {
                               {stat.value}
                             </p>
                             <span
-                              className={`text-xs ${
-                                stat.change.startsWith("+")
-                                  ? "text-success"
-                                  : "text-warning"
-                              }`}
+                              className={`text-xs ${stat.change.startsWith("+") ? "text-success" : "text-warning"}`}
                             >
                               {stat.change}
                             </span>
@@ -458,9 +650,7 @@ export default function LandingPage() {
                             (h, i) => (
                               <div
                                 key={i}
-                                className={`flex-1 transition-all ${
-                                  i === 11 ? "bg-accent" : "bg-accent/30"
-                                }`}
+                                className={`flex-1 transition-all ${i === 11 ? "bg-accent" : "bg-accent/30"}`}
                                 style={{ height: `${h}%` }}
                               />
                             ),
@@ -474,11 +664,16 @@ export default function LandingPage() {
                       </div>
 
                       <div className="border border-border bg-card p-4">
-                        <p className="text-sm font-medium">{"Activite du jour"}</p>
+                        <p className="text-sm font-medium">Activité du jour</p>
                         <div className="mt-3 flex flex-col gap-3">
                           {[
                             {
-                              text: "Check-in Chambre 201",
+                              text: "Réservation web — CH 201",
+                              time: "Il y a 2 min",
+                              type: "api",
+                            },
+                            {
+                              text: "Check-in Chambre 105",
                               time: "Il y a 5 min",
                               type: "checkin",
                             },
@@ -488,26 +683,19 @@ export default function LandingPage() {
                               type: "payment",
                             },
                             {
-                              text: "Nouvelle reservation",
-                              time: "Il y a 25 min",
-                              type: "reservation",
-                            },
-                            {
-                              text: "Check-out Chambre 105",
-                              time: "Il y a 1h",
-                              type: "checkout",
+                              text: "Réservation web — CH 118",
+                              time: "Il y a 18 min",
+                              type: "api",
                             },
                           ].map((item, i) => (
                             <div key={i} className="flex items-start gap-2">
                               <div
                                 className={`mt-1 h-2 w-2 ${
-                                  item.type === "checkin"
-                                    ? "bg-success"
-                                    : item.type === "payment"
-                                      ? "bg-accent"
-                                      : item.type === "reservation"
-                                        ? "bg-primary"
-                                        : "bg-warning"
+                                  item.type === "api"
+                                    ? "bg-accent animate-pulse"
+                                    : item.type === "checkin"
+                                      ? "bg-success"
+                                      : "bg-primary"
                                 }`}
                               />
                               <div className="flex-1 min-w-0">
@@ -523,61 +711,6 @@ export default function LandingPage() {
                         </div>
                       </div>
                     </div>
-
-                    <div className="mt-4 border border-border bg-card p-4">
-                      <div className="flex items-center justify-between">
-                        <p className="text-sm font-medium">
-                          Statut des chambres
-                        </p>
-                        <div className="flex gap-3 text-xs">
-                          <div className="flex items-center gap-1">
-                            <div className="h-2 w-2 bg-success" />
-                            <span className="text-muted-foreground">Libre</span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <div className="h-2 w-2 bg-accent" />
-                            <span className="text-muted-foreground">
-                              Occupee
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-1">
-                            <div className="h-2 w-2 bg-warning" />
-                            <span className="text-muted-foreground">
-                              Maintenance
-                            </span>
-                          </div>
-                        </div>
-                      </div>
-                      <div className="mt-3 grid grid-cols-8 gap-2 lg:grid-cols-12">
-                        {Array.from({ length: 24 }).map((_, i) => {
-                          const statuses = [
-                            "available",
-                            "occupied",
-                            "occupied",
-                            "maintenance",
-                            "available",
-                            "occupied",
-                            "available",
-                            "occupied",
-                          ];
-                          const status = statuses[i % statuses.length];
-                          return (
-                            <div
-                              key={i}
-                              className={`flex aspect-square items-center justify-center border text-xs font-medium ${
-                                status === "available"
-                                  ? "border-success/30 bg-success/10 text-success"
-                                  : status === "occupied"
-                                    ? "border-accent/30 bg-accent/10 text-accent"
-                                    : "border-warning/30 bg-warning/10 text-warning"
-                              }`}
-                            >
-                              {101 + i}
-                            </div>
-                          );
-                        })}
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -587,12 +720,12 @@ export default function LandingPage() {
       </section>
 
       {/* Stats Section */}
-      <section className="border-y border-border bg-muted/30 py-12">
+      <section className="border-y border-border bg-muted/30 py-10 sm:py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-2 gap-8 md:grid-cols-4">
             {stats.map((stat, index) => (
               <div key={index} className="text-center">
-                <p className="text-3xl font-bold text-foreground lg:text-4xl">
+                <p className="text-2xl font-bold text-foreground sm:text-3xl lg:text-4xl">
                   {stat.value}
                 </p>
                 <p className="mt-1 text-sm text-muted-foreground">
@@ -604,19 +737,269 @@ export default function LandingPage() {
         </div>
       </section>
 
-      {/* Demo Section */}
-      <section id="demo" className="py-20 lg:py-32">
+      {/* ========== API INTEGRATION SECTION ========== */}
+      <section
+        id="api"
+        className="relative overflow-hidden py-16 sm:py-20 lg:py-32"
+      >
+        <div className="absolute inset-0 -z-10">
+          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[500px] w-[500px] bg-accent/5 blur-3xl rounded-full sm:h-[800px] sm:w-[800px]" />
+        </div>
+
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          {/* ── Header ── */}
+          <div className="text-center">
+            <Badge className="mb-4 bg-accent/10 text-accent border-accent/20 px-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-sm">
+              <Zap className="mr-1 h-3 w-3 inline sm:h-3.5 sm:w-3.5" />
+              Fonctionnalité clé
+            </Badge>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-4xl lg:text-5xl text-balance">
+              Votre site web existant,{" "}
+              <span className="text-accent">
+                branché à votre tableau de bord
+              </span>
+            </h2>
+            <p className="mx-auto mt-4 max-w-2xl text-sm text-muted-foreground sm:text-base lg:text-lg">
+              Connectez votre site hôtel à Hotela via notre API. Chaque
+              réservation faite en ligne arrive{" "}
+              <strong className="text-foreground">instantanément</strong> dans
+              votre tableau de bord — sans ressaisie, sans erreur, sans effort.
+            </p>
+          </div>
+
+          {/* ── Flow steps ── */}
+          <div className="relative mt-10 sm:mt-14">
+            {/* Connecting line — desktop only */}
+            {/* <div className="absolute hidden md:block top-8 left-[12.5%] right-[12.5%] h-px bg-gradient-to-r from-blue-400/30 via-accent/50 to-success/30" /> */}
+
+            {/* 1 col on mobile → 2 cols sm → 4 cols md */}
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-4 md:gap-3">
+              {apiSteps.map((step, index) => (
+                <div
+                  key={index}
+                  className={`relative flex items-start gap-4 sm:flex-col sm:items-center sm:text-center p-4 border ${step.border} ${step.bg}`}
+                >
+                  {/* Icon */}
+                  <div
+                    className={`relative flex h-14 w-14 shrink-0 items-center justify-center border-2 sm:h-16 sm:w-16 ${step.border} bg-background`}
+                  >
+                    <step.icon
+                      className={`h-6 w-6 sm:h-7 sm:w-7 ${step.color}`}
+                    />
+                    <span
+                      className={`absolute -top-2 -right-2 flex h-5 w-5 items-center justify-center bg-background border border-border text-xs font-bold ${step.color}`}
+                    >
+                      {step.step}
+                    </span>
+                  </div>
+                  {/* Text */}
+                  <div className="flex-1 sm:flex-none">
+                    <h3
+                      className={`font-semibold text-sm leading-snug ${step.color}`}
+                    >
+                      {step.title}
+                    </h3>
+                    <p className="mt-1 text-xs text-muted-foreground leading-relaxed">
+                      {step.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
+          {/* ── Code block + Benefits ── */}
+          <div className="mt-10 grid gap-8 sm:mt-14 lg:grid-cols-2 lg:items-start ">
+            {/* Code block */}
+            <div className="relative max-w-sm sm:max-w-full">
+              <div className="absolute -inset-1 bg-accent/10 blur-xl" />
+              <div className="relative  overflow-hidden border border-border bg-card">
+                {/* Header */}
+                <div className="flex items-center justify-between border-b border-border bg-muted/50 px-3 py-2.5 sm:px-4 sm:py-3">
+                  <div className="flex items-center gap-2">
+                    <Code2 className="h-3.5 w-3.5 text-accent sm:h-4 sm:w-4" />
+                    <span className="text-xs font-medium sm:text-sm">
+                      Intégration API Hotela
+                    </span>
+                  </div>
+                  {/* Tabs — abbreviated labels on mobile */}
+                  <div className="flex gap-0.5 sm:gap-1">
+                    {[
+                      {
+                        key: "javascript",
+                        label: "JS",
+                        labelFull: "JavaScript",
+                      },
+                      { key: "php", label: "PHP", labelFull: "PHP" },
+                      { key: "python", label: "PY", labelFull: "Python" },
+                    ].map((lang) => (
+                      <button
+                        key={lang.key}
+                        onClick={() => setActiveTab(lang.key)}
+                        className={`px-2 py-1 text-xs font-mono transition-colors sm:px-3 ${
+                          activeTab === lang.key
+                            ? "bg-accent text-accent-foreground"
+                            : "text-muted-foreground hover:text-foreground"
+                        }`}
+                      >
+                        <span className="sm:hidden">{lang.label}</span>
+                        <span className="hidden sm:inline">
+                          {lang.labelFull}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                </div>
+
+                {/* Code — scrollable horizontally, smaller font on mobile */}
+                <div className="overflow-x-auto p-3 sm:p-4 max-w-xs sm:max-w-full">
+                  <pre className="text-[11px] font-mono leading-relaxed text-muted-foreground whitespace-pre sm:text-xs">
+                    <code>{codeSnippets[activeTab]}</code>
+                  </pre>
+                </div>
+
+                {/* Footer */}
+                <div className="flex flex-col gap-2 border-t border-border bg-muted/30 px-3 py-2 sm:flex-row sm:items-center sm:justify-between sm:px-4">
+                  <div className="flex items-center gap-1.5 text-xs text-muted-foreground">
+                    <Shield className="h-3 w-3 text-success sm:h-3.5 sm:w-3.5" />
+                    HTTPS chiffré — Clé API unique par hôtel
+                  </div>
+                  <Link
+                    href="/docs/api"
+                    className="flex items-center gap-0.5 text-xs text-accent hover:underline"
+                  >
+                    Voir la documentation <ChevronRight className="h-3 w-3" />
+                  </Link>
+                </div>
+              </div>
+            </div>
+
+            {/* Benefits list */}
+            <div className="flex flex-col gap-4 sm:gap-5 max-w-sm sm:max-w-full">
+              <div>
+                <h3 className="text-lg font-bold sm:text-xl">
+                  Pourquoi connecter votre site à Hotela ?
+                </h3>
+                <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
+                  WordPress, Wix ou site sur mesure — l'API Hotela s'y branche
+                  facilement. Votre site continue comme avant, sauf que les
+                  réservations arrivent désormais directement dans Hotela.
+                </p>
+              </div>
+
+              {[
+                {
+                  icon: ArrowLeftRight,
+                  title: "Synchronisation bidirectionnelle",
+                  description:
+                    "Les disponibilités de votre site se mettent à jour en temps réel depuis Hotela. Fini les doubles réservations.",
+                  color: "text-accent",
+                  bg: "bg-accent/10",
+                },
+                {
+                  icon: MonitorSmartphone,
+                  title: "Compatible avec tous les sites",
+                  description:
+                    "WordPress, Wix, site custom — si votre site peut faire un appel HTTP, il se connecte à Hotela.",
+                  color: "text-blue-400",
+                  bg: "bg-blue-400/10",
+                },
+                {
+                  icon: Zap,
+                  title: "Mise en place en moins de 30 minutes",
+                  description:
+                    "Une clé API, quelques lignes de code ou un plugin. Notre équipe vous accompagne si besoin.",
+                  color: "text-warning",
+                  bg: "bg-warning/10",
+                },
+                {
+                  icon: BarChart3,
+                  title: "Origine des réservations tracée",
+                  description:
+                    "Voyez exactement combien de réservations viennent de votre site vs les autres canaux.",
+                  color: "text-success",
+                  bg: "bg-success/10",
+                },
+                {
+                  icon: Key,
+                  title: "Clé API incluse dans tous les plans",
+                  description:
+                    "Même le pack Essentiel inclut l'accès à l'API. Aucun surcoût, aucune limite artificielle.",
+                  color: "text-purple-400",
+                  bg: "bg-purple-400/10",
+                },
+              ].map((benefit, index) => (
+                <div key={index} className="flex gap-3 group sm:gap-4">
+                  <div
+                    className={`flex h-9 w-9 shrink-0 items-center justify-center sm:h-10 sm:w-10 ${benefit.bg} transition-transform group-hover:scale-110`}
+                  >
+                    <benefit.icon
+                      className={`h-4 w-4 sm:h-5 sm:w-5 ${benefit.color}`}
+                    />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-semibold">{benefit.title}</h4>
+                    <p className="mt-0.5 text-xs text-muted-foreground leading-relaxed">
+                      {benefit.description}
+                    </p>
+                  </div>
+                </div>
+              ))}
+
+              <Link href="/docs/api" className="mt-1">
+                <Button variant="outline" className="w-full gap-2 sm:w-auto">
+                  <Code2 className="h-3.5 w-3.5" />
+                  Lire la documentation API
+                  <ArrowRight className="h-3.5 w-3.5" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+
+          {/* ── Banner CTA ── */}
+          <div className="mt-8 border border-accent/20 bg-accent/5 p-4 sm:mt-12 sm:p-5">
+            <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+              <div className="flex items-start gap-3 sm:items-center sm:gap-4">
+                <div className="flex h-10 w-10 shrink-0 items-center justify-center bg-accent/10 sm:h-12 sm:w-12">
+                  <Link2 className="h-5 w-5 text-accent sm:h-6 sm:w-6" />
+                </div>
+                <div>
+                  <p className="text-sm font-semibold sm:text-base">
+                    Site web connecté = réservations automatiques
+                  </p>
+                  <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">
+                    Plus de ressaisie. Vos réceptionnistes se concentrent sur
+                    l'accueil.
+                  </p>
+                </div>
+              </div>
+              <Link href="/register" className="w-full sm:w-auto sm:shrink-0">
+                <Button className="w-full bg-accent text-accent-foreground hover:bg-accent/90 sm:w-auto">
+                  Obtenir ma clé API
+                  <Key className="ml-2 h-4 w-4" />
+                </Button>
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Démo Section */}
+      <section
+        id="demo"
+        className="border-t border-border bg-muted/30 py-16 sm:py-20 lg:py-32"
+      >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
-              Demonstration
+              Démonstration
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Decouvrez Gesko en action
+              Découvrez Hôtela en action
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Regardez notre video de demonstration pour voir comment Gesko peut
-              transformer la gestion de votre hotel en quelques minutes.
+              Regardez notre video de démonstration pour voir comment Hôtela
+              peut transformer la gestion de votre hôtel en quelques minutes.
             </p>
           </div>
 
@@ -627,7 +1010,7 @@ export default function LandingPage() {
                 {YOUTUBE_VIDEO_ID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}`}
-                    title="Demonstration Gesko"
+                    title="Démonstration Hôtela"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="absolute inset-0 h-full w-full"
@@ -653,7 +1036,6 @@ export default function LandingPage() {
                         </div>
                       </div>
                     </div>
-
                     <div className="relative z-10 flex flex-col items-center gap-4">
                       <div className="flex h-20 w-20 items-center justify-center bg-accent shadow-lg transition-transform group-hover:scale-110">
                         <Play
@@ -662,7 +1044,7 @@ export default function LandingPage() {
                         />
                       </div>
                       <span className="text-lg font-medium text-primary-foreground">
-                        {"Video bientot disponible"}
+                        Video bientôt disponible
                       </span>
                     </div>
                   </div>
@@ -671,9 +1053,9 @@ export default function LandingPage() {
 
               <div className="flex items-center justify-between border-t border-border bg-card px-6 py-4">
                 <div>
-                  <p className="font-medium">{"Presentation complete de Gesko"}</p>
+                  <p className="font-medium">Présentation complete de Hôtela</p>
                   <p className="text-sm text-muted-foreground">
-                    {"Duree: 3 minutes"}
+                    Durée: 3 minutes
                   </p>
                 </div>
                 <div className="flex items-center gap-4">
@@ -690,15 +1072,15 @@ export default function LandingPage() {
             {[
               {
                 time: "0:00",
-                title: "Presentation du dashboard",
+                title: "Présentation du dashboard",
                 description:
                   "Vue d'ensemble des statistiques et indicateurs cles",
               },
               {
                 time: "1:15",
-                title: "Gestion des reservations",
+                title: "Connexion API & site web",
                 description:
-                  "Comment creer et gerer vos reservations en quelques clics",
+                  "Comment connecter votre site et centraliser toutes les réservations",
               },
               {
                 time: "2:30",
@@ -734,32 +1116,29 @@ export default function LandingPage() {
       </section>
 
       {/* Features Section */}
-      <section
-        id="features"
-        className="border-t border-border bg-muted/30 py-20 lg:py-32"
-      >
+      <section id="features" className="py-16 sm:py-20 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
-              Fonctionnalites
+              Fonctionnalités
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Tout ce dont vous avez besoin pour gerer votre hotel
+              Tout ce dont vous avez besoin pour gerer votre hôtel
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Une solution complete concue specifiquement pour les hoteliers
-              ivoiriens. Simple, puissante, et adaptee a vos besoins.
+              Une solution complete conçue spécifiquement pour les hôteliers
+              ivoiriens. Simple, puissante, et adaptée à vos besoins.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-2 lg:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {features.map((feature, index) => (
               <Card
                 key={index}
                 className="group relative overflow-hidden border-border/50 bg-card/50 transition-all hover:border-accent/50 hover:shadow-lg hover:-translate-y-1"
               >
-                <CardContent className="p-6">
-                  <div className="flex h-12 w-12 items-center justify-center bg-accent/10 text-accent transition-transform group-hover:scale-110">
+                <CardContent className="p-4 sm:p-6">
+                  <div className="flex h-10 w-10 items-center justify-center bg-accent/10 sm:h-12 sm:w-12 text-accent transition-transform group-hover:scale-110">
                     <feature.icon className="h-6 w-6" />
                   </div>
                   <h3 className="mt-4 text-lg font-semibold">
@@ -776,7 +1155,7 @@ export default function LandingPage() {
       </section>
 
       {/* Why Choose Us */}
-      <section className="border-y border-border py-20 lg:py-32">
+      <section className="border-y border-border bg-muted/30 py-16 sm:py-20 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div>
@@ -784,10 +1163,12 @@ export default function LandingPage() {
                 Pourquoi nous choisir
               </Badge>
               <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-                {"Concu pour les hoteliers africains"}
+                Conçu pour les hôteliers africains
               </h2>
               <p className="mt-4 text-muted-foreground leading-relaxed">
-                {"Nous comprenons les defis uniques de l'industrie hoteliere en Cote d'Ivoire. C'est pourquoi nous avons cree une solution adaptee a vos realites."}
+                Nous comprenons les defis uniques de l'industrie hôtelière en
+                Côte d'Ivoire. C'est pourquoi nous avons créé une solution
+                adaptée a vos réalités.
               </p>
 
               <div className="mt-8 flex flex-col gap-6">
@@ -800,15 +1181,15 @@ export default function LandingPage() {
                   },
                   {
                     icon: Shield,
-                    title: "Securite & Fiabilite",
+                    title: "Sécurité & Fiabilite",
                     description:
-                      "Vos donnees sont protegees et sauvegardees automatiquement chaque jour.",
+                      "Vos donnees sont protegees et sauvegardées automatiquement chaque jour.",
                   },
                   {
                     icon: Clock,
                     title: "Support local 24/7",
                     description:
-                      "Une equipe basee a Abidjan disponible pour vous accompagner a tout moment.",
+                      "Une équipe basee à Abidjan disponible pour vous accompagner à tout moment.",
                   },
                 ].map((item, index) => (
                   <div key={index} className="flex gap-4">
@@ -831,7 +1212,9 @@ export default function LandingPage() {
               <div className="relative grid grid-cols-2 gap-4">
                 <div className="flex flex-col gap-4">
                   <div className="border border-border bg-card p-6 shadow-lg">
-                    <div className="text-3xl font-bold text-foreground">30j</div>
+                    <div className="text-3xl font-bold text-foreground">
+                      30j
+                    </div>
                     <p className="mt-1 text-sm text-muted-foreground">
                       Essai gratuit sans engagement
                     </p>
@@ -839,21 +1222,21 @@ export default function LandingPage() {
                   <div className="border border-border bg-card p-6 shadow-lg">
                     <div className="text-3xl font-bold text-success">24h</div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      {"Mise en service rapide"}
+                      Mise en service rapide
                     </p>
                   </div>
                 </div>
                 <div className="mt-8 flex flex-col gap-4">
                   <div className="border border-border bg-card p-6 shadow-lg">
-                    <div className="text-3xl font-bold text-accent">100%</div>
+                    <div className="text-3xl font-bold text-accent">API</div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      Cloud, rien a installer
+                      Connexion site web incluse
                     </p>
                   </div>
                   <div className="border border-border bg-card p-6 shadow-lg">
                     <div className="text-3xl font-bold text-foreground">CI</div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      {"Concu en Cote d'Ivoire"}
+                      Conçu en Côte d'Ivoire
                     </p>
                   </div>
                 </div>
@@ -864,44 +1247,37 @@ export default function LandingPage() {
       </section>
 
       {/* Pricing Section */}
-      <section id="pricing" className="py-20 lg:py-32">
+      <section id="pricing" className="py-16 sm:py-20 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
               Tarifs
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              {"Nos Packs d'Abonnement"}
+              Nos Packs d'Abonnement
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              Choisissez le plan qui correspond a la taille de votre etablissement. Tous les plans
-              incluent un essai gratuit de 30 jours.
+              Choisissez le plan qui correspond à la taille de votre
+              établissement. Tous les plans incluent un essai gratuit de 30
+              jours et la cle API pour connecter votre site.
             </p>
 
             <div className="mt-8 flex items-center justify-center gap-4">
               <span
-                className={`text-sm font-medium ${
-                  !isAnnual ? "text-foreground" : "text-muted-foreground"
-                }`}
+                className={`text-sm font-medium ${!isAnnual ? "text-foreground" : "text-muted-foreground"}`}
               >
                 Mensuel
               </span>
               <button
                 onClick={() => setIsAnnual(!isAnnual)}
-                className={`relative h-7 w-14 transition-colors ${
-                  isAnnual ? "bg-accent" : "bg-muted-foreground/30"
-                }`}
+                className={`relative h-7 w-14 transition-colors ${isAnnual ? "bg-accent" : "bg-muted-foreground/30"}`}
               >
                 <span
-                  className={`absolute top-1 h-5 w-5 bg-card shadow-md transition-transform ${
-                    isAnnual ? "left-8" : "left-1"
-                  }`}
+                  className={`absolute top-1 h-5 w-5 bg-card shadow-md transition-transform ${isAnnual ? "left-8" : "left-1"}`}
                 />
               </button>
               <span
-                className={`text-sm font-medium ${
-                  isAnnual ? "text-foreground" : "text-muted-foreground"
-                }`}
+                className={`text-sm font-medium ${isAnnual ? "text-foreground" : "text-muted-foreground"}`}
               >
                 Annuel
               </span>
@@ -913,7 +1289,7 @@ export default function LandingPage() {
             </div>
           </div>
 
-          <div className="mt-12 grid gap-8 lg:grid-cols-3">
+          <div className="mt-8 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {plans.map((plan, index) => (
               <Card
                 key={index}
@@ -928,8 +1304,10 @@ export default function LandingPage() {
                     Populaire
                   </div>
                 )}
-                <CardContent className="p-6">
-                  <h3 className="text-lg font-bold tracking-wide">{plan.name}</h3>
+                <CardContent className="p-4 sm:p-6">
+                  <h3 className="text-lg font-bold tracking-wide">
+                    {plan.name}
+                  </h3>
                   <p className="mt-1 text-sm text-muted-foreground">
                     {plan.target}
                   </p>
@@ -961,7 +1339,13 @@ export default function LandingPage() {
                         ) : (
                           <CheckCircle2 className="h-4 w-4 text-success" />
                         )}
-                        <span className={feature.value === false ? "text-muted-foreground/50" : ""}>
+                        <span
+                          className={
+                            feature.value === false
+                              ? "text-muted-foreground/50"
+                              : ""
+                          }
+                        >
                           {feature.name}
                           {typeof feature.value === "string" && (
                             <span className="ml-1 text-xs text-muted-foreground">
@@ -995,46 +1379,130 @@ export default function LandingPage() {
               <table className="w-full">
                 <thead>
                   <tr className="bg-muted/50">
-                    <th className="px-6 py-4 text-left text-sm font-semibold">Caracteristiques</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold">Pack ESSENTIEL</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">Pack BUSINESS</th>
-                    <th className="px-6 py-4 text-center text-sm font-semibold">Pack PREMIUM</th>
+                    <th className="px-6 py-4 text-left text-sm font-semibold">
+                      Caractéristiques
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold">
+                      Pack ESSENTIEL
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">
+                      Pack BUSINESS
+                    </th>
+                    <th className="px-6 py-4 text-center text-sm font-semibold">
+                      Pack PREMIUM
+                    </th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="border-t border-border">
-                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">Cible</td>
-                    <td className="px-6 py-3 text-center text-sm">{"< 15 chambres"}</td>
-                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">{"15 a 40 chambres"}</td>
-                    <td className="px-6 py-3 text-center text-sm">{"> 40 chambres"}</td>
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
+                      Cible
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm">
+                      {"< 15 chambres"}
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">
+                      {"15 à 40 chambres"}
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm">
+                      {"> 40 chambres"}
+                    </td>
                   </tr>
                   <tr className="border-t border-border bg-muted/20">
-                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">Prix Mensuel</td>
-                    <td className="px-6 py-3 text-center text-sm font-semibold">15 000 F</td>
-                    <td className="px-6 py-3 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">25 000 F</td>
-                    <td className="px-6 py-3 text-center text-sm font-semibold">45 000 F</td>
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
+                      Prix Mensuel
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold">
+                      15 000 F
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold border-x border-accent/20 bg-accent/5">
+                      25 000 F
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm font-semibold">
+                      45 000 F
+                    </td>
                   </tr>
                   <tr className="border-t border-border">
-                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">Prix Annuel</td>
-                    <td className="px-6 py-3 text-center text-sm">150 000 F <span className="text-xs text-success">(2 mois offerts)</span></td>
-                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">250 000 F <span className="text-xs text-success">(2 mois offerts)</span></td>
-                    <td className="px-6 py-3 text-center text-sm">450 000 F <span className="text-xs text-success">(2 mois offerts)</span></td>
+                    <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
+                      Prix Annuel
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm">
+                      150 000 F{" "}
+                      <span className="text-xs text-success">
+                        (2 mois offerts)
+                      </span>
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm border-x border-accent/20 bg-accent/5">
+                      250 000 F{" "}
+                      <span className="text-xs text-success">
+                        (2 mois offerts)
+                      </span>
+                    </td>
+                    <td className="px-6 py-3 text-center text-sm">
+                      450 000 F{" "}
+                      <span className="text-xs text-success">
+                        (2 mois offerts)
+                      </span>
+                    </td>
                   </tr>
                   {[
-                    { label: "Check-in / Check-out", values: ["--", "Complet", "Complet"] },
-                    { label: "Tableau de bord", values: ["Simplifie", "Avance", "Expert"] },
-                    { label: "Cle API Reservation", values: ["check", "check", "check"] },
-                    { label: "Nombre de comptes", values: ["1 (Reception)", "3 (Admin, Gerant, Recep.)", "Illimite"] },
-                    { label: "Gestion Depenses", values: ["cross", "check", "check"] },
-  { label: "Rapports & Stats", values: ["Basique", "Mensuels detailles", "Temps reel / Compta"] },
-  { label: "Multi-etablissement", values: ["cross", "check", "check"] },
-  { label: "Module Resto/Bar", values: ["cross", "cross", "check"] },
-                    { label: "Support Technique", values: ["Standard", "Prioritaire", "24h/7j + Formation"] },
+                    {
+                      label: "Check-in / Check-out",
+                      values: ["--", "Complet", "Complet"],
+                    },
+                    {
+                      label: "Tableau de bord",
+                      values: ["Simplifie", "Avancé", "Expert"],
+                    },
+                    {
+                      label: "Clé API Réservation",
+                      values: ["check", "check", "check"],
+                    },
+                    {
+                      label: "Nombre de comptes",
+                      values: [
+                        "1 (Réception)",
+                        "3 (Admin, Gérant, Récep.)",
+                        "Illimite",
+                      ],
+                    },
+                    {
+                      label: "Gestion Dépenses",
+                      values: ["cross", "check", "check"],
+                    },
+                    {
+                      label: "Rapports & Stats",
+                      values: [
+                        "Basique",
+                        "Mensuels détaillés",
+                        "Temps réel / Compta",
+                      ],
+                    },
+                    {
+                      label: "Multi-établissement",
+                      values: ["cross", "check", "check"],
+                    },
+                    {
+                      label: "Module Resto/Bar",
+                      values: ["cross", "cross", "check"],
+                    },
+                    {
+                      label: "Support Technique",
+                      values: ["Standard", "Prioritaire", "24h/7j + Formation"],
+                    },
                   ].map((row, i) => (
-                    <tr key={i} className={`border-t border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}>
-                      <td className="px-6 py-3 text-sm font-medium text-muted-foreground">{row.label}</td>
+                    <tr
+                      key={i}
+                      className={`border-t border-border ${i % 2 === 0 ? "bg-muted/20" : ""}`}
+                    >
+                      <td className="px-6 py-3 text-sm font-medium text-muted-foreground">
+                        {row.label}
+                      </td>
                       {row.values.map((val, j) => (
-                        <td key={j} className={`px-6 py-3 text-center text-sm ${j === 1 ? "border-x border-accent/20 bg-accent/5" : ""}`}>
+                        <td
+                          key={j}
+                          className={`px-6 py-3 text-center text-sm ${j === 1 ? "border-x border-accent/20 bg-accent/5" : ""}`}
+                        >
                           {val === "check" ? (
                             <CheckCircle2 className="h-4 w-4 text-success mx-auto" />
                           ) : val === "cross" ? (
@@ -1058,28 +1526,28 @@ export default function LandingPage() {
       {/* Testimonials */}
       <section
         id="testimonials"
-        className="border-t border-border bg-muted/30 py-20 lg:py-32"
+        className="border-t border-border bg-muted/30 py-16 sm:py-20 lg:py-32"
       >
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
-              Temoignages
+              Témoignages
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
               Ce que disent nos premiers utilisateurs
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
-              {"Decouvrez ce que nos clients disent de Gesko."}
+              Découvrez ce que nos clients disent de Hôtela.
             </p>
           </div>
 
-          <div className="mt-16 grid gap-8 md:grid-cols-3">
+          <div className="mt-10 grid gap-4 sm:mt-16 sm:grid-cols-2 sm:gap-6 lg:grid-cols-3">
             {testimonials.map((testimonial, index) => (
               <Card
                 key={index}
                 className="border-border/50 bg-card/50 hover:-translate-y-1 transition-transform"
               >
-                <CardContent className="p-6">
+                <CardContent className="p-4 sm:p-6">
                   <div className="flex gap-1">
                     {Array.from({ length: testimonial.rating }).map((_, i) => (
                       <Star
@@ -1110,7 +1578,7 @@ export default function LandingPage() {
       </section>
 
       {/* Payment Methods Section */}
-      <section className="py-20 lg:py-32">
+      <section className="py-16 sm:py-20 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
             <Badge variant="secondary" className="mb-4">
@@ -1121,10 +1589,10 @@ export default function LandingPage() {
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Payez vos factures facilement avec les solutions les plus
-              populaires en Cote d'Ivoire.
+              populaires en Côte d'Ivoire.
             </p>
           </div>
-          <div className="mt-16 flex flex-wrap items-center justify-center gap-8">
+          <div className="mt-10 grid grid-cols-2 gap-4 sm:mt-16 sm:flex sm:flex-wrap sm:items-center sm:justify-center sm:gap-8">
             {paymentMethods.map((method, index) => (
               <div
                 key={index}
@@ -1142,36 +1610,38 @@ export default function LandingPage() {
           <div className="mt-8 flex items-center justify-center gap-6 text-sm text-muted-foreground">
             <div className="flex items-center gap-2">
               <Shield className="h-4 w-4 text-success" />
-              <span>{"Paiements securises"}</span>
+              <span>Paiements sécurisés</span>
             </div>
             <div className="flex items-center gap-2">
               <CheckCircle2 className="h-4 w-4 text-success" />
-              <span>{"Sans frais caches"}</span>
+              <span>Sans frais cachés</span>
             </div>
           </div>
         </div>
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 lg:py-32">
+      <section className="py-16 sm:py-20 lg:py-32">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="relative overflow-hidden bg-primary px-6 py-16 text-center sm:px-12 lg:px-16">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(0.2_0.01_75/0.3)_1px,transparent_1px),linear-gradient(to_bottom,oklch(0.2_0.01_75/0.3)_1px,transparent_1px)] bg-[size:3rem_3rem]" />
             <div className="relative">
               <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance">
-                {"Pret a transformer la gestion de votre hotel ?"}
+                Prêt a connecter votre site et centraliser vos réservations ?
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
-                {"Essayez Gesko gratuitement pendant 30 jours et decouvrez une nouvelle facon de gerer votre hotel. Sans engagement, sans carte bancaire."}
+                Essayez Hôtela gratuitement pendant 30 jours. Obtenez votre cle
+                API et connectez votre site web des aujourd'hui. Sans
+                engagement, sans carte bancaire.
               </p>
-              <div className="mt-8 flex flex-col items-center justify-center gap-4 sm:flex-row">
+              <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
                 <Link href="/register">
                   <Button
                     size="lg"
                     variant="secondary"
                     className="h-12 px-8 text-base"
                   >
-                    {"Demarrer l'essai gratuit"}
+                    Démarrer l'essai gratuit
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
@@ -1193,29 +1663,51 @@ export default function LandingPage() {
       {/* Footer */}
       <footer className="border-t border-border bg-muted/30 py-12">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <div className="grid gap-8 md:grid-cols-4">
+          <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
             <div>
-              <Logo />
+              <div className="flex items-center gap-2">
+                <div className="flex h-7 w-7 items-center justify-center bg-accent">
+                  <Hotel className="h-3.5 w-3.5 text-accent-foreground" />
+                </div>
+                <span className="font-bold tracking-tight">Hôtela</span>
+              </div>
               <p className="mt-4 text-sm text-muted-foreground">
-                {"Le logiciel de gestion hoteliere concu pour la Cote d'Ivoire."}
+                Le logiciel de gestion hôtelière conçu pour la Côte d'Ivoire.
               </p>
             </div>
             <div>
               <h4 className="font-semibold">Produit</h4>
               <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
                 <li>
-                  <a href="#features" className="hover:text-foreground transition-colors">
-                    Fonctionnalites
+                  <a
+                    href="#features"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Fonctionnalités
                   </a>
                 </li>
                 <li>
-                  <a href="#pricing" className="hover:text-foreground transition-colors">
+                  <a
+                    href="#pricing"
+                    className="hover:text-foreground transition-colors"
+                  >
                     Tarifs
                   </a>
                 </li>
                 <li>
-                  <a href="#demo" className="hover:text-foreground transition-colors">
-                    Demo
+                  <a
+                    href="#demo"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Démo
+                  </a>
+                </li>
+                <li>
+                  <a
+                    href="#api"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    API & Intégration
                   </a>
                 </li>
               </ul>
@@ -1224,18 +1716,27 @@ export default function LandingPage() {
               <h4 className="font-semibold">Entreprise</h4>
               <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
                 <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
                     A propos
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
                     Blog
                   </a>
                 </li>
                 <li>
-                  <a href="#" className="hover:text-foreground transition-colors">
-                    Carrieres
+                  <a
+                    href="#"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Carrières
                   </a>
                 </li>
               </ul>
@@ -1243,14 +1744,14 @@ export default function LandingPage() {
             <div>
               <h4 className="font-semibold">Contact</h4>
               <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
-                <li>support@gesko.app</li>
+                <li>support@hotela.app</li>
                 <li>+225 07 07 07 07 07</li>
-                <li>{"Abidjan, Cote d'Ivoire"}</li>
+                <li>Abidjan, Côte d'Ivoire</li>
               </ul>
             </div>
           </div>
           <div className="mt-12 border-t border-border pt-8 text-center text-sm text-muted-foreground">
-            <p>{"© 2025 Gesko. Tous droits reserves."}</p>
+            <p>© 2025 Hôtela. Tous droits réservés.</p>
           </div>
         </div>
       </footer>
@@ -1278,7 +1779,7 @@ export default function LandingPage() {
                 {YOUTUBE_VIDEO_ID ? (
                   <iframe
                     src={`https://www.youtube.com/embed/${YOUTUBE_VIDEO_ID}?autoplay=1`}
-                    title="Demonstration Gesko"
+                    title="Démonstration Hôtela"
                     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                     allowFullScreen
                     className="h-full w-full"
@@ -1289,14 +1790,14 @@ export default function LandingPage() {
                       <Play className="h-10 w-10 text-accent" />
                     </div>
                     <p className="text-lg font-medium text-primary-foreground">
-                      {"Video de demonstration"}
+                      Video de démonstration
                     </p>
                     <p className="mt-2 text-sm text-primary-foreground/70 text-center max-w-md">
-                      {"Pour ajouter votre video YouTube, modifiez la constante "}
+                      Pour ajouter votre video YouTube, modifiez la constante{" "}
                       <code className="bg-primary-foreground/10 px-2 py-0.5">
                         YOUTUBE_VIDEO_ID
-                      </code>
-                      {" en haut du fichier avec l'ID de votre video."}
+                      </code>{" "}
+                      en haut du fichier avec l'ID de votre video.
                     </p>
                   </div>
                 )}
