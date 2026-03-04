@@ -250,7 +250,7 @@ export default function LandingPage() {
   const [activeTab, setActiveTab] = useState("javascript");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
-  const codeSnippets = {
+  const codeSnippets: Record<string, string> = {
     javascript: `// Envoyer une réservation depuis votre site
 const response = await fetch(
   "https://api.hotela.app/v1/réservations",
