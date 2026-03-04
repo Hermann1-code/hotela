@@ -491,7 +491,7 @@ function CopyButton({ text }: { text: string }) {
 }
 
 function MethodBadge({ method }: { method: string }) {
-  const c = {
+  const c: Record<string, string> = {
     GET: "text-blue-400 bg-blue-400/10 border-blue-400/20",
     POST: "text-success bg-success/10 border-success/20",
     DELETE: "text-destructive bg-destructive/10 border-destructive/20",
