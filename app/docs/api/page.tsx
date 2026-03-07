@@ -95,55 +95,55 @@ const sidebarSections = [
 const endpoints = [
   {
     method: "GET",
-    path: "/public/availability",
+    path: "/v1/public/availability",
     description: "Chambres disponibles sur une période",
     permission: "availability:read",
   },
   {
     method: "GET",
-    path: "/public/rooms",
+    path: "/v1/public/rooms",
     description: "Types de chambres avec disponibilités",
     permission: "rooms:read",
   },
   {
     method: "POST",
-    path: "/public/reservations",
+    path: "/v1/public/reservations",
     description: "Créer une réservation (HTTP 201)",
     permission: "reservations:write",
   },
   {
     method: "GET",
-    path: "/public/reservations/:id",
+    path: "/v1/public/reservations/:id",
     description: "Détails d'une réservation",
     permission: "reservations:read",
   },
-  {
-    method: "GET",
-    path: "/public/website/:slug",
-    description: "Données publiques du site vitrine",
-    permission: "— (public)",
-  },
+  // {
+  //   method: "GET",
+  //   path: "/v1/public/website/:slug",
+  //   description: "Données publiques du site vitrine",
+  //   permission: "— (public)",
+  // },
 ];
 
 const permissionsTable = [
   {
     permission: "availability:read",
-    endpoints: ["GET /public/availability"],
+    endpoints: ["GET /v1/public/availability"],
     description: "Lire les disponibilités",
   },
   {
     permission: "rooms:read",
-    endpoints: ["GET /public/rooms"],
+    endpoints: ["GET /v1/public/rooms"],
     description: "Lire les types de chambres",
   },
   {
     permission: "reservations:write",
-    endpoints: ["POST /public/reservations"],
+    endpoints: ["POST /v1/public/reservations"],
     description: "Créer des réservations",
   },
   {
     permission: "reservations:read",
-    endpoints: ["GET /public/reservations/:id"],
+    endpoints: ["GET /v1/public/reservations/:id"],
     description: "Lire les réservations",
   },
 ];
@@ -188,11 +188,11 @@ const errorCodes = [
 
 const S = {
   availability: {
-    curl: `curl "https://api.hotela.app/public/availability?checkIn=2025-08-15&checkOut=2025-08-18" \\
+    curl: `curl "https://api.hotela.app/v1/public/availability?checkIn=2025-08-15&checkOut=2025-08-18" \\
   -H "x-api-key: YOUR_API_KEY" \\
   -H "x-api-secret: YOUR_API_SECRET"`,
     javascript: `const res = await fetch(
-  "https://api.hotela.app/public/availability" +
+  "https://api.hotela.app/v1/public/availability" +
   "?checkIn=2025-08-15&checkOut=2025-08-18",
   {
     headers: {
@@ -203,7 +203,7 @@ const S = {
 );
 const data = await res.json();`,
     php: `$res = $client->get(
-  'https://api.hotela.app/public/availability',
+  'https://api.hotela.app/v1/public/availability',
   [
     'headers' => [
       'x-api-key'    => 'YOUR_API_KEY',
@@ -216,7 +216,7 @@ const data = await res.json();`,
   ]
 );`,
     python: `res = requests.get(
-    "https://api.hotela.app/public/availability",
+    "https://api.hotela.app/v1/public/availability",
     headers={
         "x-api-key": "YOUR_API_KEY",
         "x-api-secret": "YOUR_API_SECRET",
@@ -239,7 +239,7 @@ const data = await res.json();`,
         "price": 50000,
         "capacity": 2,
         "description": "Vue sur le jardin, lit king-size.",
-        "image": "https://cdn.hotela.app/...",
+        "image": "https://api.hotela.app/...",
         "equipments": [
           { "name": "Wi-Fi", "icon": "wifi" },
           { "name": "Climatisation", "icon": "wind" }
@@ -253,24 +253,24 @@ const data = await res.json();`,
   },
 
   rooms: {
-    curl: `curl https://api.hotela.app/public/rooms \\
+    curl: `curl https://api.hotela.app/v1/public/rooms \\
   -H "x-api-key: YOUR_API_KEY" \\
   -H "x-api-secret: YOUR_API_SECRET"`,
-    javascript: `const res = await fetch("https://api.hotela.app/public/rooms", {
+    javascript: `const res = await fetch("https://api.hotela.app/v1/public/rooms", {
   headers: {
     "x-api-key": "YOUR_API_KEY",
     "x-api-secret": "YOUR_API_SECRET",
   },
 });
 const types = await res.json();`,
-    php: `$res = $client->get('https://api.hotela.app/public/rooms', [
+    php: `$res = $client->get('https://api.hotela.app/v1/public/rooms', [
   'headers' => [
     'x-api-key'    => 'YOUR_API_KEY',
     'x-api-secret' => 'YOUR_API_SECRET',
   ],
 ]);`,
     python: `res = requests.get(
-    "https://api.hotela.app/public/rooms",
+    "https://api.hotela.app/v1/public/rooms",
     headers={
         "x-api-key": "YOUR_API_KEY",
         "x-api-secret": "YOUR_API_SECRET",
@@ -283,7 +283,7 @@ const types = await res.json();`,
     "price": 50000,
     "capacity": 2,
     "description": "Vue sur le jardin, lit king-size.",
-    "image": "https://cdn.hotela.app/...",
+    "image": "https://api.hotela.app/...",
     "equipments": [
       { "name": "Wi-Fi", "icon": "wifi" },
       { "name": "Climatisation", "icon": "wind" }
@@ -299,7 +299,7 @@ const types = await res.json();`,
   },
 
   createReservation: {
-    curl: `curl -X POST https://api.hotela.app/public/reservations \\
+    curl: `curl -X POST https://api.hotela.app/v1/public/reservations \\
   -H "x-api-key: YOUR_API_KEY" \\
   -H "x-api-secret: YOUR_API_SECRET" \\
   -H "Content-Type: application/json" \\
@@ -313,7 +313,7 @@ const types = await res.json();`,
     "specialRequests": "Chambre non-fumeur, étage élevé"
   }'`,
     javascript: `const res = await fetch(
-  "https://api.hotela.app/public/reservations",
+  "https://api.hotela.app/v1/public/reservations",
   {
     method: "POST",
     headers: {
@@ -334,7 +334,7 @@ const types = await res.json();`,
 );
 // HTTP 201 Created
 const data = await res.json();`,
-    php: `$res = $client->post('https://api.hotela.app/public/reservations', [
+    php: `$res = $client->post('https://api.hotela.app/v1/public/reservations', [
   'headers' => [
     'x-api-key'    => 'YOUR_API_KEY',
     'x-api-secret' => 'YOUR_API_SECRET',
@@ -352,7 +352,7 @@ const data = await res.json();`,
 ]);
 // HTTP 201 Created`,
     python: `res = requests.post(
-    "https://api.hotela.app/public/reservations",
+    "https://api.hotela.app/v1/public/reservations",
     headers={
         "x-api-key": "YOUR_API_KEY",
         "x-api-secret": "YOUR_API_SECRET",
@@ -419,7 +419,7 @@ const data = await res.json();`,
   },
 
   getReservation: {
-    curl: `curl https://api.hotela.app/public/reservations/clxres... \\
+    curl: `curl https://api.hotela.app/v1/public/reservations/clxres... \\
   -H "x-api-key: YOUR_API_KEY" \\
   -H "x-api-secret: YOUR_API_SECRET"`,
     response: `{
@@ -441,7 +441,7 @@ const data = await res.json();`,
 
   publicWebsite: {
     curl: `# Aucune authentification requise — endpoint public
-curl https://api.hotela.app/public/website/mon-hotel`,
+curl https://api.hotela.app/v1/public/website/mon-hotel`,
     response: `{
   "id": "clxweb...",
   "slug": "mon-hotel",
@@ -452,7 +452,7 @@ curl https://api.hotela.app/public/website/mon-hotel`,
     "phone": "+225 07 00 00 00",
     "email": "contact@ivoirepalace.ci",
     "address": "Plateau, Abidjan",
-    "logo": "https://cdn.hotela.app/...",
+    "logo": "https://api.hotela.app/...",
     "city": {
       "name": "Abidjan",
       "country": { "name": "Côte d'Ivoire" }
@@ -505,7 +505,7 @@ function MethodBadge({ method }: { method: string }) {
   );
 }
 
-function CodeBlock({
+export function CodeBlock({
   snippet,
   defaultLang = "curl",
 }: {
@@ -892,7 +892,7 @@ export default function ApiDocsPage() {
               <div className="mt-5">
                 <CodeBlock
                   snippet={{
-                    curl: `curl https://api.hotela.app/public/rooms \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -H "x-api-secret: YOUR_API_SECRET"`,
+                    curl: `curl https://api.hotela.app/v1/public/rooms \\\n  -H "x-api-key: YOUR_API_KEY" \\\n  -H "x-api-secret: YOUR_API_SECRET"`,
                   }}
                   defaultLang="curl"
                 />
@@ -934,7 +934,7 @@ export default function ApiDocsPage() {
                   </code>
                   <p className="mt-1.5 text-xs text-muted-foreground">
                     Tous les endpoints sous{" "}
-                    <code className="font-mono">/public/</code>
+                    <code className="font-mono">/v1/public/</code>
                   </p>
                 </div>
                 <div className="border border-border bg-muted/30 p-4">
@@ -970,7 +970,7 @@ export default function ApiDocsPage() {
             <section className="mb-16" id="get-availability">
               <EndpointHeader
                 method="GET"
-                path="/public/availability"
+                path="/v1/public/availability"
                 permission="availability:read"
                 description="Retourne la liste des chambres physiques disponibles pour une période donnée, avec prix total calculé. Les chambres retournées ont le statut AVAILABLE ou CLEANING et aucune réservation CONFIRMED/PENDING en conflit."
               />
@@ -1000,7 +1000,7 @@ export default function ApiDocsPage() {
             <section className="mb-16" id="get-rooms">
               <EndpointHeader
                 method="GET"
-                path="/public/rooms"
+                path="/v1/public/rooms"
                 permission="rooms:read"
                 description="Retourne les types de chambres (RoomType) de l'hôtel avec leurs équipements. Le champ rooms[] contient les chambres physiques au statut AVAILABLE — son length indique la disponibilité instantanée sans filtre de dates."
               />
@@ -1029,7 +1029,7 @@ export default function ApiDocsPage() {
             <section className="mb-16" id="create-reservation">
               <EndpointHeader
                 method="POST"
-                path="/public/reservations"
+                path="/v1/public/reservations"
                 permission="reservations:write"
                 description="Crée une réservation. Vous fournissez un roomTypeId — Hôtela attribue automatiquement la première chambre physique disponible du type (ordre étage ASC, numéro ASC). Retourne HTTP 201 avec la réservation, la facture et le client."
               />
@@ -1082,7 +1082,7 @@ export default function ApiDocsPage() {
                   name="roomTypeId"
                   type="string"
                   required
-                  description="ID du type de chambre (obtenu via GET /public/rooms). Hôtela attribue la chambre physique disponible."
+                  description="ID du type de chambre (obtenu via GET /v1/public/rooms). Hôtela attribue la chambre physique disponible."
                   badge={undefined}
                 />
                 <ParamRow
@@ -1155,7 +1155,7 @@ export default function ApiDocsPage() {
             <section className="mb-16" id="get-reservation">
               <EndpointHeader
                 method="GET"
-                path="/public/reservations/:id"
+                path="/v1/public/reservations/:id"
                 permission="reservations:read"
                 description="Récupère les informations essentielles d'une réservation à partir de son ID interne (retourné lors de la création)."
               />
@@ -1175,10 +1175,10 @@ export default function ApiDocsPage() {
             </section>
 
             {/* ══ GET /public/website/:slug ══ */}
-            <section className="mb-16" id="public-website">
+            {/* <section className="mb-16" id="public-website">
               <EndpointHeader
                 method="GET"
-                path="/public/website/:slug"
+                path="/v1/public/website/:slug"
                 permission="— (public)"
                 description="Retourne toutes les données nécessaires à l'affichage du site vitrine d'un hôtel. Endpoint 100% public — aucune authentification requise. Incrémente le compteur de vues (views) automatiquement."
               />
@@ -1240,7 +1240,7 @@ export default function ApiDocsPage() {
                 </p>
               </div>
               <CodeBlock snippet={S.publicWebsite} defaultLang="curl" />
-            </section>
+            </section> */}
 
             {/* ── Errors ── */}
             <section className="mb-16" id="errors">
@@ -1330,7 +1330,7 @@ export default function ApiDocsPage() {
                           </td>
                         </tr>
                       ))}
-                      <tr className="border-t border-border">
+                      {/* <tr className="border-t border-border">
                         <td className="px-4 py-3">
                           <code className="text-xs font-mono text-success">
                             — (public)
@@ -1344,7 +1344,7 @@ export default function ApiDocsPage() {
                         <td className="px-4 py-3 text-xs text-muted-foreground">
                           Aucune authentification requise
                         </td>
-                      </tr>
+                      </tr> */}
                     </tbody>
                   </table>
                 </div>
