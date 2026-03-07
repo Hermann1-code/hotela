@@ -52,6 +52,12 @@ import {
   ArrowUpRight,
   CheckCheck,
   Globe2,
+  UserCheck,
+  FileText,
+  CreditCard,
+  BookOpen,
+  Activity,
+  Database,
 } from "lucide-react";
 import { Logo } from "@/components/logo";
 import { useState } from "react";
@@ -71,39 +77,108 @@ const paymentMethods = [
 const features = [
   {
     icon: CalendarCheck,
-    title: "Réservations simplifiées",
+    title: "Réservations centralisées",
     description:
-      "Gérez vos réservations en quelques clics. Calendrier visuel, check-in/out rapide, notifications automatiques.",
+      "Toutes vos réservations — site web, appels, walk-in — dans un seul tableau de bord. Calendrier visuel, check-in/out rapide, zéro double-réservation.",
+  },
+  {
+    icon: BedDouble,
+    title: "Gestion des séjours",
+    description:
+      "Suivez chaque séjour en temps réel : attribution des chambres, prolongations, transferts, services consommés. Votre équipe sait toujours où en est chaque client.",
   },
   {
     icon: Receipt,
     title: "Facturation automatique",
     description:
-      "Factures générées automatiquement avec TVA 18%. Paiements partiels, export PDF et suivi des règlements.",
+      "Factures générées automatiquement avec TVA 18%. Paiements partiels, export PDF, suivi des règlements et historique complet par client.",
   },
   {
     icon: BarChart3,
     title: "Rapports & Analytics",
     description:
-      "Suivez vos revenus, taux d'occupation et performances en temps réel avec des graphiques détaillés.",
+      "Revenus du jour, taux d'occupation, chambres les plus rentables, évolution mensuelle — tout est calculé automatiquement en temps réel.",
+  },
+  {
+    icon: Users,
+    title: "Gestion de la clientèle",
+    description:
+      "Fiche complète par client : historique des séjours, préférences, solde dû, notes internes. Fidélisez vos clients avec une connaissance approfondie.",
   },
   {
     icon: Building2,
     title: "Multi-établissements",
     description:
-      "Gérez plusieurs hôtels depuis une seule interface. Vue consolidée et rapports par établissement.",
+      "Gérez plusieurs hôtels depuis une seule interface. Vue consolidée, rapports par établissement et équipes séparées.",
   },
   {
-    icon: Users,
-    title: "Gestion des équipes",
+    icon: Key,
+    title: "Connexion API Site Web",
     description:
-      "Attribuez des rôles (Manager, Réceptionniste) et suivez l'historique des opérations.",
+      "Votre site réserve une chambre ? En 2 secondes, Hôtela met à jour les disponibilités et alerte votre équipe. Inclus dans tous les plans.",
   },
   {
     icon: Shield,
     title: "Données sécurisées & sauvegardées",
     description:
-      "Vos données sont protégées et sauvegardées automatiquement chaque jour. Accès sécurisé par rôle.",
+      "Vos données sont protégées et sauvegardées automatiquement chaque jour. Accès sécurisé par rôle : propriétaire, gérant, réceptionniste.",
+  },
+  {
+    icon: CreditCard,
+    title: "Gestion des dépenses",
+    description:
+      "Enregistrez et catégorisez toutes vos dépenses opérationnelles. Vision complète de votre rentabilité réelle mois par mois.",
+  },
+];
+
+const modules = [
+  {
+    icon: CalendarCheck,
+    label: "Réservations",
+    desc: "Walk-in, appels, site web",
+    color: "text-accent",
+    bg: "bg-accent/10",
+    border: "border-accent/20",
+  },
+  {
+    icon: BedDouble,
+    label: "Séjours",
+    desc: "Check-in / Check-out",
+    color: "text-blue-400",
+    bg: "bg-blue-400/10",
+    border: "border-blue-400/20",
+  },
+  {
+    icon: Receipt,
+    label: "Facturation",
+    desc: "Auto, TVA 18%, PDF",
+    color: "text-purple-400",
+    bg: "bg-purple-400/10",
+    border: "border-purple-400/20",
+  },
+  {
+    icon: BarChart3,
+    label: "Rapports",
+    desc: "Revenus, occupation, stats",
+    color: "text-success",
+    bg: "bg-success/10",
+    border: "border-success/20",
+  },
+  {
+    icon: Users,
+    label: "Clientèle",
+    desc: "Fiches, historiques, soldes",
+    color: "text-warning",
+    bg: "bg-warning/10",
+    border: "border-warning/20",
+  },
+  {
+    icon: Key,
+    label: "API Site Web",
+    desc: "Connexion en temps réel",
+    color: "text-pink-400",
+    bg: "bg-pink-400/10",
+    border: "border-pink-400/20",
   },
 ];
 
@@ -208,10 +283,11 @@ const sidebarNavigation = [
   { name: "Dashboard", icon: LayoutDashboard, active: true },
   { name: "Chambres", icon: BedDouble, active: false },
   { name: "Réservations", icon: CalendarDays, active: false },
+  { name: "Séjours", icon: UserCheck, active: false },
   { name: "Facturation", icon: Receipt, active: false },
+  { name: "Clientèle", icon: Users, active: false },
   { name: "Rapports", icon: BarChart3, active: false },
   { name: "Multi-Hôtels", icon: Building2, active: false },
-  { name: "Utilisateurs", icon: Users, active: false },
   { name: "Clés API", icon: Key, active: false },
   { name: "Paramètres", icon: Settings, active: false },
 ];
@@ -266,7 +342,6 @@ export default function LandingPage() {
   const [isAnnual, setIsAnnual] = useState(false);
   const [activeTab, setActiveTab] = useState("javascript");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  // Switch: false = hôtel avec site existant, true = hôtel sans site (veut un site)
   const [wantsSite, setWantsSite] = useState(false);
 
   const codeSnippets: Record<string, string> = {
@@ -358,6 +433,12 @@ data = response.json()
           </div>
           <div className="hidden items-center gap-8 md:flex">
             <Link
+              href="#modules"
+              className="text-sm text-muted-foreground transition-colors hover:text-foreground"
+            >
+              Modules
+            </Link>
+            <Link
               href="#probleme"
               className="text-sm text-muted-foreground transition-colors hover:text-foreground"
             >
@@ -421,6 +502,7 @@ data = response.json()
           <div className="border-t border-border bg-background/95 backdrop-blur-xl md:hidden">
             <div className="mx-auto max-w-7xl divide-y divide-border/50 px-4">
               {[
+                { href: "#modules", label: "Modules" },
                 { href: "#probleme", label: "Le Problème" },
                 { href: "#api", label: "Connexion API" },
                 { href: "#features", label: "Fonctionnalités" },
@@ -465,10 +547,17 @@ data = response.json()
 
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
           <div className="text-center">
-            <Badge variant="secondary" className="mb-6 px-4 py-1.5 text-sm">
-              <span className="mr-2 inline-block h-2 w-2 animate-pulse bg-success" />
-              Essai gratuit 30 jours
-            </Badge>
+            {/* Double badge — logiciel complet + essai gratuit */}
+            <div className="mb-6 flex flex-col items-center gap-2">
+              <Badge className="bg-accent/10 text-accent border-accent/20 px-4 py-1.5 text-xs font-bold uppercase tracking-widest">
+                <Hotel className="mr-1.5 h-3 w-3 inline" />
+                Logiciel de gestion hôtelière
+              </Badge>
+              {/* <Badge variant="secondary" className="px-4 py-1.5 text-sm">
+                <span className="mr-2 inline-block h-2 w-2 animate-pulse bg-success rounded-full" />
+                Essai gratuit 30 jours — sans carte bancaire
+              </Badge> */}
+            </div>
 
             <h1 className="mx-auto max-w-4xl text-5xl font-bold tracking-tight text-foreground sm:text-6xl lg:text-8xl text-balance">
               Vos réservations arrivent sur{" "}
@@ -477,12 +566,32 @@ data = response.json()
               <span className="text-accent">Plus jamais.</span>
             </h1>
 
+            {/* Modules tagline */}
+            {/* <div className="mx-auto mt-4 flex flex-wrap items-center justify-center gap-x-3 gap-y-2 text-xs font-semibold uppercase tracking-widest text-muted-foreground/70">
+              {[
+                "Réservations",
+                "Séjours",
+                "Facturation",
+                "Rapports",
+                "Clientèle",
+                "API Site Web",
+              ].map((item, i, arr) => (
+                <span key={item} className="flex items-center gap-3">
+                  <span>{item}</span>
+                  {i < arr.length - 1 && (
+                    <span className="h-1 w-1 rounded-full bg-muted-foreground/40" />
+                  )}
+                </span>
+              ))}
+            </div> */}
+
             <p className="mx-auto mt-6 max-w-2xl text-lg text-muted-foreground leading-relaxed text-pretty">
-              Hôtela centralise{" "}
-              <strong className="text-foreground">toutes</strong> vos
-              réservations — site web, appels, walk-in — dans un seul tableau de
-              bord. Accessible depuis votre téléphone, tablette ou ordinateur,
-              où que vous soyez.
+              Hôtela est le logiciel de gestion hôtelière{" "}
+              <strong className="text-foreground">tout-en-un</strong> conçu pour
+              la Côte d'Ivoire. Centralisez vos réservations, gérez chaque
+              séjour, automatisez votre facturation, suivez votre clientèle et
+              pilotez votre activité depuis votre téléphone, tablette ou
+              ordinateur — où que vous soyez.
             </p>
 
             <div className="mt-8 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
@@ -491,7 +600,7 @@ data = response.json()
                   size="lg"
                   className="h-12 w-full px-8 text-base sm:w-auto"
                 >
-                  Centraliser mes réservations
+                  Démarrer l'essai gratuit
                   <ArrowRight className="ml-2 h-5 w-5" />
                 </Button>
               </Link>
@@ -535,7 +644,6 @@ data = response.json()
                 <div className="ml-4 flex-1 bg-background/50 px-3 py-1 text-xs text-muted-foreground">
                   app.hotela.app/dashboard
                 </div>
-                {/* Device indicators */}
                 <div className="hidden sm:flex items-center gap-3 text-xs text-muted-foreground">
                   <div className="flex items-center gap-1">
                     <Laptop className="h-3.5 w-3.5" />
@@ -770,6 +878,163 @@ data = response.json()
       </section>
 
       {/* ═══════════════════════════════════════════════
+          MODULES STRIP — Tout ce que gère Hôtela
+      ═══════════════════════════════════════════════ */}
+      <section id="modules" className="py-12 sm:py-16 border-b border-border">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-8">
+            <Badge
+              variant="secondary"
+              className="mb-3 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-sm"
+            >
+              <Database className="mr-1.5 h-3.5 w-3.5 inline" />
+              Gestion complète
+            </Badge>
+            <h2 className="text-2xl font-bold tracking-tight sm:text-3xl text-balance">
+              Un seul logiciel pour gérer{" "}
+              <span className="text-accent">toute votre activité</span>
+            </h2>
+            <p className="mx-auto mt-3 max-w-xl text-sm text-muted-foreground">
+              Hôtela couvre l'intégralité des opérations d'un hôtel — de la
+              première réservation jusqu'au rapport de fin de mois. Fini les
+              outils disparates et les données éparpillées.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 lg:grid-cols-6">
+            {modules.map((mod, index) => (
+              <div
+                key={index}
+                className={`group flex flex-col items-center gap-3 border ${mod.border} ${mod.bg} p-4 text-center transition-all hover:-translate-y-1 hover:shadow-md`}
+              >
+                <div
+                  className={`flex h-12 w-12 items-center justify-center ${mod.bg} border ${mod.border} transition-transform group-hover:scale-110`}
+                >
+                  <mod.icon className={`h-6 w-6 ${mod.color}`} />
+                </div>
+                <div>
+                  <p className={`text-sm font-bold ${mod.color}`}>
+                    {mod.label}
+                  </p>
+                  <p className="mt-0.5 text-xs text-muted-foreground">
+                    {mod.desc}
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+
+          {/* Module detail strip */}
+          <div className="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {[
+              {
+                icon: CalendarCheck,
+                title: "Réservations",
+                points: [
+                  "Calendrier visuel des disponibilités",
+                  "Réservations walk-in, téléphone & site web",
+                  "Zéro double-réservation garanti",
+                  "Notifications automatiques à l'équipe",
+                ],
+                color: "text-accent",
+                bg: "bg-accent/10",
+                border: "border-accent/20",
+              },
+              {
+                icon: BedDouble,
+                title: "Séjours",
+                points: [
+                  "Check-in en moins de 3 minutes",
+                  "Suivi des chambres en temps réel",
+                  "Prolongations et transferts de chambre",
+                  "Services additionnels enregistrés",
+                ],
+                color: "text-blue-400",
+                bg: "bg-blue-400/10",
+                border: "border-blue-400/20",
+              },
+              {
+                icon: Receipt,
+                title: "Facturation",
+                points: [
+                  "Factures générées automatiquement",
+                  "TVA 18% calculée et intégrée",
+                  "Paiements partiels & soldes suivis",
+                  "Export PDF et historique complet",
+                ],
+                color: "text-purple-400",
+                bg: "bg-purple-400/10",
+                border: "border-purple-400/20",
+              },
+              {
+                icon: BarChart3,
+                title: "Rapports & Analytics",
+                points: [
+                  "Taux d'occupation en temps réel",
+                  "Revenus par jour, semaine, mois",
+                  "Chambres les plus rentables",
+                  "Comparatifs et tendances",
+                ],
+                color: "text-success",
+                bg: "bg-success/10",
+                border: "border-success/20",
+              },
+              {
+                icon: Users,
+                title: "Clientèle",
+                points: [
+                  "Fiche complète par client",
+                  "Historique de tous les séjours",
+                  "Soldes dus et notes internes",
+                  "Base de données centralisée",
+                ],
+                color: "text-warning",
+                bg: "bg-warning/10",
+                border: "border-warning/20",
+              },
+              {
+                icon: Key,
+                title: "API & Connexion Site Web",
+                points: [
+                  "Réservations depuis votre site web",
+                  "Synchronisation instantanée",
+                  "Compatible WordPress, Wix, custom",
+                  "Inclus dans tous les plans",
+                ],
+                color: "text-pink-400",
+                bg: "bg-pink-400/10",
+                border: "border-pink-400/20",
+              },
+            ].map((mod, index) => (
+              <div
+                key={index}
+                className={`border ${mod.border} bg-card p-5 hover:-translate-y-0.5 transition-transform`}
+              >
+                <div className="flex items-center gap-3 mb-4">
+                  <div
+                    className={`flex h-10 w-10 items-center justify-center ${mod.bg}`}
+                  >
+                    <mod.icon className={`h-5 w-5 ${mod.color}`} />
+                  </div>
+                  <h3 className={`font-bold text-sm ${mod.color}`}>
+                    {mod.title}
+                  </h3>
+                </div>
+                <ul className="flex flex-col gap-2">
+                  {mod.points.map((point, i) => (
+                    <li key={i} className="flex items-start gap-2 text-xs">
+                      <CheckCircle2 className="h-3.5 w-3.5 shrink-0 text-success mt-0.5" />
+                      <span className="text-muted-foreground">{point}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
           PROBLÈME — Avant / Après
       ═══════════════════════════════════════════════ */}
       <section id="probleme" className="py-16 sm:py-20 lg:py-32">
@@ -777,7 +1042,7 @@ data = response.json()
           <div className="text-center">
             <Badge
               variant="destructive"
-              className="mb-4 bg-destructive/10 dark:bg-destructive/20 text-destructive border-destructive/20"
+              className="mb-4 bg-destructive/10 dark:bg-destructive/20 text-destructive  border-destructive/20 py-1 text-xs sm:px-4 sm:py-1.5 sm:text-sm"
             >
               <AlertTriangle className="mr-1.5 h-3.5 w-3.5 inline" />
               Le vrai problème des hôteliers aujourd'hui
@@ -790,8 +1055,10 @@ data = response.json()
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               La plupart des hôteliers en Côte d'Ivoire jonglent encore entre
-              WhatsApp, des fichiers Excel et leur mémoire. Résultat : des
-              erreurs, des pertes de revenus et un manque de visibilité total.
+              WhatsApp, des fichiers Excel et leur mémoire. Réservations
+              perdues, factures manuelles, zéro visibilité sur la clientèle et
+              aucun rapport fiable. Résultat : des erreurs, des pertes de
+              revenus et un manque de contrôle total.
             </p>
           </div>
 
@@ -814,9 +1081,9 @@ data = response.json()
                     bg: "bg-destructive/10",
                   },
                   {
-                    icon: Mail,
-                    title: "Confirmations par email dispersées",
-                    desc: "Les réservations de votre site arrivent dans votre boite mail. Vos réceptionnistes ne les voient pas. Les doubles réservations arrivent.",
+                    icon: FileText,
+                    title: "Facturation manuelle et chronophage",
+                    desc: "Chaque facture est faite à la main ou sur Excel. TVA oubliée, erreurs de calcul, clients qui partent sans payer — et aucun historique propre.",
                     color: "text-destructive",
                     bg: "bg-destructive/10",
                   },
@@ -828,9 +1095,16 @@ data = response.json()
                     bg: "bg-destructive/10",
                   },
                   {
+                    icon: Users,
+                    title: "Aucune gestion de la clientèle",
+                    desc: "Vous ne savez pas qui sont vos clients fidèles, qui vous doit de l'argent, ni qui a séjourné combien de fois. Chaque client repart comme un inconnu.",
+                    color: "text-destructive",
+                    bg: "bg-destructive/10",
+                  },
+                  {
                     icon: AlertTriangle,
                     title: "Pas de rapports fiables",
-                    desc: "En fin de mois, difficile de savoir exactement combien vous avez gagné, quelles chambres tournent le mieux, ou qui vous doit de l'argent.",
+                    desc: "En fin de mois, difficile de savoir exactement combien vous avez gagné, quelles chambres tournent le mieux, ou où vont vos dépenses.",
                     color: "text-destructive",
                     bg: "bg-destructive/10",
                   },
@@ -864,14 +1138,14 @@ data = response.json()
                   {
                     icon: CheckCheck,
                     title: "Toutes les réservations centralisées",
-                    desc: "Site web, appel téléphonique, walk-in — chaque réservation arrive dans le même tableau de bord. Une seule source de vérité.",
+                    desc: "Site web, appel téléphonique, walk-in — chaque réservation arrive dans le même tableau de bord. Une seule source de vérité, zéro doublon.",
                     color: "text-success",
                     bg: "bg-success/10",
                   },
                   {
-                    icon: Zap,
-                    title: "Synchronisation instantanée depuis votre site",
-                    desc: "Votre site réserve une chambre ? En 2 secondes, Hôtela met à jour les disponibilités et alerte votre équipe. Fini les doublons.",
+                    icon: Receipt,
+                    title: "Facturation automatique en 1 clic",
+                    desc: "Hôtela génère la facture au check-out avec TVA 18%, enregistre les paiements partiels et suit les soldes dus. Export PDF immédiat.",
                     color: "text-success",
                     bg: "bg-success/10",
                   },
@@ -883,9 +1157,16 @@ data = response.json()
                     bg: "bg-success/10",
                   },
                   {
+                    icon: UserCheck,
+                    title: "Base clients complète et exploitable",
+                    desc: "Chaque client a sa fiche : historique des séjours, montants dépensés, soldes, préférences. Vous connaissez vraiment vos clients.",
+                    color: "text-success",
+                    bg: "bg-success/10",
+                  },
+                  {
                     icon: TrendingUp,
                     title: "Rapports et décisions basés sur les données",
-                    desc: "Revenus du jour, taux d'occupation, chambres les plus rentables — tout est calculé automatiquement. Vous pilotez, vous décidez.",
+                    desc: "Revenus du jour, taux d'occupation, chambres les plus rentables — tout est calculé automatiquement. Vous pilotez avec des vrais chiffres.",
                     color: "text-success",
                     bg: "bg-success/10",
                   },
@@ -947,9 +1228,9 @@ data = response.json()
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 Hôtela est une application web accessible sur{" "}
                 <strong className="text-foreground">tous les appareils</strong>{" "}
-                — aucune installation requise. Vous êtes en déplacement ? En
-                réunion ? Hors du pays ? Votre tableau de bord vous suit
-                partout.
+                — aucune installation requise. Réservations, séjours,
+                facturation, rapports et clientèle : tout est disponible depuis
+                votre navigateur, partout dans le monde.
               </p>
 
               <div className="mt-8 flex flex-col gap-5">
@@ -958,7 +1239,7 @@ data = response.json()
                     icon: Smartphone,
                     title: "Sur votre téléphone",
                     description:
-                      "Vérifiez les check-ins du jour, l'occupation en temps réel et les paiements en attente depuis votre mobile.",
+                      "Vérifiez les check-ins du jour, l'occupation en temps réel, les factures en attente et l'activité de votre équipe depuis votre mobile.",
                     badge: "Android & iOS",
                     color: "text-accent",
                     bg: "bg-accent/10",
@@ -967,7 +1248,7 @@ data = response.json()
                     icon: Laptop,
                     title: "Sur votre ordinateur",
                     description:
-                      "Interface complète avec rapports détaillés, gestion multi-hôtels et toutes les fonctionnalités pour votre équipe.",
+                      "Interface complète avec rapports détaillés, gestion multi-hôtels, base clients, comptabilité et toutes les fonctionnalités avancées.",
                     badge: "Windows & Mac",
                     color: "text-blue-400",
                     bg: "bg-blue-400/10",
@@ -976,7 +1257,7 @@ data = response.json()
                     icon: Tablet,
                     title: "Sur tablette à la réception",
                     description:
-                      "Interface optimisée pour la réception : check-in/out rapide, consultation des réservations du jour, facturation.",
+                      "Interface optimisée pour la réception : check-in/out rapide, réservations du jour, facturation et fiche client en un coup d'œil.",
                     badge: "Parfait pour la réception",
                     color: "text-purple-400",
                     bg: "bg-purple-400/10",
@@ -985,7 +1266,7 @@ data = response.json()
                     icon: Eye,
                     title: "Le propriétaire voit tout",
                     description:
-                      "Revenus en temps réel, taux d'occupation, activité des réceptionnistes — vous avez un œil sur tout, même à distance.",
+                      "Revenus en temps réel, taux d'occupation, activité de vos réceptionnistes, soldes clients — vous avez un œil sur tout, même à distance.",
                     badge: "Contrôle total",
                     color: "text-success",
                     bg: "bg-success/10",
@@ -1130,8 +1411,8 @@ data = response.json()
               Quand un client réserve sur votre site, cette réservation ne doit{" "}
               <strong className="text-foreground">jamais</strong> finir dans un
               email ou un WhatsApp. Elle doit arriver directement dans le
-              tableau de bord de votre équipe. C'est exactement ce que fait
-              l'API Hôtela.
+              tableau de bord de votre équipe — et déclencher automatiquement la
+              création du séjour et la préparation de la facture.
             </p>
           </div>
 
@@ -1321,7 +1602,9 @@ data = response.json()
                 <p className="mt-1 text-xs text-muted-foreground sm:text-sm">
                   WordPress, Wix ou site sur mesure — l'API Hôtela s'y branche
                   facilement. Votre site continue comme avant, sauf que les
-                  réservations arrivent désormais directement dans Hôtela.
+                  réservations arrivent désormais directement dans Hôtela,
+                  créent automatiquement la fiche client et préparent la
+                  facturation.
                 </p>
               </div>
 
@@ -1351,6 +1634,14 @@ data = response.json()
                   bg: "bg-warning/10",
                 },
                 {
+                  icon: UserCheck,
+                  title: "Fiche client créée automatiquement",
+                  description:
+                    "Chaque réservation web crée ou enrichit automatiquement la fiche client dans votre base Hôtela.",
+                  color: "text-purple-400",
+                  bg: "bg-purple-400/10",
+                },
+                {
                   icon: BarChart3,
                   title: "Origine des réservations tracée",
                   description:
@@ -1363,8 +1654,8 @@ data = response.json()
                   title: "Clé API incluse dans tous les plans",
                   description:
                     "Même le pack Essentiel inclut l'accès à l'API. Aucun surcoût, aucune limite artificielle.",
-                  color: "text-purple-400",
-                  bg: "bg-purple-400/10",
+                  color: "text-pink-400",
+                  bg: "bg-pink-400/10",
                 },
               ].map((benefit, index) => (
                 <div key={index} className="flex gap-3 group sm:gap-4">
@@ -1403,7 +1694,8 @@ data = response.json()
                 </div>
                 <div>
                   <p className="text-sm font-semibold sm:text-base">
-                    Site web connecté = réservations automatiques
+                    Site web connecté = réservations + clients + factures
+                    automatiques
                   </p>
                   <p className="mt-0.5 text-xs text-muted-foreground sm:text-sm">
                     Plus de ressaisie. Plus d'emails perdus. Plus de WhatsApp.
@@ -1430,12 +1722,13 @@ data = response.json()
               Fonctionnalités
             </Badge>
             <h2 className="text-3xl font-bold tracking-tight sm:text-4xl text-balance">
-              Un seul outil pour tout gérer
+              Tout ce dont votre hôtel a besoin,{" "}
+              <span className="text-accent">dans un seul logiciel</span>
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Hôtela remplace vos fichiers Excel, votre carnet de réservations,
-              vos messages WhatsApp et votre logiciel de facturation — tout en
-              un, conçu pour les hôteliers ivoiriens.
+              vos messages WhatsApp, votre logiciel de facturation et votre
+              suivi client — tout en un, conçu pour les hôteliers ivoiriens.
             </p>
           </div>
 
@@ -1479,23 +1772,24 @@ data = response.json()
               <p className="mt-4 text-muted-foreground leading-relaxed">
                 La plupart des logiciels hôteliers disponibles ne sont pas
                 pensés pour la réalité ivoirienne : pas de Mobile Money, pas de
-                connexion au site web, pas d'accès mobile, et un support
-                inexistant. Hôtela a été conçu ici, pour ici.
+                connexion au site web, pas de gestion de clientèle, pas d'accès
+                mobile, et un support inexistant. Hôtela a été conçu ici, pour
+                ici.
               </p>
 
               <div className="mt-8 flex flex-col gap-6">
                 {[
                   {
+                    icon: Database,
+                    title: "Logiciel complet, pas un simple planning",
+                    description:
+                      "Réservations, séjours, facturation, rapports, clientèle et API — tout est intégré. Un seul outil, une seule source de vérité.",
+                  },
+                  {
                     icon: Smartphone,
                     title: "Conçu pour le mobile",
                     description:
                       "Interface optimisée sur téléphone. Votre équipe à la réception travaille depuis n'importe quel appareil, sans installation.",
-                  },
-                  {
-                    icon: Globe2,
-                    title: "Accès depuis n'importe quel appareil",
-                    description:
-                      "Pas de logiciel à installer. Ouvrez un navigateur et vous êtes connecté — bureau, mobile, tablette.",
                   },
                   {
                     icon: Link2,
@@ -1546,9 +1840,9 @@ data = response.json()
                 </div>
                 <div className="mt-8 flex flex-col gap-4">
                   <div className="border border-border bg-card p-6 shadow-lg">
-                    <div className="text-3xl font-bold text-accent">API</div>
+                    <div className="text-3xl font-bold text-accent">6+</div>
                     <p className="mt-1 text-sm text-muted-foreground">
-                      Connexion site web incluse
+                      Modules intégrés dans un seul logiciel
                     </p>
                   </div>
                   <div className="border border-border bg-card p-6 shadow-lg">
@@ -1579,7 +1873,8 @@ data = response.json()
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Choisissez le plan qui correspond à la taille de votre
               établissement. Tous les plans incluent un essai gratuit de 30
-              jours et la clé API pour connecter votre site.
+              jours, la gestion complète des séjours, la facturation automatique
+              et la clé API pour connecter votre site.
             </p>
 
             <div className="mt-8 flex items-center justify-center gap-4">
@@ -2013,6 +2308,10 @@ data = response.json()
                       ],
                     },
                     {
+                      label: "Gestion Clientèle",
+                      values: ["Basique", "Complète", "Avancée"],
+                    },
+                    {
                       label: "Multi-établissement",
                       values: ["cross", "check", "check"],
                     },
@@ -2072,7 +2371,7 @@ data = response.json()
             </h2>
             <p className="mx-auto mt-4 max-w-2xl text-muted-foreground">
               Ils géraient leur hôtel avec WhatsApp, des fichiers Excel ou un
-              vieux logiciel. Voici ce qu'ils vivent aujourd'hui.
+              vieux logiciel. Voici ce qu'ils vivent aujourd'hui avec Hôtela.
             </p>
           </div>
 
@@ -2161,13 +2460,19 @@ data = response.json()
           <div className="relative overflow-hidden bg-primary px-6 py-16 text-center sm:px-12 lg:px-16">
             <div className="absolute inset-0 bg-[linear-gradient(to_right,oklch(0.2_0.01_75/0.3)_1px,transparent_1px),linear-gradient(to_bottom,oklch(0.2_0.01_75/0.3)_1px,transparent_1px)] bg-[size:3rem_3rem]" />
             <div className="relative">
+              <Badge className="mb-4 bg-primary-foreground/10 text-primary-foreground border-primary-foreground/20 text-xs font-bold uppercase tracking-widest">
+                Logiciel de gestion hôtelière
+              </Badge>
               <h2 className="text-3xl font-bold tracking-tight text-primary-foreground sm:text-4xl text-balance">
-                Arrêtez de gérer votre hôtel à la débrouille.
+                Réservations, séjours, facturation, rapports, clientèle.
+                <br />
+                <span className="opacity-80">Tout ça, dans un seul outil.</span>
               </h2>
               <p className="mx-auto mt-4 max-w-xl text-primary-foreground/80">
                 Essayez Hôtela gratuitement pendant 30 jours. Centralisez vos
-                réservations, connectez votre site web, et pilotez votre hôtel
-                depuis n'importe où. Sans engagement, sans carte bancaire.
+                réservations, gérez vos séjours, automatisez votre facturation
+                et pilotez votre hôtel depuis n'importe où. Sans engagement,
+                sans carte bancaire.
               </p>
               <div className="mt-7 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:items-center sm:justify-center sm:gap-4">
                 <Link href="/register">
@@ -2176,7 +2481,7 @@ data = response.json()
                     variant="secondary"
                     className="h-12 px-8 text-base"
                   >
-                    Démarrer l'essai gratuit
+                    Démarrer l'essai gratuit — 30 jours
                     <ArrowRight className="ml-2 h-5 w-5" />
                   </Button>
                 </Link>
@@ -2189,6 +2494,24 @@ data = response.json()
                     Contacter l'équipe
                   </Button>
                 </Link>
+              </div>
+              {/* Modules reminder */}
+              <div className="mt-8 flex flex-wrap items-center justify-center gap-x-4 gap-y-2 text-xs text-primary-foreground/60">
+                {[
+                  "Réservations",
+                  "Séjours",
+                  "Facturation auto",
+                  "Rapports",
+                  "Clientèle",
+                  "API Site Web",
+                ].map((m, i, arr) => (
+                  <span key={m} className="flex items-center gap-4">
+                    <span>{m}</span>
+                    {i < arr.length - 1 && (
+                      <span className="h-1 w-1 rounded-full bg-primary-foreground/30" />
+                    )}
+                  </span>
+                ))}
               </div>
             </div>
           </div>
@@ -2207,12 +2530,22 @@ data = response.json()
                 <span className="font-bold tracking-tight">Hôtela</span>
               </div>
               <p className="mt-4 text-sm text-muted-foreground">
-                Le logiciel de gestion hôtelière conçu pour la Côte d'Ivoire.
+                Le logiciel de gestion hôtelière complet conçu pour la Côte
+                d'Ivoire. Réservations, séjours, facturation, rapports,
+                clientèle et API.
               </p>
             </div>
             <div>
               <h4 className="font-semibold">Produit</h4>
               <ul className="mt-4 flex flex-col gap-2 text-sm text-muted-foreground">
+                <li>
+                  <a
+                    href="#modules"
+                    className="hover:text-foreground transition-colors"
+                  >
+                    Modules
+                  </a>
+                </li>
                 <li>
                   <a
                     href="#probleme"
