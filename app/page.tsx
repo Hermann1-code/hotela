@@ -664,7 +664,7 @@ export default function HomePage() {
           </div>
 
           <div className="mt-10 text-center">
-            <Link href="/connecter-site">
+            <Link href="/integration">
               <Button size="lg">
                 En savoir plus sur l&apos;API
                 <ArrowRight className="ml-2 h-4 w-4" />
@@ -778,7 +778,7 @@ export default function HomePage() {
                   Connectez votre site web pour automatiser les réservations.
                 </p>
                 <Link
-                  href="/connecter-site"
+                  href="/integration"
                   className="mt-4 inline-flex items-center text-sm text-pink-400 hover:underline"
                 >
                   Connecter mon site <ArrowRight className="ml-1 h-3 w-3" />

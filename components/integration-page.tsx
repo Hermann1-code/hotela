@@ -382,7 +382,7 @@ export default function ConnecterSitePage() {
                     HTTPS chiffré — Clé API unique par hôtel
                   </div>
                   <a
-                    href="#"
+                    href="/docs/api"
                     className="flex items-center gap-0.5 text-xs text-accent hover:underline"
                   >
                     Voir la documentation <ChevronRight className="h-3 w-3" />

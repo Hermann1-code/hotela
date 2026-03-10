@@ -72,7 +72,7 @@ export function Header() {
             {[
               { href: "/fonctionnalites", label: "Fonctionnalités" },
               { href: "/pricing", label: "Tarifs" },
-              { href: "/connecter-site", label: "API & Intégration" },
+              { href: "/integration", label: "API & Intégration" },
             ].map((link) => (
               <Link
                 key={link.href}
