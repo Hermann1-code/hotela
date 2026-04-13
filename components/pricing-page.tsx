@@ -390,7 +390,7 @@ export default function PricingPage() {
                         <div className="flex items-center gap-1.5 border border-accent/20 bg-accent/5 px-3 py-1.5 text-xs">
                           <Globe className="h-3 w-3 text-accent" />
                           <span className="text-accent font-medium">
-                            A partir de 100 000 FCFA
+                            A partir de 200 000 FCFA
                           </span>
                           <span className="text-muted-foreground">
                             :création du site
@@ -422,7 +422,7 @@ export default function PricingPage() {
                     <span
                       className={`text-3xl font-bold sm:text-4xl ${wantsSite ? "text-accent" : "text-foreground"}`}
                     >
-                      {wantsSite ? "150 000" : "50 000"}
+                      {wantsSite ? "250 000" : "50 000"}
                     </span>
                     <span className="text-lg font-semibold text-muted-foreground">
                       FCFA

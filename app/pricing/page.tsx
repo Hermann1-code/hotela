@@ -32,6 +32,7 @@ export const metadata: Metadata = {
   alternates: {
     canonical: `${APP_URL}/pricing`,
   },
+  
 };
 
 export default function page() {

@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { Hotel } from "lucide-react";
+import Image from "next/image";
 
 export function Footer() {
   return (
@@ -8,10 +9,7 @@ export function Footer() {
         <div className="grid grid-cols-2 gap-6 sm:gap-8 md:grid-cols-4">
           <div>
             <Link href="/" className="flex items-center gap-2">
-              <div className="flex h-7 w-7 items-center justify-center bg-accent">
-                <Hotel className="h-3.5 w-3.5 text-accent-foreground" />
-              </div>
-              <span className="font-bold tracking-tight">Hôtela</span>
+            <Image src={'/images/logo.png'} width={100} height={100} alt="Logo Hotela" />
             </Link>
             <p className="mt-4 text-sm text-muted-foreground">
               Le logiciel de gestion hôtelière complet conçu pour la Côte
