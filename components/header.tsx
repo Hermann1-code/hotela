@@ -52,6 +52,7 @@ export function Header() {
         </div>
 
         <div className="flex items-center gap-2 md:hidden">
+        <ModeToggle />
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="flex h-9 w-9 items-center justify-center border border-border text-muted-foreground hover:text-foreground transition-colors"
